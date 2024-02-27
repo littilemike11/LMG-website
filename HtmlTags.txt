@@ -1,0 +1,158 @@
+https://www.w3schools.com/tags/tag_details.asp
+
+<!--> = comments 
+<!DOCTYPE html> = all html documents must start witht his declaration
+A
+<a href= "examplelink.com></a> - hyperlink
+<abbr> = abbreviation
+<address> = for addresses
+<area> = define clickable areas in image <map>
+<article> = for articles
+<aside> = define some content aside from content it is placed in
+<audio> = play a sound file
+
+B
+<b> make text bold
+<base> =default url
+<bdi> = isolate usernames from surrounding text
+<bdo> = specify text direction ( left or right)
+<blockquote> = section quoted from another source
+<body> = simple html document
+<br> = insert single line break in text
+<button> = clickable button
+
+C
+<canvas> = make a canvas
+<caption> = table caption
+<cite> = cite work
+<code> = define text as computer code ina  document
+<col> columns
+<colgroup>
+
+D
+<data> 
+<datalist> = datalist with predifined options
+<del> = a text with deleted part and a new inserted part (cross out)
+<details> = details that user can open and close on demand
+<dfn> = definition element
+<dialog open> = open a dialog/ popup window
+<div> = a div section styled with css
+<dl> = description list with terms and descriptions
+<dt> = description list - terms
+<dd> = description list - descriptions
+
+E
+<em> = emphasized text italics
+<embed>
+
+F
+<fieldset> = group related elements in a form
+<figure> = photo or document
+<figcaption> = define caption for photo
+<footer> = footer section
+<form>
+
+H
+<h1-6> = diff types of headings
+<head> = head section - placed btwn html and body tag , title is required
+<header> = header for an article
+<hgroup> = heading and paragraph r related
+<hr> = thematic break
+<html> = root of html document, container for all other html elements
+
+I
+<i> = italics
+<iframe> =inline frame used to embed another document
+<img> = image
+<input> input field for user to enter data
+<ins> = inserted text
+
+K
+<kbd> = display text as keyboard input
+
+L
+<label> 
+<legend> define caption for <fieldset> element
+<li> list item, used inside <ol> order list or <ul> unorder list
+<link> link to external style sheets
+
+M
+<main> main content of document, can only be 1
+<map> define clickable map
+<mark> highlight parts of text
+<menu> unorderlist similar to <ul>
+<meta> define metadata about html document. Alwasy go inside <head> element
+<meter> display meter element ( guage)
+
+N
+<nav> define set of navigation links
+<noscript> define alternate content to be displayed when user has disabled scripts in browser or have a brower that doesnt run scripts
+
+O
+<object> define container for external resource
+<ol> define ordered list
+<optgroup> group related options in <select> element ( dropdown list)
+<option> define an option in <select> list
+<output> represent result of calculation 
+
+P
+<p> paragraph
+<param> define paramters of an <object> element
+<picture>
+<pre> preformatted text
+<progress> display progress bar
+
+Q
+<q> short quotes
+
+R
+<ruby> specify ruby annotation
+<rp> show browers that dont support ruby annotations
+<rt> define explanation or pronunciation of characters
+
+S
+<s> specifies text that is no longer correct, accurate or relevant
+<samp> define sample output from computer program. Use for css
+<script> used to embed a client side script
+<search> used to show a set of elements related to search
+<section> define a section in a document
+<select> create a drop-down list
+<small> make smaller text
+<source> specify multiple media resources for media elements like <video>, <audio>, <picture?
+<span> inline container used to mark up part of a text
+<strong> define text with strong importance
+<style> define style info (CSS). Must be included inside <head> section
+<sub> define subscript
+<sup> define superscript
+<summary> define visible heading fro <details> element. Should be first child element of <Details>
+<svg> define container for svg graphics- drawing shapes
+
+T
+<table> define html table
+<tbody> group body content of html table
+<td> define data cell of html table
+<th> define heading of html table
+<tfoot> group footer content in html table
+<tr> define row in html table
+<template> used as container to hold some html content hidden from user when pg loads
+<textarea> define multi lien text input control. id attribute is needed.
+<time> define specific time
+<title> define title of doc. Show in browers pg tab. Required for docs. Only 1 title.
+<track> specifie text tracks for <audio> or <video> elements
+
+U
+<u> underline - unarticulated
+<ul> unordered bullet list
+
+V
+<var> define variable in programming or math expression
+<video> embed video content in doc
+
+W
+<wbr> word break opportunity to specify where in text it would be ok to add line break
+
+block element take up entire line ie paragraph
+inline block element- only takes up as much space as it need to ie img / input
+inline element - appear within a line of text ie strong
+
+div = division -box block element

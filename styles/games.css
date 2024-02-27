@@ -1,0 +1,39 @@
+  .cuber,
+  .bombBlitz {
+    padding-left: 20px;
+    padding-bottom: 20px;
+  }
+
+  .cuber {
+    background-image: url("../images/CuberLogo.png");
+  }
+
+  .bombBlitz {
+    background-image: url("../images/bombLogo.png");
+    color: red;
+  }
+  .comparison{
+    display: flex;
+    align-items: end;
+    flex:50%;
+    max-width: 50%;
+    
+  }
+
+  .comparison img{
+    min-width: 300px;
+    
+  }  
+  .sprites figure
+  {
+    color: blueviolet;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(51, 224, 230);
+    display: inline-block;
+  }
+  .sprites img{
+    width: auto;
+  }
+
+

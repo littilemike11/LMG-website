@@ -1,0 +1,12 @@
+.insta {
+    font-weight: bold;
+  }
+
+  em {
+    color: red;
+    font-style: normal;
+  }
+
+  strong {
+    color: blueviolet;
+  }
