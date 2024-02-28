@@ -74,7 +74,7 @@ body {
   
     @media only screen and (max-width:750px){
       .header{
-        font-size: smaller;
+        font-size: small;
       }
       img{
         width: 100%;
@@ -86,5 +86,11 @@ body {
       video{
         width: 100%;
         height: auto;
+      }
+
+      @media only screen and (max-width:500px) {
+        .header{
+          font-size: x-small;
+        }
       }
     }
