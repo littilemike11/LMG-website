@@ -88,7 +88,7 @@ body {
         height: auto;
       }
 
-      @media only screen and (max-width:500px) {
+      @media only screen and (max-width:400px) {
         .header{
           font-size: x-small;
         }
