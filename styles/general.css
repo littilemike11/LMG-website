@@ -1,9 +1,12 @@
 body {
+    overflow-x: hidden;
+    max-width: 100%;
     background-color: white;
     padding-bottom: 100px;
     margin: 0px;
     margin-top: 150px;
     font-size: larger;
+    width: 100%;
   }
 
     .header,
@@ -53,4 +56,35 @@ body {
     
     html{
       scroll-padding-top: 150px ;
+    }
+    img {
+      width: 600px;
+  
+      margin-right: auto;
+      object-fit: cover;
+    }
+  
+    .banner {
+      object-fit: cover;
+      display: block;
+      margin-left: auto;
+      width: 50%;
+      height: 300px;
+    }
+  
+    @media only screen and (max-width:750px){
+      .header{
+        font-size: small;
+      }
+      img{
+        width: 100%;
+        height: auto;
+      }
+      body{
+        font-size: medium;
+      }
+      video{
+        width: 100%;
+        height: auto;
+      }
     }
