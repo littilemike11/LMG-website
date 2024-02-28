@@ -90,7 +90,7 @@ body {
 
       @media only screen and (max-width:600px) {
         .header{
-          font-size: x-small;
+          font-size:xx-small;
         }
       }
     }
