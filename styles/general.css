@@ -73,8 +73,7 @@ body {
     }
   
     @media only screen and (max-width:750px){
-      .header,
-      .externalLinks{
+      .header{
         font-size: small;
       }
       img{
@@ -89,9 +88,8 @@ body {
         height: auto;
       }
 
-      @media only screen and (max-width:400px) {
-        .header,
-        .externalLinks{
+      @media only screen and (max-width:600px) {
+        .header{
           font-size: x-small;
         }
       }
