@@ -1,0 +1,21 @@
+.gamesGrid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    border: 10px dotted black;
+    column-gap: 25px;
+    row-gap: 50px  ;
+    padding: 50px 10% 50px 10%;
+}
+
+.gamesGrid button{
+    font-size: large;
+    background-color: burlywood;
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+.gamesGrid button:hover{
+    cursor:pointer;
+    scale:  1.1;
+}
