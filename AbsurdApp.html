@@ -8,6 +8,7 @@
 
 
   <link rel="stylesheet" href="styles/webGame.css">
+  <link rel="stylesheet" href="styles/GameStyles/AbsurdApp.css">
 
 </head>
 
@@ -18,21 +19,120 @@
 
   <div>
     <h1> Faux Firms Application</h1>
-    <ul>
+    <p>Thank you for Considering us at Faux Firms&trade;.</p>
+    <ol>
       <h2>Personal Info</h1>
-        <li>first name / last name</li>
-        <li>email</li>
-        <li>phone #</li>
-        <li>address</li>
-        <h2>Emploment Info</h2>
-        <li> desired pay</li>
-        <li>position applied for</li>
-        <li>are u u.s ciziten</li>
-        <li>are you allowed to work in country you are applying for</li>
-        <li>have u ever worked for this company</li>
-        <li></li>
+        <li>First name Last name -alpha flip</li>
+        <form>
 
-    </ul>
+          <label for="fname">First name:</label><br>
+          <input type="text" id="fname" name="fname"><br>
+          <label for="lname"> Last name:</label><br>
+          <input type="text" id="lname" name="lname"><br>
+
+          <div class="DOB-section">
+            <p>Date of Birth</p>
+            <div>
+              <label for="dobD"></label><br>
+              <input class="dob" type="range" id="dobD" name="dobD" min="1" max="31" step="1">
+              <p>Day : <output id="value"></output> </p>
+            </div>
+            <div>
+              <label for="dobM"></label><br>
+              <input class="dob" type="range" id="dobM" name="dobM" min="1" max="12" step="1">
+              <p>Month : <output id="valueM"></output> </p>
+            </div>
+            <div>
+              <label for="dobY"></label><br>
+              <input class="dob" type="range" id="dobY" name="dobY" min="0" max="3000" step="1">
+              <p>Year : <output id="valueY"></output> </p>
+            </div>
+          </div>
+
+          <div class="telephone-section">
+            <p>Mobile Number</p>
+
+            <div><input class="telephone" type="number" id="teld1" name="teld1" min="0" max="9"></div>
+            <div><input class="telephone" type="number" id="teld2" name="teld2" min="0" max="9"></div>
+            <div><input class="telephone" type="number" id="teld3" name="teld3" min="0" max="9"></div>
+            <div>&ndash;</div>
+            <div><input class="telephone" type="number" id="teld4" name="teld4" min="0" max="9"></div>
+            <div><input class="telephone" type="number" id="teld5" name="teld5" min="0" max="9"></div>
+            <div><input class="telephone" type="number" id="teld6" name="teld6" min="0" max="9"></div>
+            <div>&ndash;</div>
+            <div><input class="telephone" type="number" id="teld7" name="teld7" min="0" max="9"></div>
+            <div><input class="telephone" type="number" id="teld8" name="teld8" min="0" max="9"></div>
+            <div><input class="telephone" type="number" id="teld9" name="teld9" min="0" max="9"></div>
+            <div><input class="telephone" type="number" id="teld10" name="teld10" min="0" max="9"></div>
+
+          </div>
+
+
+          <script src="scripts/GameScripts/AbsurdApp.js"></script>
+
+          <li>email </li>
+          <li>address - city, state, zip, country - geo</li>
+
+          <h2>Emploment Info</h2>
+          <li>how did you hear about this job - how can u not</li>
+          <p>How did you hear about our Company</p>
+          <label for="referrel">How did you hear about our Company: </label><br>
+          <select name="referrels" id="referrels">
+            <option value="opt1">How could I not, you guys are the best company around!</option>
+            <option value="opt2">My family and friends can't stop talking about it.</option>
+            <option value="opt3">Both</option>
+            <option value="opt4">All of the Above</option>
+          </select>
+
+
+          <li>why do want to work for us</li>
+          <label for="reason"><strong>*</strong> Why do you want to work for us?</label><br>
+          <textarea id="reason" name="reason" rows="4" cols="75" readonly required>I would be estatic to join Faux Firms becaause the Company is awesome! It would give my life meaning to be able to work for you. Please give me the honors of joining the #1 ranked Company in the world.
+          </textarea>
+          <li> desired pay - + / - money amount - cap at 15-cant exceed min wage - smiley for price ranges</li>
+          <label for="pay">Desired hourly pay: </label><br>
+          <input type="number" id="pay" name="pay" max="15" placeholder="can't exceed min wage">
+          <li>position applied for</li>
+          <li>are you at least 18 years of age - recognize old item</li>
+          <li>are you u.s ciziten - recognize flag</li>
+          <li> are you authorized to work in the U.S</li>
+          <li>will you need employer based immigration sponsorship to work now or in the future</li>
+          <li>are you allowed to work in country you are applying for</li>
+          <li>have u ever worked for this company - an we woudl know</li>
+          <li>preferred location - world map</li>
+
+          <h2>Education - quiz</h2>
+
+          <h2>Experience- kill mobs</h2>
+
+          <h2> Emploment Position</h2>
+          <li>full time/part time- only full time</li>
+          <li>when can u begin working- now</li>
+
+          <h2>Equal employment opportunity</h2>
+          <li>do you have a disability- spectrum slider</li>
+          <li>select race- color picker</li>
+          <label for="race">What is your Ethnic Background?</label><br>
+          <input id="race" type="color" name="race">
+          <li>gender</li>
+          <li>sex?</li>
+          <fieldset>
+            <legend>Sex?</legend>
+            <div>
+              <label for="Y">y</label>
+              <input type="radio" id="Y" name="sex" value="Y">
+            </div>
+            <div>
+              <label for="N">n</label>
+              <input type="radio" id="N" name="sex" value="N">
+            </div>
+          </fieldset>
+          <li> are u a veteran - fps mini game</li>
+          <li> E-Signature - draw</li>
+
+        </form>
+
+    </ol>
   </div>
 
 </body>
