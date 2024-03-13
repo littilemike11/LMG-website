@@ -18,20 +18,19 @@
     <a href="WebGames.html">LMG Games </a>
   </div>
 
+
   <div class="startButton">
-    <button onclick="CreateGrid()">
+    <button id="startButton" onclick="CreateGrid(rcount,ccount)">
       Start
     </button>
   </div>
   <div>
-    <form class="gridSize">
-      <label>Rows:</label>
-      <input type="number" min="1" value="6" name="rcount" id="rcount">
-      <label>Cols:</label>
-      <input type="number" min="1" value="6" name="ccount" id="ccount">
-
-    </form>
+    <button onclick="resetRound()">
+      Restart Game
+    </button>
   </div>
+
+  <p id="roundNum"></p>
   <div id="grid"></div>
 
   <script src="scripts/GameScripts/WheresOne.js"></script>

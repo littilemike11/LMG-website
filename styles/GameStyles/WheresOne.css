@@ -4,9 +4,16 @@ body{
 :root{
   --rows:1;
   --cols:1;
+  --correct:green;
+  --incorrect:red;
+  --neutral:rgb(244, 255, 202);
+}
+div{
+  margin-top: 10px;
 }
 .startButton{
     margin-top: 50px;    
+    visibility: visible;
 }
 #grid {
     display: grid;
@@ -21,7 +28,7 @@ body{
   .cell {
     display: flex;
     border: 1px solid black;
-    background-color: rgb(244, 255, 202);
+    background-color: var(--neutral);
     align-items: center;
     justify-content: center;
 
@@ -30,10 +37,10 @@ body{
     scale: 1.1;
   }
   #cellCorrect:active{
-    background-color: green;
+    background-color:var(--correct);
   }
   #cellIncorrect:active{
-    background-color: red;
+    background-color:var(--incorrect);
   }
   .gridSize input{
     width: 5em;
