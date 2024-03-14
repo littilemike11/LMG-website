@@ -1,9 +1,10 @@
 const wrongLetters = ["i","l","!","|",];
 const startButton= document.getElementById("startButton");
-let round =1;
 
+let round =1;
 let rcount=2;
 let ccount=2;
+
 function setRound(){
   ccount++;
   rcount++;
@@ -32,7 +33,7 @@ function clearGrid(){
 function CreateGrid(r,c) {
   displayRound();
   startButton.innerHTML="Next";
-  startButton.style.visibility="hidden";
+  startButton.style.visibility="hidden"; 
   let count=0;
   const grid = document.getElementById("grid");
   //var r = document.getElementById("rcount").value;
@@ -53,7 +54,7 @@ function CreateGrid(r,c) {
         cell.innerText="1";
         cell.setAttribute('id',"cellCorrect");
         cell.addEventListener("click",(event)=>{ cell.style.backgroundColor="var(--correct)"});
-        cell.addEventListener("click",(event)=>{ startButton.style.visibility="visible"});
+        cell.addEventListener("click",(event)=>{ CreateGrid(r+1,c+1) });
       }
       //create wrong answers
       else{
