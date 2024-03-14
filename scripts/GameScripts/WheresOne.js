@@ -5,25 +5,33 @@ let round =1;
 let rcount=2;
 let ccount=2;
 
+// update round and row/cols variables
 function setRound(){
   ccount++;
   rcount++;
   round ++;
 }
 
+//display round number 
 function displayRound(){
   document.getElementById("roundNum").innerHTML ="Round: " +round;
 }
 
+//reset round button logic
 function resetRound(){
+  sec=0;
+  isTimerOn=false;
   startButton.innerText="Start";
   startButton.style.visibility="visible";
   round=1;
-  displayRound();
   rcount=2;
   ccount=2;
+  displayRound();
+  resetLives();
   clearGrid();
+
 }
+//clear grid of cells
 function clearGrid(){
   while(grid.firstChild){
     grid.removeChild(grid.firstChild);
@@ -53,13 +61,13 @@ function CreateGrid(r,c) {
       if(count==spawn){
         cell.innerText="1";
         cell.setAttribute('id',"cellCorrect");
-        cell.addEventListener("click",(event)=>{ cell.style.backgroundColor="var(--correct)"});
         cell.addEventListener("click",(event)=>{ CreateGrid(r+1,c+1) });
       }
       //create wrong answers
       else{
         cell.innerText = getRandomLetter();
         cell.setAttribute('id', 'cellIncorrect');
+        cell.addEventListener("click",(event)=>{lifeManager(lives)})
       }
       //add cells to grid
       cell.classList.add('cell');
@@ -70,18 +78,46 @@ function CreateGrid(r,c) {
   setRound();
   }
 
-  function setColor(){
-    document.getElementById("cellCorrect").style.backgroundColor="var(--correct)";
-  }
-
+  //get random wrong letter from list
   function getRandomLetter(){
     let x = Math.floor(Math.random()*wrongLetters.length);
     return wrongLetters[x];
   }
-
+  //create spawn location of "1"
   function spawnAnswerSpot(r,c){
     let total=r*c;
     let spawn = Math.floor(Math.random()*total);
     return spawn;
   }
 
+  let isTimerOn =false;
+  startButton.addEventListener("click", (event)=>{isTimerOn=true;})
+  var sec =0;
+  setInterval(controlTimer,1000);
+  let timer = document.getElementById("timer");
+  function controlTimer(){
+    if(isTimerOn){
+      sec++;
+    }
+    timer.innerHTML =sec +"s";
+  }
+
+  startButton.addEventListener("click", (event)=>{resetLives();})
+  let livesText = document.getElementById("lives");
+  let lives =3;
+
+  function lifeManager(lifeCount){
+    lives--;
+    let lifeText="";
+    for (let i = 0; i < lives; i++) {
+      lifeText+= "&hearts; ";
+    }
+    if(lives<=0){
+      resetRound();
+    }
+    livesText.innerHTML = lifeText;
+  }
+  function resetLives(){
+    lives=3;
+    livesText.innerHTML = "&hearts; &hearts; &hearts;";
+  }
