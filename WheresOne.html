@@ -18,27 +18,28 @@
     <a href="WebGames.html">LMG Games </a>
   </div>
 
+  <div class="settings">
+    <div class="startButton">
+      <button id="startButton" onclick="CreateGrid(rcount,ccount)">
+        Start
+      </button>
+    </div>
+    <div>
+      <button onclick="resetRound()">
+        Restart Game
+      </button>
+    </div>
 
-  <div class="startButton">
-    <button id="startButton" onclick="CreateGrid(rcount,ccount)">
-      Start
-    </button>
-  </div>
-  <div>
-    <button onclick="resetRound()">
-      Restart Game
-    </button>
-  </div>
 
-
-  <p id="roundNum">
-    Round:
-  </p>
-  <div id="timer">
-    0s
-  </div>
-  <div id="lives" style="color: red;">
-    &hearts; &hearts; &hearts;
+    <p id="roundNum">
+      Round:
+    </p>
+    <div id="timer">
+      0s
+    </div>
+    <div id="lives">
+      &hearts; &hearts; &hearts;
+    </div>
   </div>
   <div id="grid"></div>
 

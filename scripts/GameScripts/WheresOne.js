@@ -19,13 +19,18 @@ function displayRound(){
 
 //reset round button logic
 function resetRound(){
+  //reset timer settings
+  timer.innerHTML="0s";
   sec=0;
   isTimerOn=false;
+  // reset start button
   startButton.innerText="Start";
   startButton.style.visibility="visible";
+  //reset round,row, col vars
   round=1;
   rcount=2;
   ccount=2;
+  
   displayRound();
   resetLives();
   clearGrid();

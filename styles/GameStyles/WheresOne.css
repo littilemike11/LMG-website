@@ -16,13 +16,18 @@ div{
     margin-top: 50px;    
     visibility: visible;
 }
+.settings{
+  margin: auto;
+  width: 750px; 
+}
 #grid {
     display: grid;
+    margin: auto;
     grid-template-rows: repeat(var(--rows),1fr);
     grid-template-columns: repeat(var(--cols),1fr);
     border: 1px solid black;
-    width: 700px;
-    height: 700px;
+    width: 750px;
+    height: 750px;
   }
 
   /* Define the grid cell styles */
@@ -45,6 +50,9 @@ div{
   }
   .gridSize input{
     width: 5em;
+  }
+  #lives{
+    color: red;
   }
   @media only screen and (max-width:500px){
     #grid{
