@@ -1,39 +1,39 @@
 const wrongLetters = ["i","l","!","|",];
 const startButton= document.getElementById("startButton");
+const roundNum=document.getElementById("roundNum");
 
 let round =1;
 let rcount=2;
-let ccount=2;
 
 // update round and row/cols variables
 function setRound(){
-  ccount++;
   rcount++;
   round ++;
 }
 
 //display round number 
 function displayRound(){
-  document.getElementById("roundNum").innerHTML ="Round: " +round;
+  roundNum.innerHTML ="Round: " +round;
 }
 
 //reset round button logic
 function resetRound(){
   //reset timer settings
-  timer.innerHTML="0s";
-  sec=0;
+
   isTimerOn=false;
   // reset start button
   startButton.innerText="Start";
   startButton.style.visibility="visible";
   //reset round,row, col vars
+  roundNum.innerHTML ="Previous Round: " +round;
   round=1;
   rcount=2;
-  ccount=2;
 
-  displayRound();
+  restartTimer();
+
   resetLives();
   clearGrid();
+  
 
 }
 //clear grid of cells
@@ -43,7 +43,7 @@ function clearGrid(){
   }
 }
 
-function CreateGrid(r,c) {
+function CreateGrid(r) {
   displayRound();
   startButton.innerHTML="Next";
   startButton.style.visibility="hidden"; 
@@ -51,22 +51,23 @@ function CreateGrid(r,c) {
   const grid = document.getElementById("grid");
   //var r = document.getElementById("rcount").value;
   //var c = document.getElementById("ccount").value;
-  let spawn = spawnAnswerSpot(r,c);
+  let spawn = spawnAnswerSpot(r);
   //grid.style.gridTemplateRows = "repeat(4,1fr)";
   //grid.style.gridTemplateColumns = "repeat(4,1fr)"; 
   let root = document.querySelector(':root');//get root
   root.style.setProperty('--rows',r); // change root rows to r
-  root.style.setProperty('--cols',c); //change root cols to c
+  root.style.setProperty('--cols',r); //change root cols to c
   clearGrid();
   for (var rows = 0; rows < r; rows++) {
-    for (var cols = 0; cols < c; cols++) {
+    for (var cols = 0; cols < r; cols++) {
       //create cells
-      const cell = document.createElement("div");
+      const cell = document.createElement("button");
       //create correct answer
       if(count==spawn){
         cell.innerText="1";
         cell.setAttribute('id',"cellCorrect");
-        cell.addEventListener("click",(event)=>{ CreateGrid(r+1,c+1) });
+        cell.addEventListener("click",(event)=>{ setRound();CreateGrid(r+1); restartTimer(); });
+        
       }
       //create wrong answers
       else{
@@ -80,7 +81,6 @@ function CreateGrid(r,c) {
       count++;
     }
   }
-  setRound();
   }
 
   //get random wrong letter from list
@@ -89,25 +89,35 @@ function CreateGrid(r,c) {
     return wrongLetters[x];
   }
   //create spawn location of "1"
-  function spawnAnswerSpot(r,c){
-    let total=r*c;
+  function spawnAnswerSpot(r){
+    let total=r*r;
     let spawn = Math.floor(Math.random()*total);
     return spawn;
   }
 
   let isTimerOn =false;
   startButton.addEventListener("click", (event)=>{isTimerOn=true;})
-  var sec =0;
+  var sec =3;
   setInterval(controlTimer,1000);
   let timer = document.getElementById("timer");
+  function restartTimer(){
+    sec=round+2;
+    timer.innerHTML=sec+"s";
+  }
   function controlTimer(){
     if(isTimerOn){
-      sec++;
+      sec--;
+    }
+    //if run otu of time --live, create new grid of same round, restart timer
+    if(sec==0){
+      CreateGrid(rcount);
+      lifeManager(lives);
+      restartTimer();
     }
     timer.innerHTML =sec +"s";
   }
 
-  startButton.addEventListener("click", (event)=>{resetLives();})
+  startButton.addEventListener("click", (event)=>{resetLives();});
   let livesText = document.getElementById("lives");
   let lives =3;
 
@@ -121,8 +131,22 @@ function CreateGrid(r,c) {
       resetRound();
     }
     livesText.innerHTML = lifeText;
+    //document.body.style.backgroundColor="white";
   }
   function resetLives(){
     lives=3;
     livesText.innerHTML = "&hearts; &hearts; &hearts;";
   }
+
+  var collapsible =document.getElementById("collapsible");
+  //var content = document.getElementsByClassName("content");
+  collapsible.addEventListener("click",function() {
+    collapsible.classList.toggle("active");
+    var content = collapsible.nextElementSibling;
+    if(content.style.display=="block"){
+      content.style.display="none";
+    }
+    else{
+      content.style.display="block";
+    }
+  });

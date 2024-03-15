@@ -19,8 +19,23 @@
   </div>
 
   <div class="settings">
+    <div class="rules">
+      <button type="button" id="collapsible">Rules</button>
+      <div class="content">
+        <ol>
+          <li>Find and Click on the "1" within the time limit to go to the next Round.</li>
+          <li>Time limit = Round number + 2s (ie. if Round #10, the timer start with 12s).</li>
+          <li>You get <span class="heart">3 &hearts; &hearts; &hearts;</span> lives.</li>
+          <li>Click on an incorrect box, you lose a life.</li>
+          <li>Fail to find the "1" within the time limit, you lose a <span class="heart">&hearts;</span>.</li>
+          <li>Lose all <span class="heart">&hearts; &hearts; &hearts;</span> and you lose the Game.</li>
+          <li>Try and get to a High Round.</li>
+          <li>Brag to your firends/family that you have Amazing "1" acquisition!</li>
+        </ol>
+      </div>
+    </div>
     <div class="startButton">
-      <button id="startButton" onclick="CreateGrid(rcount,ccount)">
+      <button id="startButton" onclick="CreateGrid(rcount)">
         Start
       </button>
     </div>
@@ -35,7 +50,7 @@
       Round:
     </p>
     <div id="timer">
-      0s
+      3s
     </div>
     <div id="lives">
       &hearts; &hearts; &hearts;
