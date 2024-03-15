@@ -47,6 +47,20 @@
 .link a:hover { text-decoration: none; }
 .link a:active { text-decoration: none; }
 
+@media only screen and (max-width:800px) {
+    .gamesGrid{
+        grid-template-columns: auto auto;
+        justify-content: center;
+    }
+}
+@media only screen and (max-width:600px) {
+    .gamesGrid{
+        grid-template-columns: auto;
+        column-gap: 0px;
+        justify-content: center;
+    }
+}
+
 /* GAMES */
 #WheresOne{
     background-image: url("/images/WheresOneIcon.jpg");
