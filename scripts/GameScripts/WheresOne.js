@@ -95,26 +95,45 @@ function CreateGrid(r) {
     return spawn;
   }
 
+  //timer functions
   let isTimerOn =false;
   startButton.addEventListener("click", (event)=>{isTimerOn=true;})
   var sec =3;
   setInterval(controlTimer,1000);
-  let timer = document.getElementById("timer");
   function restartTimer(){
     sec=round+2;
-    timer.innerHTML=sec+"s";
+    bar.innerHTML = sec +"s";
   }
   function controlTimer(){
     if(isTimerOn){
       sec--;
     }
-    //if run otu of time --live, create new grid of same round, restart timer
+    //if run out of time --live, create new grid of same round, restart timer
     if(sec==0){
       CreateGrid(rcount);
       lifeManager(lives);
       restartTimer();
     }
-    timer.innerHTML =sec +"s";
+    bar.innerHTML = sec +"s";
+  }
+
+  const progress =document.getElementById("progress");
+  const bar=document.getElementById("bar");
+  setInterval(progressBarManager,100);
+  //progress bar functions
+  function progressBarManager(){
+    let total = round +2;
+    let percent = sec/total*100;
+    if(percent>67){
+      bar.style.backgroundColor= "var(--great)";
+    }
+    else if(percent>34){
+      bar.style.backgroundColor="var(--mid)";
+    }
+    else{
+      bar.style.backgroundColor="var(--bad)";
+    }
+    bar.style.width= percent+"%";
   }
 
   startButton.addEventListener("click", (event)=>{resetLives();});
@@ -150,3 +169,11 @@ function CreateGrid(r) {
       content.style.display="block";
     }
   });
+
+  //prevent ctrl+f search on windows
+  window.addEventListener("keydown",function (e) {
+    if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) { 
+        document.body.style.backgroundImage= "url(/images/Cheater.jpg)";
+        e.preventDefault();
+    }
+  })
