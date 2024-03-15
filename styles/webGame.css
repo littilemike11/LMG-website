@@ -8,12 +8,22 @@
 }
 
 .gamesGrid button{
-    font-size: large;
+    position: relative;
     background-color: burlywood;
+    background-size:contain;
+    background-repeat: no-repeat;
     border: 5px solid black;
     border-radius: 20px;
-    padding: 30px;
-    text-align: center;
+    padding: 0px;
+    width: 250px;
+    height: 250px;
+    font-size: 2em;
+}
+.title{
+    position: absolute;
+    top:-50px;
+    width: 100%;
+    color: rgb(240, 139, 8);
 }
 .gamesGrid button:hover{
     cursor:pointer;
@@ -36,3 +46,11 @@
 .link a:visited { text-decoration: none; }
 .link a:hover { text-decoration: none; }
 .link a:active { text-decoration: none; }
+
+/* GAMES */
+#WheresOne{
+    background-image: url("/images/WheresOneIcon.jpg");
+}
+#AbsurdApp{
+    background-image: url("/images/UnderConstruction.jpg");    
+}
