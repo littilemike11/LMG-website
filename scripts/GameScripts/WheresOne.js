@@ -30,7 +30,7 @@ function resetRound(){
   round=1;
   rcount=2;
   ccount=2;
-  
+
   displayRound();
   resetLives();
   clearGrid();
@@ -61,7 +61,7 @@ function CreateGrid(r,c) {
   for (var rows = 0; rows < r; rows++) {
     for (var cols = 0; cols < c; cols++) {
       //create cells
-      const cell = document.createElement("button");
+      const cell = document.createElement("div");
       //create correct answer
       if(count==spawn){
         cell.innerText="1";
