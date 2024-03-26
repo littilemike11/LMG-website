@@ -158,15 +158,18 @@ function CreateGrid(r) {
   }
 
   var collapsible =document.getElementById("collapsible");
+  var collapsibleSign = document.getElementById("plus")
   //var content = document.getElementsByClassName("content");
   collapsible.addEventListener("click",function() {
     collapsible.classList.toggle("active");
     var content = collapsible.nextElementSibling;
     if(content.style.display=="block"){
       content.style.display="none";
+      collapsibleSign.innerHTML ="&#43;"
     }
     else{
       content.style.display="block";
+      collapsibleSign.innerHTML= "&#8722;"
     }
   });
 

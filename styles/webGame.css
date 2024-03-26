@@ -31,7 +31,6 @@
 }
 .link{
     margin-left: 50px;
-    border: 2px solid black;
     display: inline-block;
 }
 .link:hover{
