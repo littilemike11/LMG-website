@@ -85,9 +85,6 @@ function setRightHalf(i){
         <img width=640px height=480px src="${videoInfo[i].snippet.thumbnails.standard.url}"/>
         <p>likes : ${videoInfo[i].statistics.likeCount}</p>
         <p>has</p>   
-        <div class=views">
-            ${videoInfo[i].statistics.viewCount}
-        </div>
         <div class="choices">
           <button onclick="pressHigher()" id="higher">Higher &uarr;</button>
           <button onclick="pressLower()" id="lower">Lower &darr;</button>
