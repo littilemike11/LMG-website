@@ -28,43 +28,31 @@ fetch('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&play
 });
 }
 */
-/*
-function getVideoCategories(){
-    fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ')
-    .then(result => result.json())
-    .then(data =>{
-        data.items.forEach(element => {
-            videoSection2.innerHTML += `
-            <h3>${element.snippet.title}</h3>
-            <p>by: ${element.snippet.channelTitle}</p>
-            <p>published on : ${element.snippet.publishedAt}</p>
-            <img src="${element.snippet.thumbnails.default.url}"/>
-            <p>views : ${element.statistics.viewCount}<p>
-            <p>likes : ${element.statistics.likeCount}<p>
-            `
-        });
-        console.log(data);
-    }).catch(err =>{
-        console.log(err);
-        videoSection.innerHTML = `<h3>Sorry something went wrong</h3>`
-    });
-    }
-*/
+
 //store fetch results in array to be accessed later.
-    const videoInfo=[]
+    var videoInfo=[]
     const higherButton = document.getElementById("higher");
     const lowerButton = document.getElementById("lower");
     var roundNum=1;
+    var score=0;
+    const scoreText= document.getElementById("score");
+    const roundNumText =document.getElementById("roundNum");
+    const vsText = document.getElementById("vs");
+    const startButton = document.getElementById("startButton");
+    const tryAgainButton = document.getElementById("tryAgain");
+    startButton.addEventListener("click",(event)=>{display();})
+    tryAgainButton.addEventListener("click",(event)=>{resetGame(); display();})
     
-    display();
+    //display();
     //must be called liek this to properly get valuie of videoinfo
     async function display(){
+        startButton.style.visibility = "hidden";
         await getVideoInfo(); // videoinfo is properly upodated after fetch
         console.log(videoInfo);
         console.log(videoInfo[0].snippet.title);
         setLeftHalf(0);
         setRightHalf(1);
-
+        
     };
 
 function setLeftHalf(i){
@@ -97,6 +85,9 @@ function setRightHalf(i){
         <img width=640px height=480px src="${videoInfo[i].snippet.thumbnails.standard.url}"/>
         <p>likes : ${videoInfo[i].statistics.likeCount}</p>
         <p>has</p>   
+        <div class=views">
+            ${videoInfo[i].statistics.viewCount}
+        </div>
         <div class="choices">
           <button onclick="pressHigher()" id="higher">Higher &uarr;</button>
           <button onclick="pressLower()" id="lower">Lower &darr;</button>
@@ -109,32 +100,6 @@ function setRightHalf(i){
     `
 }
 
-/*
-function setChoices(half, i){
-    half.innerHTML = `
-    <div class="half">
-        <p class = vidTitle">${videoInfo[i].snippet.title}</p>
-        <p>by : ${videoInfo[i].snippet.channelTitle}</p>
-        <p>published on : ${videoInfo[i].snippet.publishedAt}</p>
-        <img width=640px height=480px src="${videoInfo[i].snippet.thumbnails.standard.url}"/>
-        <p>views : ${videoInfo[i].statistics.viewCount}</p>
-        <p>likes : ${videoInfo[i].statistics.likeCount}</p>
-    
-    `
-    if(half == rightHalf){
-        half.innerHTML+=`
-        <div class="choices">
-          <button onclick="pressHigher()" id="higher">Higher &uarr;</button>
-          <button onclick="pressLower()" id="lower">Lower &darr;</button>
-        </div>
-        </div>
-        `
-    }else{
-        half.innerHTML+=`</div>`
-    }
-    
-}
-*/
 //fetch - later make paramter for fetch to be changed on video category id
 async function getVideoInfo(){
         //return makes it wait
@@ -173,31 +138,88 @@ function pressTest(){
     answer.style.display= "block"
 
     var x=0
-    setInterval(function() {
-        if(x<1000){
-            x++;
-            answer.innerHTML=x;
-        }else{
-            return;
-        }
+    // setInterval(function() {
+    //     if(x<1000){
+    //         x++;
+    //         answer.innerHTML=x;
+    //     }else{
+    //         return;
+    //     }
         
-    }, 1);
-
+    // }, 1);
+    asyncCall();
+    
 }
-
-    function pressLower(){
-        if(roundNum>=videoInfo.length-1)
+function resolveAfter2Seconds() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('resolved');
+      }, 2000);
+      
+    });
+  }
+  
+  async function asyncCall() {
+    //console.log('calling');
+    const result = await resolveAfter2Seconds();
+    //console.log(result);
+    // Expected output: "resolved"
+    vsText.innerHTML = "VS";
+    vsText.style.backgroundColor="unset";
+    if(roundNum>=videoInfo.length-1)
         {
-            console.log("end of game")
+            console.log("end of game");
+            endGame();
             return;
         }
+    setLeftHalf(roundNum);
+    setRightHalf(roundNum+1);
+    roundNum++;
+    roundNumText.innerHTML="Round Number : " +roundNum;
+    
+  }
+  
+/*
+async function waitSeconds(s,color){
+    document.body.style.backgroundColor=color;
+    let myPromise = new Promise(function(resolve){
+        setTimeout(() => {
+            resolve("resolve")
+        }, s);
+        
+    });
+    await myPromise;
+    document.body.style.backgroundColor="darkslategrey";
+}
+*/
+    function pressLower(){
+        console.log("pressed lower / less");
         var choices = document.querySelector(".choices");
         var answer = document.querySelector(".answer");
         choices.style.display= "none";
         answer.style.display= "block"
-        
+
+        //calculate score
+        var prevViews =Number(videoInfo[roundNum-1].statistics.viewCount);
+        var currViews =Number(videoInfo[roundNum].statistics.viewCount);
+
+        //if curr vido views is left than previous
+        if(currViews<= prevViews){
+            score++;
+            scoreText.innerHTML = "Score : " + score;
+            vsText.innerHTML = "&#10004;";
+            vsText.style.backgroundColor="var(--correct)";
+        }else{
+            vsText.innerHTML = "&#10060;"
+            vsText.style.backgroundColor="var(--incorrect)";
+        }
+        console.log("roundNum : ", roundNum);
+        console.log("curr views : ",currViews);
+        console.log("prev views : ", prevViews);
+        /*
         var x=videoInfo[roundNum].statistics.viewCount-100;
         console.log(x)
+        
         setInterval(function() {
             if(x<videoInfo[roundNum].statistics.viewCount){
                 x++;
@@ -206,32 +228,64 @@ function pressTest(){
                 return;
             }
         }, 1);
-
-        setLeftHalf(roundNum);
-        setRightHalf(roundNum+1);
-        roundNum++;
+        */
+        asyncCall();
     }
+    console.log("roundNum : ", roundNum);
     
     function pressHigher(){
-        if(roundNum>=videoInfo.length-1)
-        {
-            console.log("end of game")
-            return;
-        }
+        
         var choices = document.querySelector(".choices");
         var answer = document.querySelector(".answer");
         choices.style.display= "none";
         answer.style.display= "block";
 
+        var prevViews =Number(videoInfo[roundNum-1].statistics.viewCount);
+        var currViews =Number(videoInfo[roundNum].statistics.viewCount);
 
-        // console.log(" pressed higher")
-        // console.log("prev round num = ",roundNum);
-        // console.log(" pressed lower");
-        setLeftHalf(roundNum);
-        setRightHalf(roundNum+1);
-        roundNum++;
+        console.log("roundNum : ", roundNum);
+        console.log("curr views : ",currViews);
+        console.log("prev views : ", prevViews);
+        
+        //if curr vido views is left than previous
+        if(currViews>= prevViews){
+            score++;
+            scoreText.innerHTML = "Score : " + score;
+            vsText.innerHTML = "&#10004;";
+            vsText.style.backgroundColor="var(--correct)";
+        }else{
+            vsText.innerHTML = "&#10060;"
+            vsText.style.backgroundColor="var(--incorrect)";
+        }
+
+        asyncCall();
         // console.log("new round num = ", roundNum)
     }
+    
+    const endScoreText = document.getElementById("endScore")
+    const endScreenText = document.querySelector(".endScreen")
+    function endGame(){
+        leftHalf.style.display="none";
+        rightHalf.style.display="none";
+        vsText.style.display="none";
+        endScoreText.innerHTML=score+ "/" + roundNum;
+        endScreenText.style.display= "block";
+    }
+
+    function resetGame(){
+        score=0;
+        roundNum=1;
+        videoInfo=[];
+        scoreText.innerHTML="Score : " + score;
+        roundNumText.innerHTML="Round Number : " +roundNum;
+        leftHalf.style.display="block";
+        rightHalf.style.display="block";
+        vsText.innerHTML="VS";
+        vsText.backgroundColor="unset";
+        vsText.style.display="block";
+        endScreenText.style.display= "none";
+    }
+
     /*
     higherButton.addEventListener("click", (event=>{
         console.log("hi higher")

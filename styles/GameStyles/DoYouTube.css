@@ -5,6 +5,13 @@ body{
 :root{
     --leftUrl:url(https://i.ytimg.com/vi/DA4iVv4MARE/sddefault.jpg);
     --rightUrl:url(https://i.ytimg.com/vi/rDG-6Ue_Qbw/sddefault.jpg);
+    --correct:rgb(4, 255, 4);
+    --incorrect:red;
+}
+#startButton{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
 }
 .gameArea{
     position: relative;
@@ -15,9 +22,14 @@ body{
     height: 80vh;
     
 }
-.vs{
+#vs{
+    border-radius: 50px;
+    width: 75px;
+    height: 75px;
+    background-color:unset;
     position: absolute;
     align-self: center;
+    text-align: center;
     color: white;
     font-size: 3em;
     top: 50%;
@@ -61,6 +73,19 @@ body{
     display: none;
 }
 
+/* Game over screen*/
+.endScreen{
+    display: none;
+    text-align: center;
+    position: absolute;
+    align-self: center;
+    text-align: center;
+    color: white;
+    font-size: 3em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 @media screen and (max-width : 1300px) {
     .leftHalf img,

@@ -7,9 +7,9 @@
   <title>CC Simulator</title>
 
   <link rel="stylesheet" href="styles/webGame.css">
-  <link rel="stylesheet" href="styles/GameStyles/CCSimulator.css">
+  <link rel="stylesheet" href="styles/GameStyles/DoYoutube.css">
 
-  <script defer src="scripts/GameScripts/CCSimulator.js"></script>
+  <script defer src="scripts/GameScripts/DoYoutube.js"></script>
 </head>
 
 <body>
@@ -17,9 +17,12 @@
     <a href="WebGames.html">LMG Games </a>
   </div>
 
-  <div class="score"> Score : 0</div>
+  <div id="score"> Score : 0</div>
+  <div id="roundNum">roundNum : 1</div>
+  <button id="startButton">Start Game</button>
   <div class="gameArea">
-    <div class="vs">VS</div>
+
+    <div id="vs">VS</div>
     <div class="leftHalf">
       <div class="half">
         <p class="vidTitle">example 1 title</p>
@@ -42,12 +45,20 @@
           <button onclick="pressHigher()" id="higher">Higher &uarr;</button>
           <button onclick="pressLower()" id="lower">Lower &darr;</button>
         </div>
+        <div id="test"></div>
         <div class="answer views">
 
         </div>
         <p>views</p>
 
       </div>
+    </div>
+
+    <div class="endScreen">
+      <p class="gameOverText">Game Over</p>
+      <p>Your Score is</p>
+      <p id="endScore"></p>
+      <button id="tryAgain">Try Again?</button>
     </div>
   </div>
 
