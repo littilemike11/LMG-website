@@ -5,6 +5,70 @@ const videoSection2 = document.querySelector('.example');
 const leftHalf = document.querySelector('.leftHalf');
 const rightHalf = document.querySelector('.rightHalf');
 
+const videoCategories=new Map([
+    ["Film & Animation","1"],
+    ["Autos & Vehicles","2"],
+    ["Music","10"],
+    ["Pets & Animals","15"],
+    ["Sports","17"],
+    ["Travel & Events","19"],
+    ["Gaming","20"],
+    ["People & Blogs","22"],
+    ["Comedy","23"],
+    ["Entertainment","24"],
+    ["Howto & Style","26"],
+    ["Education","27"],
+    ["Science & Technology","28"] 
+]);
+
+//get active vidcat button
+var categoryButtons = document.getElementsByClassName("vidCat")
+console.log(categoryButtons)
+for(var i=0;i<categoryButtons.length; i++){
+    categoryButtons[i].addEventListener("click",function() {
+        var current = document.getElementsByClassName("active");
+        current[0].className=current[0].className.replace(" active","");
+        this.className += " active";
+        console.log(document.activeElement.innerText)
+        console.log(videoCategories.get(document.activeElement.innerText))
+        getFetchUrl(document.activeElement.innerText);
+    });
+}
+console.log(document.activeElement.innerText)
+function getFetchUrl(vidcat){
+    var url ='https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&videoCategoryId=10&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
+    
+    return url;
+}
+
+/*
+//get  video category ids
+fetch('https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=us&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ')
+.then(result=> result.json())
+.then(data=>{
+    data.items.forEach(element=>{
+        if(element.snippet.assignable)
+        console.log(element.id, ":", element.snippet.title,)
+    });
+    console.log(data.items);
+}).catch(err =>{
+    console.log(err);
+    videoSection.innerHTML = `<h3>Sorry something went wrong</h3>`
+});
+*/
+/*
+fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&videoCategoryId=10&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ')
+.then(result=> result.json())
+.then(data=>{
+    data.items.forEach(element => {
+        console.log(element.snippet.title , "by :", element.snippet.channelTitle);
+    });
+    console.log(data.items);
+}).catch(err =>{
+    console.log(err);
+    videoSection.innerHTML = `<h3>Sorry something went wrong</h3>`
+});
+*/
 //getVideoCategories();
 //getVideos();
 /*
@@ -100,7 +164,8 @@ function setRightHalf(i){
 //fetch - later make paramter for fetch to be changed on video category id
 async function getVideoInfo(){
         //return makes it wait
-    return fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ')
+        //'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
+    return fetch(getFetchUrl(document.activeElement.innerText))
     .then(result => {return result.json()})
     .then(data =>{
         data.items.forEach(element => {
