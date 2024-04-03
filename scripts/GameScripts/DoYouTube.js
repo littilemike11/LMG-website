@@ -11,33 +11,30 @@ const videoCategories=new Map([
     ["Music","10"],
     ["Pets & Animals","15"],
     ["Sports","17"],
-    ["Travel & Events","19"],
     ["Gaming","20"],
     ["People & Blogs","22"],
     ["Comedy","23"],
     ["Entertainment","24"],
     ["Howto & Style","26"],
-    ["Education","27"],
     ["Science & Technology","28"] 
 ]);
 
 //get active vidcat button
 var categoryButtons = document.getElementsByClassName("vidCat")
-console.log(categoryButtons)
 for(var i=0;i<categoryButtons.length; i++){
     categoryButtons[i].addEventListener("click",function() {
         var current = document.getElementsByClassName("active");
         current[0].className=current[0].className.replace(" active","");
         this.className += " active";
-        console.log(document.activeElement.innerText)
-        console.log(videoCategories.get(document.activeElement.innerText))
-        getFetchUrl(document.activeElement.innerText);
+        //getFetchUrl(videoCategories.get(document.querySelector(".active").innerText));
+        console.log(document.querySelector(".active").innerText)
     });
 }
-console.log(document.activeElement.innerText)
+//getFetchUrl(videoCategories.get(document.querySelector(".active").innerText));
 function getFetchUrl(vidcat){
-    var url ='https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&videoCategoryId=10&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
-    
+    //var url ='https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&videoCategoryId=10&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
+    var url = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=50&regionCode=us&videoCategoryId=' + vidcat+'&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
+    console.log(url)
     return url;
 }
 
@@ -101,16 +98,25 @@ fetch('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&play
     var score=0;
     const scoreText= document.getElementById("score");
     const roundNumText =document.getElementById("roundNum");
+    const categoryNameText = document.getElementById("categoryName");
     const vsText = document.getElementById("vs");
     const startButton = document.getElementById("startButton");
     const tryAgainButton = document.getElementById("tryAgain");
-    startButton.addEventListener("click",(event)=>{display();})
-    tryAgainButton.addEventListener("click",(event)=>{resetGame(); display();})
-    
+    const changeCategoryButton = document.getElementById("changeCategory");
+    startButton.addEventListener("click",(event)=>{ startGame();display();})
+    tryAgainButton.addEventListener("click",(event)=>{resetGame(true); startGame(); })
+    changeCategoryButton.addEventListener("click",(event)=>{resetGame(false); changeCategory();})
     //display();
+    function startGame(){
+        startButton.style.display= "none";
+        for(var i=0;i<categoryButtons.length; i++){
+            categoryButtons[i].style.display ="none";
+        }
+        categoryNameText.innerHTML ="Category : "+  document.querySelector(".active").innerText;
+    }
+
     //must be called liek this to properly get valuie of videoinfo
     async function display(){
-        startButton.style.visibility = "hidden";
         await getVideoInfo(); // videoinfo is properly upodated after fetch
         console.log(videoInfo);
         console.log(videoInfo[0].snippet.title);
@@ -126,15 +132,12 @@ function setLeftHalf(i){
         <p>by : ${videoInfo[i].snippet.channelTitle}</p>
         <p>published on : ${videoInfo[i].snippet.publishedAt}</p>
         <img width=640px height=480px src="${videoInfo[i].snippet.thumbnails.standard.url}"/>
-        <p>likes : ${videoInfo[i].statistics.likeCount}</p>
         <p>has</p>
         <p class="views">${videoInfo[i].statistics.viewCount}</p>
         <p>views</p>
         
     </div>
-    `
-
-        
+    ` 
 }
 
 // adjust image maybe by not using background img
@@ -147,7 +150,6 @@ function setRightHalf(i){
         <p>by : ${videoInfo[i].snippet.channelTitle}</p>
         <p>published on : ${videoInfo[i].snippet.publishedAt}</p>
         <img width=640px height=480px src="${videoInfo[i].snippet.thumbnails.standard.url}"/>
-        <p>likes : ${videoInfo[i].statistics.likeCount}</p>
         <p>has</p>   
         <div class="choices">
           <button onclick="pressHigher()" id="higher">Higher &uarr;</button>
@@ -165,7 +167,7 @@ function setRightHalf(i){
 async function getVideoInfo(){
         //return makes it wait
         //'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
-    return fetch(getFetchUrl(document.activeElement.innerText))
+    return fetch(getFetchUrl(videoCategories.get(document.querySelector(".active").innerText)))
     .then(result => {return result.json()})
     .then(data =>{
         data.items.forEach(element => {
@@ -237,7 +239,7 @@ function resolveAfter2Seconds() {
     setLeftHalf(roundNum);
     setRightHalf(roundNum+1);
     roundNum++;
-    roundNumText.innerHTML="Round Number : " +roundNum;
+    roundNumText.innerHTML="Round Number : " +roundNum +"/" +(videoInfo.length-1);
     
   }
   
@@ -334,18 +336,55 @@ async function waitSeconds(s,color){
         endScreenText.style.display= "block";
     }
 
-    function resetGame(){
+    function tryAgain(){
+        shuffle(videoInfo)
+    }
+    //Fisher-Yates Shuffle
+    function shuffle(array) {
+        var m = array.length, t, i;
+      
+        // While there remain elements to shuffle…
+        while (m) {
+      
+          // Pick a remaining element…
+          i = Math.floor(Math.random() * m--);
+      
+          // And swap it with the current element.
+          t = array[m];
+          array[m] = array[i];
+          array[i] = t;
+        }
+        return array;
+      }
+    function resetGame(isTryAgain){
         score=0;
         roundNum=1;
-        videoInfo=[];
         scoreText.innerHTML="Score : " + score;
-        roundNumText.innerHTML="Round Number : " +roundNum;
+        roundNumText.innerHTML="Round Number : " +roundNum+"/" +(videoInfo.length-1);
+        if(isTryAgain){
+            shuffle(videoInfo);
+            console.log(videoInfo);
+            setLeftHalf(0);
+            setRightHalf(1);
+        }
+        else{
+            videoInfo=[];
+        }
+        
         leftHalf.style.display="block";
         rightHalf.style.display="block";
         vsText.innerHTML="VS";
         vsText.backgroundColor="unset";
         vsText.style.display="block";
         endScreenText.style.display= "none";
+    }
+
+    function changeCategory() {
+        startButton.style.display= "block";
+        for(var i=0;i<categoryButtons.length; i++){
+            categoryButtons[i].style.display ="inline-block";
+        }
+        categoryNameText.innerHTML ="";   
     }
 
     /*
