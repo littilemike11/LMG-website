@@ -73,6 +73,9 @@ div{
     background-color: var(--neutral);
     align-items: center;
     justify-content: center;
+    font-size: 1em;
+    min-width: 25px;
+    min-height: 25px;
 
   }
   .cell:hover{
