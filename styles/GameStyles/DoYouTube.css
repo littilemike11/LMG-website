@@ -127,16 +127,21 @@ button:hover{
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+        background-color: rgba(255,255,255,.4);
+        background-blend-mode: lighten;
         
     }
+    
     .leftHalf img,
     .rightHalf img{
         display: none;
     }
+    
     .leftHalf{
         background-image: var(--leftUrl);
     }
     .rightHalf{
         background-image: var(--rightUrl);
     }
+    
 }

@@ -126,6 +126,7 @@ fetch('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&play
     };
 
 function setLeftHalf(i){
+    document.documentElement.style.setProperty('--leftUrl',`url(${videoInfo[i].snippet.thumbnails.standard.url}` );
     leftHalf.innerHTML = `
     <div class="half">
         <p class = vidTitle">${videoInfo[i].snippet.title}</p>
@@ -143,7 +144,7 @@ function setLeftHalf(i){
 // adjust image maybe by not using background img
 //on mobiel change width +height
 function setRightHalf(i){
-    //document.documentElement.style.setProperty('--rightUrl', )
+    document.documentElement.style.setProperty('--rightUrl',`url(${videoInfo[i].snippet.thumbnails.standard.url}` );
     rightHalf.innerHTML = `
     <div class="half">
         <p class = vidTitle">${videoInfo[i].snippet.title}</p>
