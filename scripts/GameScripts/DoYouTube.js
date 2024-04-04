@@ -26,15 +26,13 @@ for(var i=0;i<categoryButtons.length; i++){
         var current = document.getElementsByClassName("active");
         current[0].className=current[0].className.replace(" active","");
         this.className += " active";
-        //getFetchUrl(videoCategories.get(document.querySelector(".active").innerText));
-        console.log(document.querySelector(".active").innerText)
+        //console.log(document.querySelector(".active").innerText)
     });
 }
 //getFetchUrl(videoCategories.get(document.querySelector(".active").innerText));
 function getFetchUrl(vidcat){
-    //var url ='https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&videoCategoryId=10&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
     var url = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=50&regionCode=us&videoCategoryId=' + vidcat+'&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
-    console.log(url)
+    //console.log(url)
     return url;
 }
 
@@ -118,23 +116,38 @@ fetch('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&play
     //must be called liek this to properly get valuie of videoinfo
     async function display(){
         await getVideoInfo(); // videoinfo is properly upodated after fetch
-        console.log(videoInfo);
-        console.log(videoInfo[0].snippet.title);
         setLeftHalf(0);
         setRightHalf(1);
-        
+        console.log(videoInfo[i].statistics.viewCount);
     };
+
+    function addCommas(number){
+        var str="";
+        var len = number.length
+        var front = len % 3
+        var commas = Math.floor(len/4)
+        str = number.substr(0,front)
+        for(var i =front; i<=len-3; i+=3){
+            var temp = number.substr(i,3)
+            console.log(temp)
+            str = str +"," +temp
+        }
+        if(front==0){
+            return str.replace(",","")
+        }
+        else{return str}
+        
+    }
 
 function setLeftHalf(i){
     document.documentElement.style.setProperty('--leftUrl',`url(${videoInfo[i].snippet.thumbnails.standard.url}` );
     leftHalf.innerHTML = `
     <div class="half">
-        <p class = vidTitle">${videoInfo[i].snippet.title}</p>
-        <p>by : ${videoInfo[i].snippet.channelTitle}</p>
-        <p>published on : ${videoInfo[i].snippet.publishedAt}</p>
+        <p class = "vidTitle">${videoInfo[i].snippet.title}</p>
+        <p class="author">By : ${videoInfo[i].snippet.channelTitle}</p>
         <img width=640px height=480px src="${videoInfo[i].snippet.thumbnails.standard.url}"/>
         <p>has</p>
-        <p class="views">${videoInfo[i].statistics.viewCount}</p>
+        <p class="views">${addCommas(videoInfo[i].statistics.viewCount)}</p>
         <p>views</p>
         
     </div>
@@ -147,9 +160,8 @@ function setRightHalf(i){
     document.documentElement.style.setProperty('--rightUrl',`url(${videoInfo[i].snippet.thumbnails.standard.url}` );
     rightHalf.innerHTML = `
     <div class="half">
-        <p class = vidTitle">${videoInfo[i].snippet.title}</p>
-        <p>by : ${videoInfo[i].snippet.channelTitle}</p>
-        <p>published on : ${videoInfo[i].snippet.publishedAt}</p>
+        <p class = "vidTitle">${videoInfo[i].snippet.title}</p>
+        <p class="author">By : ${videoInfo[i].snippet.channelTitle}</p>
         <img width=640px height=480px src="${videoInfo[i].snippet.thumbnails.standard.url}"/>
         <p>has</p>   
         <div class="choices">
@@ -157,7 +169,7 @@ function setRightHalf(i){
           <button onclick="pressLower()" id="lower">Lower &darr;</button>
         </div>
         <div class="answer views">
-            ${videoInfo[i].statistics.viewCount}
+            ${addCommas(videoInfo[i].statistics.viewCount)}
         </div>
         <p>views</p>
     </div>
@@ -173,19 +185,6 @@ async function getVideoInfo(){
     .then(data =>{
         data.items.forEach(element => {
             videoInfo.push(element);
-            //console.log(element)
-            /*
-            videoSection.innerHTML += `
-            <div>
-            <h3>${element.snippet.title}</h3>
-            <p>by: ${element.snippet.channelTitle}</p>
-            <p>published on : ${element.snippet.publishedAt}</p>
-            <img width=100% src="${element.snippet.thumbnails.standard.url}"/>
-            <p>views : ${element.statistics.viewCount}<p>
-            <p>likes : ${element.statistics.likeCount}<p>
-            </div>
-            `
-            */
         });
         console.log(data.items);
         console.log(videoInfo.length); //
@@ -231,7 +230,7 @@ function resolveAfter2Seconds() {
     // Expected output: "resolved"
     vsText.innerHTML = "VS";
     vsText.style.backgroundColor="unset";
-    if(roundNum>=videoInfo.length-1)
+    if(roundNum>=(videoInfo.length-1) || isWrong)
         {
             console.log("end of game");
             endGame();
@@ -257,6 +256,7 @@ async function waitSeconds(s,color){
     document.body.style.backgroundColor="darkslategrey";
 }
 */
+    var isWrong=false;
     function pressLower(){
         console.log("pressed lower / less");
         var choices = document.querySelector(".choices");
@@ -277,6 +277,7 @@ async function waitSeconds(s,color){
         }else{
             vsText.innerHTML = "&#10060;"
             vsText.style.backgroundColor="var(--incorrect)";
+            isWrong=true;
         }
         console.log("roundNum : ", roundNum);
         console.log("curr views : ",currViews);
@@ -296,7 +297,6 @@ async function waitSeconds(s,color){
         */
         asyncCall();
     }
-    console.log("roundNum : ", roundNum);
     
     function pressHigher(){
         
@@ -321,6 +321,7 @@ async function waitSeconds(s,color){
         }else{
             vsText.innerHTML = "&#10060;"
             vsText.style.backgroundColor="var(--incorrect)";
+            isWrong=true;
         }
 
         asyncCall();
@@ -333,7 +334,7 @@ async function waitSeconds(s,color){
         leftHalf.style.display="none";
         rightHalf.style.display="none";
         vsText.style.display="none";
-        endScoreText.innerHTML=score+ "/" + roundNum;
+        endScoreText.innerHTML=score+ "/" + ((videoInfo.length-1));
         endScreenText.style.display= "block";
     }
 
@@ -371,7 +372,7 @@ async function waitSeconds(s,color){
         else{
             videoInfo=[];
         }
-        
+        isWrong=false;
         leftHalf.style.display="block";
         rightHalf.style.display="block";
         vsText.innerHTML="VS";
