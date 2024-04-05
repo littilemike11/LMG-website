@@ -65,8 +65,8 @@ button:hover{
     text-align: center;
 }
 .choices button{
-    width: 100px;
-    height: 40px;
+    width: 150px;
+    height: 50px;
     font-size: 1em ;
     border-radius: 20px;
     font: bold;
@@ -130,7 +130,7 @@ button:hover{
     }
     .leftHalf,
     .rightHalf{
-        font-size: larger;
+        font-size: 3vw;
         color: black;
         height: 45vh;
         background-position: center;
