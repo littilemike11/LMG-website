@@ -35,6 +35,7 @@ button:hover{
     
 }
 #vs{
+    z-index: 10;
     border-radius: 50px;
     width: 75px;
     height: 75px;
@@ -53,6 +54,12 @@ button:hover{
     border: 2px solid black;
     width: 100%;
     
+}
+.a1{
+    animation: slide-left 2000ms;
+}
+.a2{
+    animation: fade-in 900ms;
 }
 .half{
     text-align: center;
@@ -125,7 +132,7 @@ button:hover{
     .rightHalf{
         font-size: larger;
         color: black;
-        height: 100%;
+        height: 45vh;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -144,6 +151,33 @@ button:hover{
     }
     .rightHalf{
         background-image: var(--rightUrl);
+    }    
+    .a1{
+        animation: slide-up 2000ms
     }
-    
+}
+
+@keyframes slide-left {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slide-up {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
 }

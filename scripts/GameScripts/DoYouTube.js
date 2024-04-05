@@ -1,5 +1,4 @@
-const videoSection = document.querySelector('section');
-const videoSection2 = document.querySelector('.example');
+
 
 //get document by searching class name
 const leftHalf = document.querySelector('.leftHalf');
@@ -118,18 +117,16 @@ fetch('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&play
         await getVideoInfo(); // videoinfo is properly upodated after fetch
         setLeftHalf(0);
         setRightHalf(1);
-        console.log(videoInfo[i].statistics.viewCount);
+        
     };
 
     function addCommas(number){
         var str="";
         var len = number.length
         var front = len % 3
-        var commas = Math.floor(len/4)
         str = number.substr(0,front)
         for(var i =front; i<=len-3; i+=3){
             var temp = number.substr(i,3)
-            console.log(temp)
             str = str +"," +temp
         }
         if(front==0){
@@ -186,8 +183,8 @@ async function getVideoInfo(){
         data.items.forEach(element => {
             videoInfo.push(element);
         });
-        console.log(data.items);
-        console.log(videoInfo.length); //
+        //console.log(data.items);
+        //console.log(videoInfo.length); //
 
     }).catch(err =>{
         console.log(err);
@@ -196,50 +193,46 @@ async function getVideoInfo(){
 };
 
 function pressTest(){
-    var choices = document.querySelector(".choices");
-    var answer = document.querySelector(".answer");
-    choices.style.display= "none";
-    answer.style.display= "block"
-
-    var x=0
-    // setInterval(function() {
-    //     if(x<1000){
-    //         x++;
-    //         answer.innerHTML=x;
-    //     }else{
-    //         return;
-    //     }
-        
-    // }, 1);
-    asyncCall();
-    
+    leftHalf.className += "a1";
+    rightHalf.className+="a1";
 }
-function resolveAfter2Seconds() {
+function resolveAfterSeconds(s) {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve('resolved');
-      }, 2000);
+      }, s);
       
     });
   }
   
   async function asyncCall() {
     //console.log('calling');
-    const result = await resolveAfter2Seconds();
+    await resolveAfterSeconds(2000); // wait 2 seconds to show answer
+    if(roundNum>=(videoInfo.length-1) || isWrong){
+        console.log("end of game");
+        endGame();
+        return;
+    }
+    leftHalf.classList.toggle("a1");
+    rightHalf.classList.toggle("a1");
+    await resolveAfterSeconds(1900); // wait fro animation to finish
     //console.log(result);
     // Expected output: "resolved"
+    
+    leftHalf.classList.toggle("a1");
+    rightHalf.classList.toggle("a1");
     vsText.innerHTML = "VS";
     vsText.style.backgroundColor="unset";
-    if(roundNum>=(videoInfo.length-1) || isWrong)
-        {
-            console.log("end of game");
-            endGame();
-            return;
-        }
-    setLeftHalf(roundNum);
+    
+    setLeftHalf(roundNum);   
     setRightHalf(roundNum+1);
+    rightHalf.classList.toggle("a2");
+    await resolveAfterSeconds(1500);
+    rightHalf.classList.toggle("a2");
     roundNum++;
     roundNumText.innerHTML="Round Number : " +roundNum +"/" +(videoInfo.length-1);
+    
+    //await resolveAfterSeconds(1000);
     
   }
   
@@ -258,7 +251,6 @@ async function waitSeconds(s,color){
 */
     var isWrong=false;
     function pressLower(){
-        console.log("pressed lower / less");
         var choices = document.querySelector(".choices");
         var answer = document.querySelector(".answer");
         choices.style.display= "none";
@@ -279,9 +271,6 @@ async function waitSeconds(s,color){
             vsText.style.backgroundColor="var(--incorrect)";
             isWrong=true;
         }
-        console.log("roundNum : ", roundNum);
-        console.log("curr views : ",currViews);
-        console.log("prev views : ", prevViews);
         /*
         var x=videoInfo[roundNum].statistics.viewCount-100;
         console.log(x)
@@ -307,10 +296,6 @@ async function waitSeconds(s,color){
 
         var prevViews =Number(videoInfo[roundNum-1].statistics.viewCount);
         var currViews =Number(videoInfo[roundNum].statistics.viewCount);
-
-        console.log("roundNum : ", roundNum);
-        console.log("curr views : ",currViews);
-        console.log("prev views : ", prevViews);
         
         //if curr vido views is left than previous
         if(currViews>= prevViews){
@@ -334,13 +319,12 @@ async function waitSeconds(s,color){
         leftHalf.style.display="none";
         rightHalf.style.display="none";
         vsText.style.display="none";
+        vsText.innerHTML = "VS";
+        vsText.style.backgroundColor="unset";
         endScoreText.innerHTML=score+ "/" + ((videoInfo.length-1));
         endScreenText.style.display= "block";
     }
 
-    function tryAgain(){
-        shuffle(videoInfo)
-    }
     //Fisher-Yates Shuffle
     function shuffle(array) {
         var m = array.length, t, i;
@@ -365,7 +349,6 @@ async function waitSeconds(s,color){
         roundNumText.innerHTML="Round Number : " +roundNum+"/" +(videoInfo.length-1);
         if(isTryAgain){
             shuffle(videoInfo);
-            console.log(videoInfo);
             setLeftHalf(0);
             setRightHalf(1);
         }
