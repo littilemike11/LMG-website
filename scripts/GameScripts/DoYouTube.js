@@ -19,10 +19,10 @@ const videoCategories=new Map([
 ]);
 
 //get active vidcat button
-var categoryButtons = document.getElementsByClassName("vidCat")
-for(var i=0;i<categoryButtons.length; i++){
+const categoryButtons = document.getElementsByClassName("vidCat")
+for(let i=0;i<categoryButtons.length; i++){
     categoryButtons[i].addEventListener("click",function() {
-        var current = document.getElementsByClassName("active");
+        let current = document.getElementsByClassName("active");
         current[0].className=current[0].className.replace(" active","");
         this.className += " active";
         //console.log(document.querySelector(".active").innerText)
@@ -30,7 +30,7 @@ for(var i=0;i<categoryButtons.length; i++){
 }
 //getFetchUrl(videoCategories.get(document.querySelector(".active").innerText));
 function getFetchUrl(vidcat){
-    var url = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=50&regionCode=us&videoCategoryId=' + vidcat+'&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
+    let url = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=50&regionCode=us&videoCategoryId=' + vidcat+'&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
     //console.log(url)
     return url;
 }
@@ -88,11 +88,11 @@ fetch('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&play
 */
 
 //store fetch results in array to be accessed later.
-    var videoInfo=[]
+    let videoInfo=[]
     const higherButton = document.getElementById("higher");
     const lowerButton = document.getElementById("lower");
-    var roundNum=1;
-    var score=0;
+    let roundNum=1;
+    let score=0;
     const scoreText= document.getElementById("score");
     const roundNumText =document.getElementById("roundNum");
     const categoryNameText = document.getElementById("categoryName");
@@ -106,27 +106,27 @@ fetch('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&play
     //display();
     function startGame(){
         startButton.style.display= "none";
-        for(var i=0;i<categoryButtons.length; i++){
+        for(let i=0;i<categoryButtons.length; i++){
             categoryButtons[i].style.display ="none";
         }
         categoryNameText.innerHTML ="Category : "+  document.querySelector(".active").innerText;
     }
 
-    //must be called liek this to properly get valuie of videoinfo
+    //must be called like this to properly get value of videoInfo
     async function display(){
-        await getVideoInfo(); // videoinfo is properly upodated after fetch
+        await getVideoInfo(); // videoInfo is properly updated after fetch
         setLeftHalf(0);
         setRightHalf(1);
         
     };
 
     function addCommas(number){
-        var str="";
-        var len = number.length
-        var front = len % 3
+        let str="";
+        let len = number.length
+        let front = len % 3
         str = number.substr(0,front)
-        for(var i =front; i<=len-3; i+=3){
-            var temp = number.substr(i,3)
+        for(let i =front; i<=len-3; i+=3){
+            let temp = number.substr(i,3)
             str = str +"," +temp
         }
         if(front==0){
@@ -152,7 +152,7 @@ function setLeftHalf(i){
 }
 
 // adjust image maybe by not using background img
-//on mobiel change width +height
+//on mobile change width +height
 function setRightHalf(i){
     document.documentElement.style.setProperty('--rightUrl',`url(${videoInfo[i].snippet.thumbnails.standard.url}` );
     rightHalf.innerHTML = `
@@ -173,7 +173,7 @@ function setRightHalf(i){
     `
 }
 
-//fetch - later make paramter for fetch to be changed on video category id
+//fetch - later make parameter for fetch to be changed on video category id
 async function getVideoInfo(){
         //return makes it wait
         //'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&chart=mostPopular&maxResults=10&regionCode=us&key=AIzaSyALoTeC4RHeVkkVAkkDdYxKrRZxDODjKGQ'
@@ -249,18 +249,18 @@ async function waitSeconds(s,color){
     document.body.style.backgroundColor="darkslategrey";
 }
 */
-    var isWrong=false;
+    let isWrong=false;
     function pressLower(){
-        var choices = document.querySelector(".choices");
-        var answer = document.querySelector(".answer");
+        let choices = document.querySelector(".choices");
+        let answer = document.querySelector(".answer");
         choices.style.display= "none";
         answer.style.display= "block"
 
         //calculate score
-        var prevViews =Number(videoInfo[roundNum-1].statistics.viewCount);
-        var currViews =Number(videoInfo[roundNum].statistics.viewCount);
+        let prevViews =Number(videoInfo[roundNum-1].statistics.viewCount);
+        let currViews =Number(videoInfo[roundNum].statistics.viewCount);
 
-        //if curr vido views is left than previous
+        //if curr video views is left than previous
         if(currViews<= prevViews){
             score++;
             scoreText.innerHTML = "Score : " + score;
@@ -272,7 +272,7 @@ async function waitSeconds(s,color){
             isWrong=true;
         }
         /*
-        var x=videoInfo[roundNum].statistics.viewCount-100;
+        let x=videoInfo[roundNum].statistics.viewCount-100;
         console.log(x)
         
         setInterval(function() {
@@ -289,15 +289,15 @@ async function waitSeconds(s,color){
     
     function pressHigher(){
         
-        var choices = document.querySelector(".choices");
-        var answer = document.querySelector(".answer");
+        let choices = document.querySelector(".choices");
+        let answer = document.querySelector(".answer");
         choices.style.display= "none";
         answer.style.display= "block";
 
-        var prevViews =Number(videoInfo[roundNum-1].statistics.viewCount);
-        var currViews =Number(videoInfo[roundNum].statistics.viewCount);
+        let prevViews =Number(videoInfo[roundNum-1].statistics.viewCount);
+        let currViews =Number(videoInfo[roundNum].statistics.viewCount);
         
-        //if curr vido views is left than previous
+        //if curr video views is left than previous
         if(currViews>= prevViews){
             score++;
             scoreText.innerHTML = "Score : " + score;
@@ -327,7 +327,7 @@ async function waitSeconds(s,color){
 
     //Fisher-Yates Shuffle
     function shuffle(array) {
-        var m = array.length, t, i;
+        let m = array.length, t, i;
       
         // While there remain elements to shuffle…
         while (m) {
@@ -366,7 +366,7 @@ async function waitSeconds(s,color){
 
     function changeCategory() {
         startButton.style.display= "block";
-        for(var i=0;i<categoryButtons.length; i++){
+        for(let i=0;i<categoryButtons.length; i++){
             categoryButtons[i].style.display ="inline-block";
         }
         categoryNameText.innerHTML ="";   

@@ -1,9 +1,10 @@
+//general
 const wrongLetters = ["i","l","!","|",];
 const startButton= document.getElementById("startButton");
 const roundNum=document.getElementById("roundNum");
 
-let round =1;
-let rcount=2;
+let round =1; // round number starting at 1
+let rcount=2; // row and col count of square grid
 
 // update round and row/cols variables
 function setRound(){
@@ -30,7 +31,6 @@ function resetRound(){
   rcount=2;
 
   restartTimer();
-
   resetLives();
   clearGrid();
   
@@ -49,8 +49,8 @@ function CreateGrid(r) {
   startButton.style.visibility="hidden"; 
   let count=0;
   const grid = document.getElementById("grid");
-  //var r = document.getElementById("rcount").value;
-  //var c = document.getElementById("ccount").value;
+  //let r = document.getElementById("rcount").value;
+  //let c = document.getElementById("ccount").value;
   let spawn = spawnAnswerSpot(r);
   //grid.style.gridTemplateRows = "repeat(4,1fr)";
   //grid.style.gridTemplateColumns = "repeat(4,1fr)"; 
@@ -58,8 +58,8 @@ function CreateGrid(r) {
   root.style.setProperty('--rows',r); // change root rows to r
   root.style.setProperty('--cols',r); //change root cols to c
   clearGrid();
-  for (var rows = 0; rows < r; rows++) {
-    for (var cols = 0; cols < r; cols++) {
+  for (let rows = 0; rows < r; rows++) {
+    for (let cols = 0; cols < r; cols++) {
       //create cells
       const cell = document.createElement("button");
       //create correct answer
@@ -95,15 +95,17 @@ function CreateGrid(r) {
     return spawn;
   }
 
-  //timer functions
+  //timer features functions
   let isTimerOn =false;
   startButton.addEventListener("click", (event)=>{isTimerOn=true;})
-  var sec =3;
-  setInterval(controlTimer,1000);
+  let sec =3;
+  setInterval(controlTimer,1000); // 1000ms = 1s
+  
   function restartTimer(){
     sec=round+2;
     bar.innerHTML = sec +"s";
   }
+  
   function controlTimer(){
     if(isTimerOn){
       sec--;
@@ -117,10 +119,11 @@ function CreateGrid(r) {
     bar.innerHTML = sec +"s";
   }
 
+  //progress bar Features
   const progress =document.getElementById("progress");
   const bar=document.getElementById("bar");
   setInterval(progressBarManager,100);
-  //progress bar functions
+  
   function progressBarManager(){
     let total = round +2;
     let percent = sec/total*100;
@@ -136,6 +139,7 @@ function CreateGrid(r) {
     bar.style.width= percent+"%";
   }
 
+  //life & hearts and text manager
   startButton.addEventListener("click", (event)=>{resetLives();});
   let livesText = document.getElementById("lives");
   let lives =3;
@@ -157,12 +161,13 @@ function CreateGrid(r) {
     livesText.innerHTML = "&hearts; &hearts; &hearts;";
   }
 
-  var collapsible =document.getElementById("collapsible");
-  var collapsibleSign = document.getElementById("plus")
-  //var content = document.getElementsByClassName("content");
+  //Collapsible manager
+  const collapsible =document.getElementById("collapsible");
+  const collapsibleSign = document.getElementById("plus");
+
   collapsible.addEventListener("click",function() {
     collapsible.classList.toggle("active");
-    var content = collapsible.nextElementSibling;
+    let content = collapsible.nextElementSibling;
     if(content.style.display=="block"){
       content.style.display="none";
       collapsibleSign.innerHTML ="&#43;"
