@@ -185,7 +185,7 @@ collapsible.addEventListener("click", function () {
 //prevent ctrl+f search on windows
 window.addEventListener("keydown", function (e) {
   if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
-    document.body.style.backgroundImage = "url(/images/Cheater.jpg)";
+    document.body.style.backgroundImage = "url(../../images/Cheater.jpg)";
     e.preventDefault();
   }
 });
