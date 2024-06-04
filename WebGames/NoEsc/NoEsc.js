@@ -7,6 +7,13 @@
 */
 //let bg = (document.body.style.backgroundImage =
 //  "url('./images/ascii-art.png')");
+
+const faces = [
+  "../../images/NoEscImages/ascii-art.png",
+  "../../images/NoEscImages/ascii_art_sharp.png",
+  "../../images/NoEscImages/ascii_art_sharp_threshold.png",
+];
+
 let score = 5; // global variable to keep track of player score for quiz
 let cost = 1; // cost of questions
 let questionNumber = 1;
@@ -89,6 +96,7 @@ function askMCQuestion(
     if (playerAnswer == correctAns) {
       adjustScore(true, cost);
       alert("Correct. " + onCorrectText + reportScore());
+      document.documentElement.style.setProperty("--face", `url(${faces[2]}`);
       break;
     } else if (playerAnswer == null || playerAnswer == "") {
       // if player pressed esc or didnt answer
@@ -159,6 +167,7 @@ function askOpenQuestion(correctAns) {
       adjustScore(false, cost);
       alert("Incorrect." + reportScore());
     }
+    document.documentElement.style.setProperty("--face", `url(${faces[1]}`);
   } while (!checkLost() && confirm("Would you like to try again?"));
   questionNumber++;
   return playerAnswer;
@@ -183,287 +192,312 @@ function endGameLoop(reps) {
     endGameLoop(reps + 1); // recursive loop keep going until player gives up
   }
 }
+//wait s seconds
+function resolveAfterSeconds(s) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("resolved");
+    }, s);
+  });
+}
+const startButton = document.getElementById("startButton");
+const bg = document.getElementById("bg");
+async function startGame() {
+  startButton.style.visibility = "hidden";
+  bg.style.visibility = "visible";
+  // need to wait for buttons to disappear
+  await resolveAfterSeconds(2000);
+  playGame();
+}
+document.documentElement.style.setProperty("--face", `url(${faces[0]}`);
+function playAnim() {}
+bg.classList.toggle("anim");
 //Start of Game
-let isPlayerReady = confirm("Hello Player. Are you ready to be tested?");
-
-if (isPlayerReady) {
-  // if true begin quiz
-  //intro summary
-  alert("Ok let's begin");
-  alert("This is your current score : " + score);
-  alert(
-    "The goal of this experiment is the accumulate as many points as you can..."
-  );
-  alert("...we will ask you a series of questions for you to answer...");
-  alert("... the questions will gradually increase in difficulty...");
-  alert(
-    "... correct answers will garner points and incorrect answers will deduct points"
-  );
-  alert("A negative score will result in termination ...");
-  alert("... of the experiment");
-  isPlayerReady = confirm(
-    "Attempts to abandon the experiment, from this point on will be met with corrective behavior. Are you ready to be tested Player?"
-  );
+async function playGame() {
+  await resolveAfterSeconds(1);
+  let isPlayerReady = confirm("Hello Player. Are you ready to be tested?");
 
   if (isPlayerReady) {
-    // question 1 - what should we call you => A = "Player"
-    cost = 1;
-    let playerName = prompt(
-      `${questionNumber}. What should we call you? ${reportCost()} ${reportScore()}`,
-      "Player"
+    // if true begin quiz
+
+    //intro summary
+
+    alert("Ok let's begin");
+    alert("This is your current score : " + score);
+    alert(
+      "The goal of this experiment is the accumulate as many points as you can..."
     );
-    if (playerName == "Player") {
-      adjustScore(true, cost);
-      alert("good job Player" + reportScore());
-    } else if (playerName === null) {
-      // if player pressed esc
-      playerName = "Player";
-      adjustScore(false, cost * 2); // double wrong
-      //extreme wrong
-      strikeNum++;
-      alert("Desertion will not be tolerated. Desertion result in 1 strike.");
-      alert(strikePlayer());
-    } else {
-      // if player entered something other than "Player" or null/esc
-      adjustScore(false, cost);
-      alert(
-        "sorry " +
-          playerName +
-          ", we will only refer to you as Player" +
-          reportScore()
+    alert("...we will ask you a series of questions for you to answer...");
+    alert("... the questions will gradually increase in difficulty...");
+    alert(
+      "... correct answers will garner points and incorrect answers will deduct points"
+    );
+    alert("A negative score will result in termination ...");
+    alert("... of the experiment");
+    isPlayerReady = confirm(
+      "Attempts to abandon the experiment, from this point on will be met with corrective behavior. Are you ready to be tested Player?"
+    );
+
+    if (isPlayerReady) {
+      // question 1 - what should we call you => A = "Player"
+      cost = 1;
+      let playerName = prompt(
+        `${questionNumber}. What should we call you? ${reportCost()} ${reportScore()}`,
+        "Player"
       );
-    }
+      if (playerName == "Player") {
+        adjustScore(true, cost);
+        alert("good job Player" + reportScore());
+      } else if (playerName === null) {
+        // if player pressed esc
+        playerName = "Player";
+        adjustScore(false, cost * 2); // double wrong
+        //extreme wrong
+        strikeNum++;
+        alert("Desertion will not be tolerated. Desertion result in 1 strike.");
+        alert(strikePlayer());
+      } else {
+        // if player entered something other than "Player" or null/esc
+        adjustScore(false, cost);
+        alert(
+          "sorry " +
+            playerName +
+            ", we will only refer to you as Player" +
+            reportScore()
+        );
+      }
 
-    //Question 2
-    cost = 1;
-    questionNumber++;
-    question = "What is 1 + 1? ";
-    askOpenQuestion("2");
+      //Question 2
+      cost = 1;
+      questionNumber++;
+      question = "What is 1 + 1? ";
+      askOpenQuestion("2");
 
-    //Question 3
-    question =
-      "What is the missing number in the sequence 5 , 10, 15, __, 25 ?";
-    askOpenQuestion("20");
+      //Question 3
+      question =
+        "What is the missing number in the sequence 5 , 10, 15, __, 25 ?";
+      askOpenQuestion("20");
 
-    //Question 4
-    //first place where players can lose
-    while (isPlaying) {
-      alert("Question Difficulty Increased");
-      cost = 2;
-      question = `Which of the following words doesn't belong?
+      //Question 4
+      //first place where players can lose
+      while (isPlaying) {
+        alert("Question Difficulty Increased");
+        cost = 2;
+        question = `Which of the following words doesn't belong?
     A) Doctor
     B) Writer
     C) Teacher
     D) Murderer`;
-      askMCQuestion(
-        "A",
-        false,
-        "B",
-        "C",
-        "D",
-        "",
-        " Only Doctor ends with 'or' and whose stem is not a verb"
-      );
-      if (checkLost()) {
-        break;
-      }
+        askMCQuestion(
+          "A",
+          false,
+          "B",
+          "C",
+          "D",
+          "",
+          " Only Doctor ends with 'or' and whose stem is not a verb"
+        );
+        if (checkLost()) {
+          break;
+        }
 
-      //Question 5
-      question = `What is a group of crows called?
+        //Question 5
+        question = `What is a group of crows called?
     A) A Killing
     B) A Murder
     C) An Assassination
     D) Crows`;
-      askMCQuestion(
-        "B",
-        true,
-        "A",
-        "C",
-        "D",
-        "D",
-        "",
-        "",
-        "Are you even trying?"
-      );
-      if (checkLost()) {
-        break;
-      }
-      //You're not very bright are you
+        askMCQuestion(
+          "B",
+          true,
+          "A",
+          "C",
+          "D",
+          "D",
+          "",
+          "",
+          "Are you even trying?"
+        );
+        if (checkLost()) {
+          break;
+        }
+        //You're not very bright are you
 
-      //Question 6
-      question =
-        "Fill in the blank, the _____ Sea is most known for its high salt concentration which prevents many aquatic life and plants from living in it.";
+        //Question 6
+        question =
+          "Fill in the blank, the _____ Sea is most known for its high salt concentration which prevents many aquatic life and plants from living in it.";
 
-      askOpenQuestion("dead");
-      if (checkLost()) {
-        break;
-      }
+        askOpenQuestion("dead");
+        if (checkLost()) {
+          break;
+        }
 
-      //Question 7
-      alert("Question Difficulty Increased");
-      cost = 3;
-      question = `Which of the following is the fear of machines
+        //Question 7
+        alert("Question Difficulty Increased");
+        cost = 3;
+        question = `Which of the following is the fear of machines
       A) Motorphobia
       B) Automatonophobia 
       C) Metathesiophobia 
       D) Mechanophobia`; // in order automobiles, ventriloquist dummies, changes , machines
 
-      askMCQuestion("D", false, "A", "B", "C");
-      if (checkLost()) {
-        break;
-      }
+        askMCQuestion("D", false, "A", "B", "C");
+        if (checkLost()) {
+          break;
+        }
 
-      //Question #8
-      question =
-        "What four-letter word can be written forward, backward or upside down, and can still be read from left to right";
-      askOpenQuestion("noon");
-      if (checkLost()) {
-        break;
-      }
+        //Question #8
+        question =
+          "What four-letter word can be written forward, backward or upside down, and can still be read from left to right";
+        askOpenQuestion("noon");
+        if (checkLost()) {
+          break;
+        }
 
-      //Question #9
-      question = `What is at the end of 'the rainbow'?
+        //Question #9
+        question = `What is at the end of 'the rainbow'?
       A) Pot of gold
       B) w
       C) leprechaun
       D) the ground`;
-      askMCQuestion(
-        "B",
-        true,
-        "A",
-        "D",
-        "C",
-        "C",
-        "w ends the phrase 'the rainbow'",
-        "",
-        "The imaginary creature?"
-      );
-      if (checkLost()) {
-        break;
-      }
+        askMCQuestion(
+          "B",
+          true,
+          "A",
+          "D",
+          "C",
+          "C",
+          "w ends the phrase 'the rainbow'",
+          "",
+          "The imaginary creature?"
+        );
+        if (checkLost()) {
+          break;
+        }
 
-      //Question #9
-      question = "What word is always spelled wrong";
-      askOpenQuestion("wrong");
-      if (checkLost()) {
-        break;
-      }
+        //Question #9
+        question = "What word is always spelled wrong";
+        askOpenQuestion("wrong");
+        if (checkLost()) {
+          break;
+        }
 
-      //question 10
-      cost = 5;
-      alert("Question Difficulty Increased" + reportCost());
-      playerAnswer = confirm("Do you think you will win?");
-      if (playerAnswer) {
-        alert("Interesting...");
-      } else {
-        alert("Good.");
-      }
-      playerAnswer = confirm(
-        "Do you think we would let you win?" + reportCost()
-      );
-      if (playerAnswer) {
-        adjustScore(false, cost);
-        alert("How naive." + reportScore());
-      } else {
-        adjustScore(true, cost);
-        alert("Maybe you're smarter than we calculated." + reportScore());
-      }
-      if (checkLost()) {
-        break;
-      }
+        //question 10
+        cost = 5;
+        alert("Question Difficulty Increased" + reportCost());
+        playerAnswer = confirm("Do you think you will win?");
+        if (playerAnswer) {
+          alert("Interesting...");
+        } else {
+          alert("Good.");
+        }
+        playerAnswer = confirm(
+          "Do you think we would let you win?" + reportCost()
+        );
+        if (playerAnswer) {
+          adjustScore(false, cost);
+          alert("How naive." + reportScore());
+        } else {
+          adjustScore(true, cost);
+          alert("Maybe you're smarter than we calculated." + reportScore());
+        }
+        if (checkLost()) {
+          break;
+        }
 
-      //Question #11
-      question = `What is zero to the power of 0?
+        //Question #11
+        question = `What is zero to the power of 0?
       A) 1
       B) 0
       C) infinity
       D) -infinity`;
-      askMCQuestion("A", false, "B", "C", "D");
-      if (checkLost()) {
-        break;
-      }
+        askMCQuestion("A", false, "B", "C", "D");
+        if (checkLost()) {
+          break;
+        }
 
-      //Question #12
-      question = `What is Infinity divided 0?
+        //Question #12
+        question = `What is Infinity divided 0?
       A) 1
       B) 0
       C) infinity
       D) -infinity`;
-      askMCQuestion("C", false, "A", "B", "D");
-      if (checkLost()) {
-        break;
-      }
+        askMCQuestion("C", false, "A", "B", "D");
+        if (checkLost()) {
+          break;
+        }
 
-      //Question #13
-      question = `What is 0 divided Infinity?
+        //Question #13
+        question = `What is 0 divided Infinity?
       A) 1
       B) 0
       C) infinity
       D) -infinity`;
-      askMCQuestion("B", false, "A", "B", "D");
-      if (checkLost()) {
-        break;
-      }
+        askMCQuestion("B", false, "A", "B", "D");
+        if (checkLost()) {
+          break;
+        }
 
-      //Question 14
-      cost = 10;
-      alert("Question Difficulty Increased" + reportCost());
-      alert("You were entertaining ... such a waste");
-      question = `How many points will the next Questions cost
+        //Question 14
+        cost = 10;
+        alert("Question Difficulty Increased" + reportCost());
+        alert("You were entertaining ... such a waste");
+        question = `How many points will the next Questions cost
       A) All
       B) Everything
       C) 0
       D) infinity`;
-      askMCQuestion(
-        "D",
-        true,
-        "A",
-        "B",
-        "C",
-        "C",
-        "That's a good sport",
-        "That's not a number",
-        "Have you given up?"
+        askMCQuestion(
+          "D",
+          true,
+          "A",
+          "B",
+          "C",
+          "C",
+          "That's a good sport",
+          "That's not a number",
+          "Have you given up?"
+        );
+        if (checkLost()) {
+          break;
+        }
+
+        cost = Infinity;
+        //Question 15?
+        question =
+          "Is the following statement true or false? 'This sentence is false.'";
+        playerAnswer = askOpenQuestion("neither");
+        if (playerAnswer == "neither") {
+          endGameLoop(1);
+        } else if (playerAnswer == "true") {
+          alert("If the statement is true, then it is false ");
+        } else if (playerAnswer == "false") {
+          alert("If the statement is false, then it is true");
+        }
+        if (checkLost()) {
+          break;
+        }
+        ////
+      }
+      //exit while loop on game loss
+      if (score < 0) {
+        alert("Your score: " + score + " has become negative ...");
+        alert("You are no longer eligible to continue the experiment ...");
+      }
+      alert(
+        "Now you will never see them again. Goodbye " +
+          playerName +
+          ". We appreciate your participation."
       );
-      if (checkLost()) {
-        break;
-      }
 
-      cost = Infinity;
-      //Question 15?
-      question =
-        "Is the following statement true or false? 'This sentence is false.'";
-      playerAnswer = askOpenQuestion("neither");
-      if (playerAnswer == "neither") {
-        endGameLoop(1);
-      } else if (playerAnswer == "true") {
-        alert("If the statement is true, then it is false ");
-      } else if (playerAnswer == "false") {
-        alert("If the statement is false, then it is true");
-      }
-      if (checkLost()) {
-        break;
-      }
-      ////
+      //
+      ///////////////////
+    } else {
+      //iff player not rdy for quiz exit
+      alert("we'll be seeing you");
     }
-    //exit while loop on game loss
-    if (score < 0) {
-      alert("Your score: " + score + " has become negative ...");
-      alert("You are no longer eligible to continue the experiment ...");
-    }
-    alert(
-      "Now you will never see them again. Goodbye " +
-        playerName +
-        ". We appreciate your participation."
-    );
-
-    //
-    ///////////////////
   } else {
-    //iff player not rdy for quiz exit
+    // if player is not ready exit quiz
     alert("we'll be seeing you");
   }
-} else {
-  // if player is not ready exit quiz
-  alert("we'll be seeing you");
 }
