@@ -6,11 +6,17 @@ function App() {
 
   return (
     <>
-      <h1>Hello World</h1>
+      <h1 className="text-3xl font-bold underline">LMG</h1>
       <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
-        <li><a>Item 3</a></li>
+        <li>
+          <Link to="/WebGames">Start Game</Link>
+        </li>
+        <li>
+          <Link to="/Extra">Extra</Link>
+        </li>
+        <li>
+          <Link to="/Credits">Credits</Link>
+        </li>
       </ul>
     </>
   )
