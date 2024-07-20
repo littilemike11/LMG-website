@@ -1,12 +1,19 @@
 import Footer from "./Footer";
 import NavBar from "./NavBar";
-
+import Divider from "./Divider";
 //#region Image Imports
 //cuber
 import CuberScreenshot from "../assets/cuber/CuberScreenshot.png"
 import CuberEndlessGameplay from "../assets/cuber/CuberEndlessGameplay.mp4"
 import CubicRunnerDemoLevel22 from "../assets/cuber/CubicRunnerDemoLevel22.mp4"
-import Divider from "./Divider";
+import CuberLvls1 from "../assets/cuber/CuberLvls1.png"
+import CuberLvls2 from "../assets/cuber/CuberLvls2.png"
+import Cuberlvl17demo from "../assets/cuber/Cuberlvl17demo.mp4"
+import Cuberlvl3demo from "../assets/cuber/Cuberlvl17demo.mp4"
+import initialObstacleDesigns from "../assets/cuber/initialObstacleDesigns.jpg"
+import notes from "../assets/cuber/notes.jpg"
+import potentialLvlNames from "../assets/cuber/potentialLvlNames.jpg"
+
 //#endregion
 
 export default function DeveloperNotesPage() {
@@ -62,13 +69,15 @@ export default function DeveloperNotesPage() {
 
                     <h3>Gameplay</h3>
                     <Divider
-                        content1={<figure className="lg:w-1/2 ">
+                        content1=
+                        {<figure className="lg:w-1/2 ">
                             <figcaption>Gameplay from <strong>Endless Mode</strong></figcaption>
                             <video controls loop autoPlay muted src={CuberEndlessGameplay}>
                                 Your browser does not support the video tag
                             </video>
                         </figure>}
-                        content2={<figure className="lg:w-1/2">
+                        content2=
+                        {<figure className="lg:w-1/2">
                             <figcaption>Gameplay from Level 22 <strong>Inner Squares</strong> </figcaption>
                             <video width="auto" height="auto" controls loop autoPlay muted src={CubicRunnerDemoLevel22}>
                                 Your browser does not support the video tag
@@ -78,43 +87,72 @@ export default function DeveloperNotesPage() {
 
 
                     <h3>Levels</h3>
-                    <div className="flex w-full flex-col lg:flex-row">
 
+                    <Divider
 
-                        <div className="divider lg:divider-horizontal"></div>
+                        content1={
+                            <figure className="lg:w-1/2">
+                                <img src={CuberLvls1} alt="grid of level selection menu 1-14" />
+                            </figure>}
+                        content2={
+                            <figure className="lg:w-1/2">
+                                <img src={CuberLvls2} alt="grid of level selection menu 1-14" />
+                            </figure>}
+                    />
 
-                    </div>
                     <h3>Old Gameplay</h3>
                     <p>These gameplay clips are before the level progression bar was implemented and before the next level title was
-                        named.These
-                        clips are from the unity editor.</p>
-                    <figure>
-                        <figcaption>Gameplay from <strong>Slants</strong></figcaption>
-                        <video width="auto" height="auto" controls loop autoPlay muted src="videos/Cuberlvl3demo.mp4">
-                            Your brower does not support the video tag
-                        </video>
-                    </figure>
-                    <figure>
-                        <figcaption>Gameplay from "Level 17" which would become <strong>Horizontal</strong> </figcaption>
-                        <video width="auto" height="auto" controls loop autoPlay muted src="videos/Cuberlvl17demo.mp4">
-                            Your brower does not support the video tag
-                        </video>
-                    </figure>
+                        named.These clips are from the unity editor.
+                    </p>
+                    <Divider
+                        content1=
+                        {<figure>
+                            <figcaption>Gameplay from <strong>Slants</strong></figcaption>
+                            <video width="auto" height="auto" controls loop autoPlay muted src={Cuberlvl3demo}>
+                                Your brower does not support the video tag
+                            </video>
+                        </figure>}
+                        content2=
+                        {<figure>
+                            <figcaption>Gameplay from "Level 17" which would become <strong>Horizontal</strong> </figcaption>
+                            <video width="auto" height="auto" controls loop autoPlay muted src={Cuberlvl17demo}>
+                                Your brower does not support the video tag
+                            </video>
+                        </figure>}
+                    />
+
+
                     <h3>Planning / Notes</h3>
-                    <figure>
-                        <figcaption>Initial design of potential levels</figcaption>
-                        <img src={CuberScreenshot} alt="" />
-                        {/* <img src="images/intital obstacle designd.jpg" alt="initial design on some wall levels" /> */}
-                    </figure>
-                    <figure>
-                        <figcaption>Game design notes</figcaption>
-                        <img src="images/notes + ideas.jpg" alt="game design notes" />
-                    </figure>
-                    <figure>
-                        <figcaption>List of potential level names</figcaption>
-                        <img src="images/potential level names.jpg" alt="list of potential level names" />
-                    </figure>
-                    <h3>Design Document</h3>
+                    <p>Use the <kbd className="kbd">◀︎</kbd> <kbd className="kbd">▶︎</kbd> arrows to control the slide show below </p>
+                    <div className="carousel rounded-box w-1/2 lg:w-1/3">
+                        <div className="carousel-item w-full">
+                            <figure>
+                                <figcaption>Initial design of potential levels</figcaption>
+                                <img
+                                    src={initialObstacleDesigns}
+                                    className="w-full"
+                                    alt="Initial design of potential levels" />
+                            </figure>
+                        </div>
+                        <div className="carousel-item w-full">
+                            <figure>
+                                <figcaption>List of potential level names</figcaption>
+                                <img
+                                    src={potentialLvlNames}
+                                    className="w-full"
+                                    alt="List of potential level names" />
+                            </figure>
+                        </div>
+                        <div className="carousel-item w-full">
+                            <figure>
+                                <figcaption>Game design notes</figcaption>
+                                <img
+                                    src={notes}
+                                    className="w-full"
+                                    alt="Game design notes" />
+                            </figure>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="bombBlitz">
@@ -218,26 +256,7 @@ export default function DeveloperNotesPage() {
                     </div>
                 </div>
 
-                <div class="cuber">
-                    <h2 id="section-Cuber">Cuber</h2>
-                    <a href="https://littilemic-gaming.itch.io/cuber" target="_blank">
-                        Play Now on Itch.io
-                    </a>
-                    <h3>Summary</h3>
-                    <p>3d runner with flappybird elements. Endless and handcrafted levels.</p>
 
-                    <h3>Gameplay</h3>
-
-                    <h3>Screenshots</h3>
-
-                    <figure>
-                        <figcaption>Level Selection Screen.</figcaption>
-                        <img src="images/CuberLvls1.PNG" alt="grid of level selection menu 1-14" />
-                        <img src="images/CuberLvls2.PNG" alt="grid of level selection menu 15-29" />
-
-                    </figure>
-
-                </div>
 
 
             </main>
