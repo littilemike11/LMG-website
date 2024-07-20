@@ -20,6 +20,10 @@ import BombBlitzGameplay from "../assets/bombBlitz/BombBlitzGameplay.gif"
 import BombBlitzMaps from "../assets/bombBlitz/BombBlitzMaps.gif"
 import BombBlitzShop from "../assets/bombBlitz/BombBlitzShop.png"
 import BombBlitzStats from "../assets/bombBlitz/BombBlitzStats.png"
+//demo
+import BombBlitzGameplayDemo from "../assets/bombBlitz/BombBlitzGameplayDemo.gif"
+import BombBlitzMenuDemo from "../assets/bombBlitz/BombBlitzMenuDemo.gif"
+
 //#endregion
 
 export default function DeveloperNotesPage() {
@@ -76,14 +80,14 @@ export default function DeveloperNotesPage() {
                     <h3>Gameplay</h3>
                     <Divider
                         content1=
-                        {<figure className="lg:w-1/2 ">
+                        {<figure >
                             <figcaption>Gameplay from <strong>Endless Mode</strong></figcaption>
                             <video controls loop autoPlay muted src={CuberEndlessGameplay}>
                                 Your browser does not support the video tag
                             </video>
                         </figure>}
                         content2=
-                        {<figure className="lg:w-1/2">
+                        {<figure >
                             <figcaption>Gameplay from Level 22 <strong>Inner Squares</strong> </figcaption>
                             <video width="auto" height="auto" controls loop autoPlay muted src={CubicRunnerDemoLevel22}>
                                 Your browser does not support the video tag
@@ -97,11 +101,11 @@ export default function DeveloperNotesPage() {
                     <Divider
 
                         content1={
-                            <figure className="lg:w-1/2">
+                            <figure >
                                 <img src={CuberLvls1} alt="grid of level selection menu 1-14" />
                             </figure>}
                         content2={
-                            <figure className="lg:w-1/2">
+                            <figure >
                                 <img src={CuberLvls2} alt="grid of level selection menu 1-14" />
                             </figure>}
                     />
@@ -258,73 +262,111 @@ export default function DeveloperNotesPage() {
 
 
                     <h3>Old vs New Gameplay</h3>
-                    <div className="comparison">
-                        <div>
-                            <figure>
-                                <figcaption>Inital version of Start Menu. </figcaption>
-                                <img src="images/BombBlitzMenuDemo.gif" alt="inital menu design" />
-                                <figcaption>
-                                    <ul>
-                                        <li>Wanted click and drag in start menu because it was similar to gameplay.</li>
-                                        <li>Players would click and drag only 1 map into Level Select black box area, and the background map
-                                            would
-                                            change in realtime.</li>
-                                        <li>Players would click and drag at least 1 mode into Mode Select black box area.</li>
-                                        <li>Tooltips were added to try and help inform players of what different symbols meant.</li>
-                                        <li>The black boxes would turn green if selectionw as valid and red if invalid.
-                                            Later changed because player testing reveiled the UI was unintuitive and players had trouble starting
-                                            the
-                                            game on their own.</li>
-                                    </ul>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div>
-                            <figure>
-                                <figcaption>Current Version of Start Menu.</figcaption>
-                                <img src="images/BombBlitzMaps.gif" alt="current menu deisgn" />
-                                <figcaption>
-                                    <ul>
-                                        <li>Game cannot start until map is chosen. So, "Start Game" is replaced by "Choose a Map" to guide
-                                            players.
-                                        </li>
-                                        <li>Players can click directly on map icons and the background would be changed to the selected one.
-                                        </li>
-                                        <li>Modifiers can be toggled on or off</li>
-                                        <li>"Modes" changed to "Modifiers", to imply multiple options can be chosen</li>
-                                        <li>All Modifiers are on by default, to help start game and to gain money for store.</li>
-                                        <li>Turn all Modifiers off for a <strong>Special</strong> surprise.</li>
-                                    </ul>
-                                </figcaption>
-                            </figure>
+                    <h4>Start Menu</h4>
+                    <div className="flex justify-center">
+                        <div className="diff w-5/6 h-[48rem]">
+                            <div className="diff-item-1">
+                                <div style={{
+                                    backgroundImage: `url(${BombBlitzMaps})`,
+                                    backgroundPosition: "center",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "contain"
+                                }}
+                                    className="bg-primary text-primary-content grid place-content-start text-8xl font-black">
+                                    New
+                                </div>
+
+                            </div>
+                            <div className="diff-item-2">
+                                <div style={{
+                                    backgroundImage: `url(${BombBlitzMenuDemo})`,
+                                    backgroundPosition: "center",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "contain"
+                                }} className="bg-base-200 grid place-content-start text-8xl font-black">Old</div>
+                            </div>
+                            <div className="diff-resizer"></div>
                         </div>
                     </div>
 
-                    <div className="comparison">
-                        <figure>
-                            <figcaption>Inital gameplay. </figcaption>
-                            <img src="images/BombBlitzGameplayDemo.gif" alt="inital gameplay" />
-                            <figcaption>
-                                <ul>
-                                    <li>No particle effects.</li>
-                                    <li>No citizen look diversity</li>
-                                    <li>Citizens spawned upside down to show their invincible</li>
-                                </ul>
-                            </figcaption>
-                        </figure>
-                        <figure>
-                            <figcaption>Polished gameplay.</figcaption>
-                            <img src="images/BombBlitzGameplay.gif" alt="current gameplay" />
-                            <figcaption>
-                                <ul>
-                                    <li>Particles on explostion added. Amount of particles based on strength of bomb.</li>
-                                    <li>Citizens spawn with a temporary bubble shield with timer to show how long invincibilty lasts.</li>
-                                    <li>Citizens spawn with random clothes and colors based off what player purchased in Shop.</li>
 
-                                </ul>
-                            </figcaption>
-                        </figure>
+                    <Divider
+                        content1={
+
+                            <ul className="list-disc text-start">
+                                <h5>Old</h5>
+                                <li>Wanted click and drag in start menu because it was similar to gameplay.</li>
+                                <li>Players would click and drag only 1 map into Level Select black box area, and the background map
+                                    would
+                                    change in realtime.</li>
+                                <li>Players would click and drag at least 1 mode into Mode Select black box area.</li>
+                                <li>Tooltips were added to try and help inform players of what different symbols meant.</li>
+                                <li>The black boxes would turn green if selectionw as valid and red if invalid.
+                                    Later changed because player testing reveiled the UI was unintuitive and players had trouble starting
+                                    the
+                                    game on their own.</li>
+                            </ul>}
+                        content2={
+                            <ul className="list-disc text-start" >
+                                <h5>New</h5>
+                                <li>Game cannot start until map is chosen. So, "Start Game" is replaced by "Choose a Map" to guide
+                                    players.
+                                </li>
+                                <li>Players can click directly on map icons and the background would be changed to the selected one.
+                                </li>
+                                <li>Modifiers can be toggled on or off</li>
+                                <li>"Modes" changed to "Modifiers", to imply multiple options can be chosen</li>
+                                <li>All Modifiers are on by default, to help start game and to gain money for store.</li>
+                                <li>Turn all Modifiers off for a <strong>Special</strong> surprise.</li>
+                            </ul>}
+                    />
+
+                    <h4>Game play</h4>
+                    <div className="flex justify-center">
+                        <div className="diff w-5/6 h-[48rem]">
+                            <div className="diff-item-1">
+                                <div style={{
+                                    backgroundImage: `url(${BombBlitzGameplay})`,
+                                    backgroundPosition: "center",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "contain"
+                                }}
+                                    className="bg-primary text-primary-content grid place-content-start text-8xl font-black">
+                                    New
+                                </div>
+
+                            </div>
+                            <div className="diff-item-2">
+                                <div style={{
+                                    backgroundImage: `url(${BombBlitzGameplayDemo})`,
+                                    backgroundPosition: "center",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundSize: "contain"
+                                }} className="bg-base-200 grid place-content-start text-8xl font-black">Old</div>
+                            </div>
+                            <div className="diff-resizer"></div>
+                        </div>
                     </div>
+
+
+                    <Divider
+                        content1={
+
+                            <ul className="list-disc text-start">
+                                <h5>Old</h5>
+                                <li>No particle effects.</li>
+                                <li>No citizen look diversity</li>
+                                <li>Citizens spawned upside down to show their invincible</li>
+                            </ul>}
+                        content2={
+                            <ul className="list-disc text-start" >
+                                <h5>New</h5>
+                                <li>Particles on explosion added. Amount of particles based on strength of bomb.</li>
+                                <li>Citizens spawn with a temporary bubble shield with timer to show how long invincibilty lasts.</li>
+                                <li>Citizens spawn with random clothes and colors based off what player purchased in Shop.</li>
+                            </ul>}
+                    />
+
 
                     <div className="sprites">
                         <h3>Sprites</h3>
@@ -354,7 +396,7 @@ export default function DeveloperNotesPage() {
 
 
 
-            </main>
+            </main >
 
             <Footer />
 
