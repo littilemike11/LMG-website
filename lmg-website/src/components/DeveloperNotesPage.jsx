@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import CuberScreenshot from "../assets/cuber/CuberScreenshot.png"
 import CuberEndlessGameplay from "../assets/cuber/CuberEndlessGameplay.mp4"
 import CubicRunnerDemoLevel22 from "../assets/cuber/CubicRunnerDemoLevel22.mp4"
+import Divider from "./Divider";
 //#endregion
 
 export default function DeveloperNotesPage() {
@@ -60,24 +61,23 @@ export default function DeveloperNotesPage() {
                 <div className="cuber">
 
                     <h3>Gameplay</h3>
-                    <div className="flex w-full flex-col lg:flex-row">
-                        <figure className="lg:w-1/2 ">
+                    <Divider
+                        content1={<figure className="lg:w-1/2 ">
                             <figcaption>Gameplay from <strong>Endless Mode</strong></figcaption>
                             <video controls loop autoPlay muted src={CuberEndlessGameplay}>
                                 Your browser does not support the video tag
                             </video>
-                        </figure>
-
-                        <div className="divider lg:divider-horizontal"></div>
-                        <figure className="lg:w-1/2">
+                        </figure>}
+                        content2={<figure className="lg:w-1/2">
                             <figcaption>Gameplay from Level 22 <strong>Inner Squares</strong> </figcaption>
                             <video width="auto" height="auto" controls loop autoPlay muted src={CubicRunnerDemoLevel22}>
                                 Your browser does not support the video tag
                             </video>
-                        </figure>
-                    </div>
+                        </figure>}
+                    />
 
-                    <h3>Gameplay</h3>
+
+                    <h3>Levels</h3>
                     <div className="flex w-full flex-col lg:flex-row">
 
 
