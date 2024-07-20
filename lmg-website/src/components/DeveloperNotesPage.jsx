@@ -1,21 +1,40 @@
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 
+//#region Image Imports
+//cuber
+import CuberScreenshot from "../assets/cuber/CuberScreenshot.png"
+//#endregion
+
 export default function DeveloperNotesPage() {
     return (
         <>
             <NavBar />
 
             <h1 className="text-3xl">Developer Notes</h1>
+            <h2 id="section-Cuber">Cuber</h2>
 
             <main>
+                <div
+                    className="hero min-h-screen"
+                    style={{ backgroundImage: `url(${CuberScreenshot})` }}>
+                    <div className="hero-overlay bg-opacity-60"></div>
+                    <div className="hero-content text-neutral-content text-center">
+                        <div className="max-w-md">
+                            <h1 className="mb-5 text-5xl font-bold">Cuber</h1>
+                            <p className="mb-5">
+                                3d runner with flappybird elements. Endless and handcrafted levels
+                            </p>
+                            <button className="btn btn-primary">
+                                <a href="https://littilemic-gaming.itch.io/cuber" target="_blank">
+                                    Play Now on Itch.io
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div className="cuber">
-                    <h2 id="section-Cuber">Cuber</h2>
-                    <a href="https://littilemic-gaming.itch.io/cuber" target="_blank">
-                        Play Now on Itch.io
-                    </a>
-                    <h3>Summary</h3>
-                    <p>3d runner with flappybird elements. Endless and handcrafted levels</p>
+
                     <h3>Old Gameplay</h3>
                     <p>These gameplay clips are before the level progression bar was implemented and before the next level title was
                         named.These
@@ -35,7 +54,8 @@ export default function DeveloperNotesPage() {
                     <h3>Planning / Notes</h3>
                     <figure>
                         <figcaption>Initial design of potential levels</figcaption>
-                        <img src="images/intital obstacle designd.jpg" alt="initial design on some wall levels" />
+                        <img src={CuberScreenshot} alt="" />
+                        {/* <img src="images/intital obstacle designd.jpg" alt="initial design on some wall levels" /> */}
                     </figure>
                     <figure>
                         <figcaption>Game design notes</figcaption>
