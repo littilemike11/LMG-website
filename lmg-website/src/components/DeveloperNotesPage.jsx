@@ -4,6 +4,8 @@ import NavBar from "./NavBar";
 //#region Image Imports
 //cuber
 import CuberScreenshot from "../assets/cuber/CuberScreenshot.png"
+import CuberEndlessGameplay from "../assets/cuber/CuberEndlessGameplay.mp4"
+import CubicRunnerDemoLevel22 from "../assets/cuber/CubicRunnerDemoLevel22.mp4"
 //#endregion
 
 export default function DeveloperNotesPage() {
@@ -59,14 +61,28 @@ export default function DeveloperNotesPage() {
 
                     <h3>Gameplay</h3>
                     <div className="flex w-full flex-col lg:flex-row">
-                        <div className="card bg-base-300 rounded-box grid h-32 flex-grow place-items-center">
-                            content
-                        </div>
-                        <div className="divider lg:divider-horizontal"></div>
-                        <div className="card bg-base-300 rounded-box grid h-32 flex-grow place-items-center">
-                            content
+                        <figure className="lg:w-1/2 ">
+                            <figcaption>Gameplay from <strong>Endless Mode</strong></figcaption>
+                            <video controls loop autoPlay muted src={CuberEndlessGameplay}>
+                                Your browser does not support the video tag
+                            </video>
+                        </figure>
 
-                        </div>
+                        <div className="divider lg:divider-horizontal"></div>
+                        <figure className="lg:w-1/2">
+                            <figcaption>Gameplay from Level 22 <strong>Inner Squares</strong> </figcaption>
+                            <video width="auto" height="auto" controls loop autoPlay muted src={CubicRunnerDemoLevel22}>
+                                Your browser does not support the video tag
+                            </video>
+                        </figure>
+                    </div>
+
+                    <h3>Gameplay</h3>
+                    <div className="flex w-full flex-col lg:flex-row">
+
+
+                        <div className="divider lg:divider-horizontal"></div>
+
                     </div>
                     <h3>Old Gameplay</h3>
                     <p>These gameplay clips are before the level progression bar was implemented and before the next level title was
@@ -201,6 +217,29 @@ export default function DeveloperNotesPage() {
                         </figure>
                     </div>
                 </div>
+
+                <div class="cuber">
+                    <h2 id="section-Cuber">Cuber</h2>
+                    <a href="https://littilemic-gaming.itch.io/cuber" target="_blank">
+                        Play Now on Itch.io
+                    </a>
+                    <h3>Summary</h3>
+                    <p>3d runner with flappybird elements. Endless and handcrafted levels.</p>
+
+                    <h3>Gameplay</h3>
+
+                    <h3>Screenshots</h3>
+
+                    <figure>
+                        <figcaption>Level Selection Screen.</figcaption>
+                        <img src="images/CuberLvls1.PNG" alt="grid of level selection menu 1-14" />
+                        <img src="images/CuberLvls2.PNG" alt="grid of level selection menu 15-29" />
+
+                    </figure>
+
+                </div>
+
+
             </main>
 
             <Footer />
