@@ -22,18 +22,16 @@
 }
 
 .bgContainer {
+  overflow: hidden;
+  position: absolute;
   height: 100vh;
   width: 100vw;
-  top: -2rem;
-  bottom: -2rem;
-  left: -2rem;
-  right: -2rem;
+  top: 0rem;
+  bottom: 0rem;
+  left: 0rem;
+  right: 0rem;
   background-image: url('./images/titleScreenBg.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-body {
-  overflow: hidden;
 }
