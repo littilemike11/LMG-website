@@ -12,6 +12,28 @@ export default function DeveloperNotesPage() {
             <NavBar />
 
             <h1 className="text-3xl">Developer Notes</h1>
+            {/* <div className=" flex justify-center border 2 border-slate-400">
+                <div role="tablist" className="tabs  border 2 border-slate-400 tabs-bordered">
+                    <input defaultChecked type="radio" name="my_tabs_1" role="tab" className="tab" aria-label="Cuber" />
+                    <div role="tabpanel" className="tab-content p-10">
+                        Tab content 1
+
+                    </div>
+
+                    <input
+                        type="radio"
+                        name="my_tabs_1"
+                        role="tab"
+                        className="tab"
+                        aria-label="Bomb Blitz"
+                    />
+                    <div role="tabpanel" className="tab-content p-10">
+                        Tab content 2
+                    </div>
+
+                </div>
+            </div> */}
+
             <h2 id="section-Cuber">Cuber</h2>
 
             <main>
@@ -23,7 +45,7 @@ export default function DeveloperNotesPage() {
                         <div className="max-w-md">
                             <h1 className="mb-5 text-5xl font-bold">Cuber</h1>
                             <p className="mb-5">
-                                3d runner with flappybird elements. Endless and handcrafted levels
+                                A 3d runner with flappy bird elements. Endless and handcrafted levels.
                             </p>
                             <button className="btn btn-primary">
                                 <a href="https://littilemic-gaming.itch.io/cuber" target="_blank">
@@ -35,6 +57,17 @@ export default function DeveloperNotesPage() {
                 </div>
                 <div className="cuber">
 
+                    <h3>Gameplay</h3>
+                    <div className="flex w-full flex-col lg:flex-row">
+                        <div className="card bg-base-300 rounded-box grid h-32 flex-grow place-items-center">
+                            content
+                        </div>
+                        <div className="divider lg:divider-horizontal"></div>
+                        <div className="card bg-base-300 rounded-box grid h-32 flex-grow place-items-center">
+                            content
+
+                        </div>
+                    </div>
                     <h3>Old Gameplay</h3>
                     <p>These gameplay clips are before the level progression bar was implemented and before the next level title was
                         named.These
