@@ -367,34 +367,7 @@ export default function DeveloperNotesPage() {
                             </ul>}
                     />
 
-
-                    <div className="sprites">
-                        <h3>Sprites</h3>
-                        <figure>
-                            <figcaption>Death Spritesheet</figcaption>
-                            <img src="images/civilian_death.png" alt="" />
-                        </figure>
-                        <figure>
-                            <figcaption>Civilian Hairs spritesheet</figcaption>
-                            <img src="images/Civilian_hairs.png" />
-                        </figure>
-                        <figure>
-                            <figcaption>Civilian Tops spritesheet</figcaption>
-                            <img src="images/Civilian_tops.png" />
-                        </figure>
-                        <figure>
-                            <figcaption>Civilian Bottoms Spritesheet</figcaption>
-                            <img src="images/Civilian_bottoms.png" />
-                        </figure>
-                        <figure>
-                            <figcaption>Countdown Animation</figcaption>
-                            <img className="w-32" src="images/Countdown.gif" />
-                        </figure>
-                    </div>
                 </div>
-
-
-
 
             </main >
 
