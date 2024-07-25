@@ -3,23 +3,23 @@ import NavBar from "./NavBar";
 import Divider from "./Divider";
 //#region Image Imports
 //cuber
-import CuberScreenshot from "../assets/cuber/CuberScreenshot.png"
+import CuberScreenshot from "../assets/cuber/CuberScreenshot.webp"
 import CuberEndlessGameplay from "../assets/cuber/CuberEndlessGameplay.mp4"
 import CubicRunnerDemoLevel22 from "../assets/cuber/CubicRunnerDemoLevel22.mp4"
-import CuberLvls1 from "../assets/cuber/CuberLvls1.png"
-import CuberLvls2 from "../assets/cuber/CuberLvls2.png"
+import CuberLvls1 from "../assets/cuber/CuberLvls1.webp"
+import CuberLvls2 from "../assets/cuber/CuberLvls2.webp"
 //demo
 import Cuberlvl17demo from "../assets/cuber/Cuberlvl17demo.mp4"
 import Cuberlvl3demo from "../assets/cuber/Cuberlvl3demo.mp4"
-import initialObstacleDesigns from "../assets/cuber/initialObstacleDesigns.jpg"
-import notes from "../assets/cuber/notes.jpg"
-import potentialLvlNames from "../assets/cuber/potentialLvlNames.jpg"
+import initialObstacleDesigns from "../assets/cuber/initialObstacleDesigns.webp"
+import notes from "../assets/cuber/notes.webp"
+import potentialLvlNames from "../assets/cuber/potentialLvlNames.webp"
 
 //BombBlitz
 import BombBlitzGameplay from "../assets/bombBlitz/BombBlitzGameplay.gif"
 import BombBlitzMaps from "../assets/bombBlitz/BombBlitzMaps.gif"
-import BombBlitzShop from "../assets/bombBlitz/BombBlitzShop.png"
-import BombBlitzStats from "../assets/bombBlitz/BombBlitzStats.png"
+import BombBlitzShop from "../assets/bombBlitz/BombBlitzShop.webp"
+import BombBlitzStats from "../assets/bombBlitz/BombBlitzStats.webp"
 //demo
 import BombBlitzGameplayDemo from "../assets/bombBlitz/BombBlitzGameplayDemo.gif"
 import BombBlitzMenuDemo from "../assets/bombBlitz/BombBlitzMenuDemo.gif"
@@ -54,7 +54,7 @@ export default function DeveloperNotesPage() {
                 </div>
             </div> */}
 
-            <h2 id="section-Cuber">Cuber</h2>
+            <h2 id="section-Cuber"></h2>
 
             <main>
                 <div
@@ -321,7 +321,7 @@ export default function DeveloperNotesPage() {
                             </ul>}
                     />
 
-                    <h4>Game play</h4>
+                    <h4>Gameplay</h4>
                     <div className="flex justify-center">
                         <div className="diff w-5/6 h-[48rem]">
                             <div className="diff-item-1">
