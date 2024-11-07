@@ -10,7 +10,7 @@ export default function GameShowcase(props) {
 
     return (
         <>
-            <div>
+            <div className="">
                 <GameCarousel
                     content={
                         games.map((game, index) => (
@@ -25,12 +25,11 @@ export default function GameShowcase(props) {
                         ))
                     }
                 />
-                {/* <GameCarousel
-                    content={content}
-                /> */}
 
+            </div>
+            <div>
                 <GameSummary
-
+                    summary="hi this is a test summary"
                 />
             </div>
 

@@ -27,16 +27,12 @@ export default function WebGamesPage() {
 
             <NavBar />
 
-            <div className="webGamePage relative px-[2rem]">
+            <div className="webGamePage px-[2rem]">
                 <h1 className="text-3xl my-4">Game Select</h1>
                 <Sidebar
-                    titles={catalogue.map((game, index) => (
-                        <li key={index}><a href={`#${game.id}`} >{game.Title}</a></li>
-                    ))}
-                />
-                <GameShowcase
                     catalogue={catalogue}
                 />
+
             </div>
         </>
     )
