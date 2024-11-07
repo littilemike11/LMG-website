@@ -20,7 +20,7 @@ export default function Sidebar(props) {
                     <ul className="menu bg-base-200 text-base-content min-h-screen w-72 p-4">
                         {/* Sidebar content here */}
                         {props.catalogue.map((game, index) => (
-                            <li key={index}><a href={`#${game.id}`} >{game.Title}</a></li>
+                            <li key={index}><a href={`#${game.id}`} >{game.title}</a></li>
                         ))}
 
 

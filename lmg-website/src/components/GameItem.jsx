@@ -11,9 +11,10 @@ export default function GameItem(props) {
                     <a href={`#${props.next}`} className="btn btn-circle">❯</a>
                 </div>
             </div>
-            <div>
+            <div className="mt-10">
                 <p className="text-red-600 z-10">index ={props.id}</p>
             </div>
+
         </>
     )
 }

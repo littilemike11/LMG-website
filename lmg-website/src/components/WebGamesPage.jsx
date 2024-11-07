@@ -1,22 +1,23 @@
 import NavBar from "./NavBar";
 import Sidebar from "./Sidebar"
 import "../webgamepg.css"
-import GameShowcase from "./GameShowcase";
 
 import UnderConstruction from "../assets/webGameIcons/UnderConstruction.jpg"
 import WheresOneIcon from "../assets/webGameIcons/WheresOneIcon.jpg"
+import { useState } from "react";
 
 export default function WebGamesPage() {
+    const [highlightedGame, setHighlightedGame] = useState()
     let catalogue = [
         {
             id: "WheresOne",
-            Title: "Where's 1",
+            title: "Where's 1",
             img: WheresOneIcon,
             summary: "wheres 1 summary"
         },
         {
             id: "AbsurdApp",
-            Title: "Absurd App",
+            title: "Absurd App",
             img: UnderConstruction,
             summary: "Absurd summary"
         }
@@ -30,6 +31,10 @@ export default function WebGamesPage() {
             <div className="webGamePage px-[2rem]">
                 <h1 className="text-3xl my-4">Game Select</h1>
                 <Sidebar
+                    highlightedGame={
+                        highlightedGame
+                    }
+                    setHighlightedGame={setHighlightedGame}
                     catalogue={catalogue}
                 />
 
