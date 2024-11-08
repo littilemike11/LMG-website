@@ -5,15 +5,16 @@ export default function GameCarousel(props) {
     return (
         <>
             <div>
-                <div className="text-3xl ">
+                {/* <div className="text-3xl ">
                     {props.highlightedGame.title}
-                </div>
+                </div> */}
 
                 <div className=" carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4 m-4">
                     {props.content}
                 </div>
 
                 <GameSummary
+                    title ={props.highlightedGame.title}
                     summary={props.highlightedGame.summary}
                 />
 

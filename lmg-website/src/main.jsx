@@ -6,8 +6,8 @@ import './index.css'
 import WebGamesPage from './components/WebGamesPage.jsx';
 import DeveloperNotesPage from './components/DeveloperNotesPage.jsx';
 import AboutPage from './components/AboutPage.jsx';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/WebGames',
-    element: <WebGamesPage />
+    element: <WebGamesPage />,
   },
   {
     path: '/Extra',
