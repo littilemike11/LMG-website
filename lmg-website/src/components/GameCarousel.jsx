@@ -16,6 +16,7 @@ export default function GameCarousel(props) {
                 <GameSummary
                     title ={props.highlightedGame.title}
                     summary={props.highlightedGame.summary}
+                    link ={props.highlightedGame.link}
                 />
 
             </div>

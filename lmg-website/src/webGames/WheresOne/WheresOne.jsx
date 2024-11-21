@@ -11,56 +11,60 @@ const wrongLetters = ["i", "l", "!", "|"];
 
 function WheresOne() {
   const [round, setRound] = useState(1);
-  const [rcount, setRcount] = useState(2);
+  const [gridSize, setGridSize] = useState(0);
   const [lives, setLives] = useState(3);
   const [timer, setTimer] = useState(round + 2);
   const [isTimerOn, setIsTimerOn] = useState(false);
 
-  useEffect(() => {
-    if (isTimerOn) {
-      const interval = setInterval(() => {
-        setTimer(prev => {
-          if (prev === 1) {
-            clearInterval(interval);
-            handleTimeout();
-            return round + 2;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-      return () => clearInterval(interval);
-    }
-  }, [isTimerOn, round]);
+//   useEffect(() => {
+//     startTimer()
+//   }, [isTimerOn, round, lives]);
 
-  const handleStartClick = () => {
+  const startTimer=()=>{
+    setIsTimerOn(true)
+  }
+
+
+  const startGame = () => {
     setIsTimerOn(true);
+    setGridSize(2)
   };
 
   const handleGridClick = (isCorrect) => {
     if (isCorrect) {
       setRound(prev => prev + 1);
-      setRcount(prev => prev + 1);
+      setGridSize(prev => prev + 1);
     } else {
       setLives(prev => prev - 1);
       if (lives <= 0) {
-        resetGame();
+        resetRound();
       }
     }
   };
 
-  const handleTimeout = () => {
+  const loseLife = () => {
     setLives(prev => prev - 1);
     if (lives <= 0) {
-      resetGame();
+      endGame();
     }
   };
 
-  const resetGame = () => {
-    setLives(3);
-    setRound(1);
-    setRcount(2);
-    setTimer(round + 2);
-    setIsTimerOn(false);
+  const resetTimer = () => {
+    setTimer(round+2); // Reset the timer to initial time
+    setIsTimerOn(true); // Ensure it's active when reset
+  };
+
+  const endGame=() =>{
+    setLives(3)
+    setRound(1)
+    setGridSize(0)
+    setTimer(3)
+    setIsTimerOn(false)
+  }
+
+  const resetRound = () => {
+    setGridSize(round+1);
+    resetTimer()
   };
 
   return (
@@ -87,19 +91,19 @@ function WheresOne() {
           
           <div className='flex flex-col items-start'>
             <div className="">
-                <button className='btn' onClick={handleStartClick}>Start</button>
+                <button className='btn' onClick={startGame}>Start</button>
             </div>
             <div>
-                <button className='btn' onClick={resetGame}>Restart Game</button>
+                <button className='btn' onClick={endGame}>Restart Game</button>
             </div>
           </div>
           
           <p id="roundNum">Round: {round}</p>
           <Lives lives={lives} />
-          <Timer startTime={timer} />
+          <Timer resetTimer={resetTimer} isActive={isTimerOn} startTime={timer} />
         </div>
 
-        <Grid gridSize={rcount} onGridClick={handleGridClick} />
+        <Grid gridSize={gridSize} onGridClick={handleGridClick} />
       </main>
     </div>
   );

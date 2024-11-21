@@ -5,13 +5,15 @@ let catalogue = [
         id: "WheresOne",
         title: "Where's 1",
         img: WheresOneIcon,
-        summary: "wheres 1 summary"
+        summary: "wheres 1 summary",
+        link:"/WheresOne"
     },
     {
         id: "AbsurdApp",
         title: "Absurd App",
         img: UnderConstruction,
-        summary: "Absurd summary"
+        summary: "Absurd summary",
+        link:"/absurdapp"
     }
 ]
 export default catalogue;

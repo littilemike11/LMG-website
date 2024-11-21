@@ -21,24 +21,22 @@ function Grid({ gridSize, onGridClick }) {
   return (
     <>
         <div className="flex justify-center">
-            <div className="border aspect-square max-h-screen h-full min-h-96 min-w-96 w-full overflow-auto">
-                <div className={`grid grid-cols-${gridSize}`}>
-                    {Array.from({length:gridSize*gridSize}).map((_,index)=>{
-                        const isCorrect = index === spawn
-                        return(
-                            <Cell 
-                                key ={index}
-                                onClick={()=>handleCellClick(isCorrect)}
-                                className ={isCorrect ? "cellCorrect" : "cellIncorrect"}
-                                content={isCorrect? 1 : getRandomLetter()}
-                            />
-                        )
-                    })}
-                </div>
-                
-
-            </div>
-            
+                <div 
+                    style={{gridTemplateRows:`repeat(${gridSize},1fr)`,
+                    gridTemplateColumns:`repeat(${gridSize},1fr)`}}
+                    className={`border aspect-square h-full w-full md:h-1/2 md:w-1/2 overflow-auto grid`}>
+                        {Array.from({length:gridSize*gridSize}).map((_,index)=>{
+                            const isCorrect = index === spawn
+                            return(
+                                <Cell 
+                                    key ={index}
+                                    onClick={()=>handleCellClick(isCorrect)}
+                                    className ={isCorrect ? "cellCorrect" : "cellIncorrect"}
+                                    content={isCorrect? 1 : getRandomLetter()}
+                                />
+                            )
+                        })}
+                </div>            
         </div>
         
     </>
