@@ -11,6 +11,7 @@ const wrongLetters = ["i", "l", "!", "|"];
 
 function WheresOne() {
   const [round, setRound] = useState(1);
+  const [prevRound,setPrevRound]= useState(1)
   const [gridSize, setGridSize] = useState(0);
   const [lives, setLives] = useState(3);
   const [timer, setTimer] = useState(round + 2);
@@ -28,7 +29,6 @@ function WheresOne() {
     setIsTimerOn(true)
     setTimer(round+2)
   }
-
 
   const startGame = () => {
     setGameStart(true)
@@ -66,7 +66,7 @@ function WheresOne() {
     setGridSize(0)
     setTimer(3)
     setIsTimerOn(false)
-    
+    setPrevRound(round)
   }
 
   const resetRound = () => {
@@ -105,7 +105,8 @@ function WheresOne() {
             </div>
           </div>
           
-          <p id="roundNum">Round: {round}</p>
+          <p>Previous Round: {prevRound}</p>
+          <p>Round: {round}</p>
           <Lives lives={lives} />
           {/* <Timer 
           resetRound={resetRound}
