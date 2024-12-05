@@ -15,17 +15,23 @@ function WheresOne() {
   const [lives, setLives] = useState(3);
   const [timer, setTimer] = useState(round + 2);
   const [isTimerOn, setIsTimerOn] = useState(false);
+  const [gameStart, setGameStart]= useState(false)
 
-//   useEffect(() => {
-//     startTimer()
-//   }, [isTimerOn, round, lives]);
+  useEffect(() => {
+    if(gameStart){
+      startTimer()
+    }
+    
+  }, [round, lives]);
 
   const startTimer=()=>{
     setIsTimerOn(true)
+    setTimer(round+2)
   }
 
 
   const startGame = () => {
+    setGameStart(true)
     setIsTimerOn(true);
     setGridSize(2)
   };
@@ -34,37 +40,38 @@ function WheresOne() {
     if (isCorrect) {
       setRound(prev => prev + 1);
       setGridSize(prev => prev + 1);
+      setTimer(prev=> prev+2)
+      setIsTimerOn(true)
     } else {
-      setLives(prev => prev - 1);
-      if (lives <= 0) {
-        resetRound();
-      }
+      loseLife()
     }
   };
 
   const loseLife = () => {
     setLives(prev => prev - 1);
-    if (lives <= 0) {
+    if (lives <= 1) {
       endGame();
     }
   };
 
-  const resetTimer = () => {
-    setTimer(round+2); // Reset the timer to initial time
+  const resetTimer = (startTime) => {
+    setTimer(startTime); // Reset the timer to initial time
     setIsTimerOn(true); // Ensure it's active when reset
   };
 
   const endGame=() =>{
+    setGameStart(false)
     setLives(3)
     setRound(1)
     setGridSize(0)
     setTimer(3)
     setIsTimerOn(false)
+    
   }
 
   const resetRound = () => {
     setGridSize(round+1);
-    resetTimer()
+    resetTimer(round+2)
   };
 
   return (
@@ -100,7 +107,15 @@ function WheresOne() {
           
           <p id="roundNum">Round: {round}</p>
           <Lives lives={lives} />
-          <Timer resetTimer={resetTimer} isActive={isTimerOn} startTime={timer} />
+          {/* <Timer 
+          resetRound={resetRound}
+          isActive={isTimerOn} 
+          setIsTimerOn={setIsTimerOn}
+          timer={timer} 
+          setTimer={setTimer}
+          loseLife={loseLife}
+          
+          /> */}
         </div>
 
         <Grid gridSize={gridSize} onGridClick={handleGridClick} />
