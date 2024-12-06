@@ -1,19 +1,17 @@
 import React, { useState,useEffect } from 'react';
 
-function Timer(props) {
-    // const [time, setTime] = useState(startTime); // Initialize with the starting time
-    
+function Timer(props) {    
   // Update the timer every second when it's active
   useEffect(() => {
-    if (props.timer === 0) {
-      props.setIsTimerOn(false) ;
-      // props.setTime(3);
-      //functions to do when timer reaches 0
-      props.resetRound();
-      props.loseLife();
-      
-    }; // Stop when time reaches 0
     if (!props.isActive) return; // Don't do anything if timer is paused
+    if (props.timer === 0) {
+      // props.setIsTimerOn(false);
+      
+      //functions to do when timer reaches 0
+      props.onTimerEnd()
+      console.log("time end")
+      return;
+    }; // Stop when time reaches 0
 
     const intervalId = setInterval(() => {
       props.setTimer((prevTime) => prevTime - 1);

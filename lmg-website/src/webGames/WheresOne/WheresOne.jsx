@@ -4,46 +4,41 @@ import Timer from './Timer';
 import Lives from './Lives';
 import Rules from './Rules';
 import LMG from '../../components/game-components/LMG';
-
 import './WheresOne.css'; // Import the CSS
-
-const wrongLetters = ["i", "l", "!", "|"];
 
 function WheresOne() {
   const [round, setRound] = useState(1);
-  const [prevRound,setPrevRound]= useState(1)
+  const [prevRound, setPrevRound] = useState(1);
+  const [resetTrigger,setResetTrigger] = useState(false)
   const [gridSize, setGridSize] = useState(0);
   const [lives, setLives] = useState(3);
   const [timer, setTimer] = useState(round + 2);
   const [isTimerOn, setIsTimerOn] = useState(false);
-  const [gameStart, setGameStart]= useState(false)
+  const [progress,setProgress]=useState(timer)
+  const [gameStart, setGameStart] = useState(false);
 
-  useEffect(() => {
-    if(gameStart){
-      startTimer()
-    }
-    
-  }, [round, lives]);
-
-  const startTimer=()=>{
-    setIsTimerOn(true)
-    setTimer(round+2)
-  }
+  // const startTimer = () => {
+  //   setIsTimerOn(true);
+  //   setTimer(round + 2); // Set the timer based on the round number
+  // };
 
   const startGame = () => {
-    setGameStart(true)
+    if (gameStart)return
+    setGameStart(true);
+    setResetTrigger(true)
+    setGridSize(2); // Start with a 2x2 grid
+    // startTimer(); // Start the timer when the game begins
     setIsTimerOn(true);
-    setGridSize(2)
+    setTimer(round + 2); // Set the timer based on the round number
   };
 
   const handleGridClick = (isCorrect) => {
     if (isCorrect) {
       setRound(prev => prev + 1);
-      setGridSize(prev => prev + 1);
-      setTimer(prev=> prev+2)
-      setIsTimerOn(true)
+      setGridSize(prev => prev + 1); // Increment grid size only if the answer is correct
+      setTimer(round + 2); // Add more time for the next round
     } else {
-      loseLife()
+      lostRound();
     }
   };
 
@@ -54,72 +49,77 @@ function WheresOne() {
     }
   };
 
-  const resetTimer = (startTime) => {
-    setTimer(startTime); // Reset the timer to initial time
-    setIsTimerOn(true); // Ensure it's active when reset
+  // const resetTimer = (startTime) => {
+  //   setTimer(startTime); // Reset the timer to initial time
+  // };
+
+  const endGame = () => {
+    setGameStart(false);
+    setLives(3);
+    setRound(1);
+    setGridSize(0);
+    setTimer(3); // Reset to initial timer value
+    setIsTimerOn(false);
+    setPrevRound(round);
   };
 
-  const endGame=() =>{
-    setGameStart(false)
-    setLives(3)
-    setRound(1)
-    setGridSize(0)
-    setTimer(3)
-    setIsTimerOn(false)
-    setPrevRound(round)
-  }
-
-  const resetRound = () => {
-    setGridSize(round+1);
-    resetTimer(round+2)
+  const lostRound = () => {
+    setResetTrigger((prev) => !prev); // Toggle to trigger grid reset
+    setGridSize(round + 1); // Increase grid size after losing the round
+    setTimer(round + 2); // Reset the timer for the next round
+    loseLife();
   };
 
   return (
     <div className="Game">
-      <LMG/>
+      <LMG />
 
       <main>
         <div className="">
-            <div className='flex justify-normal'>
-                <Rules
-                    content={
+          <div className='flex justify-normal'>
+            <Rules
+              content={
                 <ol>
-                <li>Find and Click on the "1" within the time limit to go to the next Round.</li>
-                <li>Time limit = Round number + 2s (i.e., if Round #10, the timer starts with 12s).</li>
-                <li>You get <span className="heart">3 &hearts; &hearts; &hearts;</span> lives.</li>
-                <li>Click on an incorrect box, you lose a <span className="heart">&hearts;</span>.</li>
-                <li>Fail to find the "1" within the time limit, you lose a <span className="heart">&hearts;</span> and the grid reshuffles.</li>
-                <li>Lose all <span className="heart">&hearts; &hearts; &hearts;</span> and you lose the Game.</li>
-                <li>Try and get to a High Round.</li>
-                <li>Brag to your friends/family that you have Amazing "1" acquisition!</li>
-              </ol>}
-          />
-            </div>
-          
+                  <li>Find and Click on the "1" within the time limit to go to the next Round.</li>
+                  <li>Time limit = Round number + 2s (i.e., if Round #10, the timer starts with 12s).</li>
+                  <li>You get <span className="heart">3 &hearts; &hearts; &hearts;</span> lives.</li>
+                  <li>Click on an incorrect box, you lose a <span className="heart">&hearts;</span>.</li>
+                  <li>Fail to find the "1" within the time limit, you lose a <span className="heart">&hearts;</span> and the grid reshuffles.</li>
+                  <li>Lose all <span className="heart">&hearts; &hearts; &hearts;</span> and you lose the Game.</li>
+                  <li>Try and get to a High Round.</li>
+                  <li>Brag to your friends/family that you have Amazing "1" acquisition!</li>
+                </ol>
+              }
+            />
+          </div>
+
           <div className='flex flex-col items-start'>
             <div className="">
-                <button className='btn' onClick={startGame}>Start</button>
+              <button className='btn' onClick={startGame}>Start</button>
             </div>
             <div>
-                <button className='btn' onClick={endGame}>Restart Game</button>
+              <button className='btn' onClick={endGame}>Restart Game</button>
             </div>
           </div>
-          
+
           <p>Previous Round: {prevRound}</p>
           <p>Round: {round}</p>
           <Lives lives={lives} />
-          {/* <Timer 
-          resetRound={resetRound}
-          isActive={isTimerOn} 
-          setIsTimerOn={setIsTimerOn}
-          timer={timer} 
-          setTimer={setTimer}
-          loseLife={loseLife}
           
-          /> */}
+          <Timer
+            onTimerEnd={() => { lostRound(); }}
+            isActive={isTimerOn}
+            setIsTimerOn={setIsTimerOn}
+            timer={timer}
+            setTimer={setTimer}
+          />
         </div>
 
-        <Grid gridSize={gridSize} onGridClick={handleGridClick} />
+        <Grid
+            gridSize={gridSize}
+            onGridClick={handleGridClick}
+            resetTrigger={resetTrigger}
+          />
       </main>
     </div>
   );

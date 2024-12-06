@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Cell from "./Cell";
 
 const wrongLetters = ["i", "l", "!", "|"];
@@ -10,56 +11,54 @@ function getRandomLetter() {
 function spawnAnswerSpot(r) {
   return Math.floor(Math.random() * (r * r));
 }
-// if gridSize = 2 , its a 2x2 grid 
-function Grid({ gridSize, onGridClick }) {
-  const spawn = spawnAnswerSpot(gridSize);
+
+function Grid({ gridSize, onGridClick, resetTrigger }) {
+  const [grid, setGrid] = useState([]);
+  const [answerIndex, setAnswerIndex] = useState(spawnAnswerSpot(gridSize));
+
+  // Function to generate a new grid
+  const generateGrid = () => {
+    const newAnswerIndex = spawnAnswerSpot(gridSize);
+    setAnswerIndex(newAnswerIndex);
+
+    const newGrid = Array.from({ length: gridSize * gridSize }).map((_, index) => ({
+      content: index === newAnswerIndex ? 1 : getRandomLetter(),
+      isCorrect: index === newAnswerIndex,
+    }));
+    setGrid(newGrid);
+  };
+
+  // Regenerate grid when `resetTrigger` or `gridSize` changes
+  useEffect(() => {
+    generateGrid();
+  }, [resetTrigger, gridSize]);
 
   const handleCellClick = (isCorrect) => {
     onGridClick(isCorrect);
+    if (isCorrect) {
+      generateGrid();
+    }
   };
 
   return (
-    <>
-        <div className="flex justify-center">
-                <div 
-                    style={{gridTemplateRows:`repeat(${gridSize},1fr)`,
-                    gridTemplateColumns:`repeat(${gridSize},1fr)`}}
-                    className={`border aspect-square h-full w-full md:h-1/2 md:w-1/2 overflow-auto grid`}>
-                        {Array.from({length:gridSize*gridSize}).map((_,index)=>{
-                            const isCorrect = index === spawn
-                            return(
-                                <Cell 
-                                    key ={index}
-                                    onClick={()=>handleCellClick(isCorrect)}
-                                    className ={isCorrect ? "cellCorrect" : "cellIncorrect"}
-                                    content={isCorrect? 1 : getRandomLetter()}
-                                />
-                            )
-                        })}
-                </div>            
-        </div>
-        
-    </>
-    // <div
-    //   className="grid"
-    //   style={{
-    //     gridTemplateRows: `repeat(${gridSize}, 1fr)`,
-    //     gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
-    //   }}
-    // >
-    //   {Array.from({ length: gridSize * gridSize }).map((_, index) => {
-    //     const isCorrect = index === spawn;
-    //     return (
-    //       <button
-    //         key={index}
-    //         onClick={() => handleCellClick(isCorrect)}
-    //         className={isCorrect ? "cellCorrect" : "cellIncorrect"}
-    //       >
-    //         {isCorrect ? "1" : getRandomLetter()}
-    //       </button>
-    //     );
-    //   })}
-    // </div>
+    <div className="flex justify-center">
+      <div
+        style={{
+          gridTemplateRows: `repeat(${gridSize}, 1fr)`,
+          gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+        }}
+        className={`border aspect-square h-full w-full md:h-1/2 md:w-1/2 overflow-auto grid`}
+      >
+        {grid.map((cell, index) => (
+          <Cell
+            key={index}
+            onClick={() => handleCellClick(cell.isCorrect)}
+            className={cell.isCorrect ? "cellCorrect" : "cellIncorrect"}
+            content={cell.content}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
