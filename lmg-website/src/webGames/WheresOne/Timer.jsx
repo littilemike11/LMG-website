@@ -37,7 +37,7 @@ function Timer(props) {
         <span className="countdown font-mono ">
             <span style={{"--value":props.timer}}> </span>
         </span>
-        <progress className={`progress w-56 ${barColor}`} value={props.progress} max="100"></progress>
+        <progress className={`progress w-96 ${barColor}`} value={props.progress} max="100"></progress>
     
         {/* <div className="radial-progress text-primary" style={{ "--value": progress }} role="progressbar">
             {progress}
