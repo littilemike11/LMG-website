@@ -14,20 +14,15 @@ function WheresOne() {
   const [lives, setLives] = useState(3);
   const [timer, setTimer] = useState(round + 2);
   const [isTimerOn, setIsTimerOn] = useState(false);
-  const [progress,setProgress]=useState(timer)
+  const [progress, setProgress] =useState(100)   
   const [gameStart, setGameStart] = useState(false);
 
-  // const startTimer = () => {
-  //   setIsTimerOn(true);
-  //   setTimer(round + 2); // Set the timer based on the round number
-  // };
 
   const startGame = () => {
-    if (gameStart)return
+    if (gameStart)return;
     setGameStart(true);
     setResetTrigger(true)
     setGridSize(2); // Start with a 2x2 grid
-    // startTimer(); // Start the timer when the game begins
     setIsTimerOn(true);
     setTimer(round + 2); // Set the timer based on the round number
   };
@@ -42,16 +37,13 @@ function WheresOne() {
     }
   };
 
+
   const loseLife = () => {
     setLives(prev => prev - 1);
     if (lives <= 1) {
       endGame();
     }
   };
-
-  // const resetTimer = (startTime) => {
-  //   setTimer(startTime); // Reset the timer to initial time
-  // };
 
   const endGame = () => {
     setGameStart(false);
@@ -61,6 +53,7 @@ function WheresOne() {
     setTimer(3); // Reset to initial timer value
     setIsTimerOn(false);
     setPrevRound(round);
+    setProgress(100)
   };
 
   const lostRound = () => {
@@ -112,6 +105,9 @@ function WheresOne() {
             setIsTimerOn={setIsTimerOn}
             timer={timer}
             setTimer={setTimer}
+            round={round}
+            progress={progress}
+            setProgress={setProgress}
           />
         </div>
 
