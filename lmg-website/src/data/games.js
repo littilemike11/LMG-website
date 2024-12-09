@@ -1,11 +1,19 @@
 import UnderConstruction from "../assets/webGameIcons/UnderConstruction.jpg"
 import WheresOneIcon from "../assets/webGameIcons/WheresOneIcon.jpg"
+import NoEscIcon from "../assets/webGameIcons/NoEscIcon.png"
 let catalogue = [
+    {
+        id:"NoEsc",
+        title: "No Esc",
+        img:NoEscIcon,
+        summary:"Can you escape this?",
+        link:"/NoEsc"
+    },
     {
         id: "WheresOne",
         title: "Where's 1",
         img: WheresOneIcon,
-        summary: "wheres 1 summary",
+        summary: "The where's Waldo but for 1",
         link:"/WheresOne"
     },
     {
