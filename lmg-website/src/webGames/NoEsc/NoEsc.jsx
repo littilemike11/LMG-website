@@ -35,9 +35,6 @@ export default function NoEsc() {
     const [isAlert, setIsAlert] = useState(true)
     const [isConfirm, setIsConfirm] = useState(false)
 
-    console.log(question)
-    console.log(question.text)
-    console.log(dialogueIndex)
     let desertion = "Desertion will not be tolerated. Desertion results in 1 strike"
     function submitAnswer() {
         console.log("submitted answer")

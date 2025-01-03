@@ -20,6 +20,27 @@ let questions = [
     onIncorrectResponse: "Incorrect",
     placeholder: "",
   },
+  {
+    Qnum: 3,
+    cost: 1,
+    text: "What is the missing number in the sequence 5 , 10, 15, __, 25 ?",
+    type: "Open",
+    correctAnswer: "20",
+    onCorrectResponse: "Correct, Player",
+    onIncorrectResponse: "Incorrect",
+    placeholder: "",
+  },
+  {
+    Qnum: 4,
+    cost: 2,
+    text: "Which of the following words doesn't belong?",
+    type: "MC",
+    correctAnswer: "A",
+    onCorrectResponse: "Correct, Player",
+    onIncorrectResponse:
+      " Only Doctor ends with 'or' and whose stem is not a verb",
+    placeholder: "",
+  },
 ];
 
 export default questions;
