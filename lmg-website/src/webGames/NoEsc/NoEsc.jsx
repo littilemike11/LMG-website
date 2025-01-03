@@ -6,63 +6,158 @@ import "../../game.css"
 import questions from "./questions"
 import { useState } from "react"
 
-export default function NoEsc(){
+const introDialogue = [
+    "Hello Player. Are you ready to be tested?",
+    "Ok, Lets Begin.",
+    "This is your score : 5",
+    "The goal of this experiment is the accumulate as many points as you can...",
+    "... we will ask you a series of questions for you to answer...",
+    "... the questions will gradually increase in difficulty...",
+    "... correct answers will garner points and incorrect answers will deduct points.",
+    "A negative score will result in termination... ",
+    "... of the experiment.",
+    "Once begun, the experiment cannot be left until completed. Attempts to abandon the experiment will be met with corrective behavior.",
+    "Are you ready to be tested Player?"
+]
+export default function NoEsc() {
 
-const [score,setScore] = useState(5)// global variable to keep track of player score for quiz
-const [cost, setCost] = useState(1)// cost of questions
-const [questionNum,setQuestionNum] = useState(0)
-const [question,setQuestion]= useState()// variable to hold question text
-const [strikeNum, setStrikeNum]= useState(0)// num of times player got an "extreme" wrong answer
-const [playerAnswer,setPlayerAnswer] =useState("") // A B C D 
-const [warning, setWarning]= useState("")// warning message on if player can lose
-const [isPlaying, setIsPlaying]=useState(true)
-const [showModal, setShowModal] = useState(false)
-const [bgIndex, setBgIndex] =useState(0)
-    
-    const background=[
+    const [bgIndex, setBgIndex] = useState(0)
+    const [type, setType] = useState("intro")
+    const [quizStart, setQuizStart] = useState(false)
+    const [score, setScore] = useState(5)// global variable to keep track of player score for quiz
+    const [cost, setCost] = useState(1)// cost of questions
+    const [dialogueIndex, setDialogueIndex] = useState(0)
+    const [questionNum, setQuestionNum] = useState(1)
+    const [question, setQuestion] = useState(questions[0])
+    const [answer, setAnswer] = useState("")
+    const [modalText, setModalText] = useState(introDialogue[dialogueIndex])
+    const [strikeNum, setStrikeNum] = useState(0)// num of times player got an "extreme" wrong answer
+    const [isAlert, setIsAlert] = useState(true)
+    const [isConfirm, setIsConfirm] = useState(false)
+
+    console.log(question)
+    console.log(question.text)
+    console.log(dialogueIndex)
+    let desertion = "Desertion will not be tolerated. Desertion results in 1 strike"
+    function submitAnswer() {
+        console.log("submitted answer")
+        if (answer.trim() == "") {
+            issueStrike();
+            return;
+        }
+        if (answer.toLowerCase() == question.correctAnswer) {
+            setModalText(question.onCorrectResponse);
+            setScore(prev => prev + cost)
+        } else {
+            setModalText(question.onIncorrectResponse)
+            setScore(prev => prev - cost)
+        }
+        setType("confirm")
+        setQuestionNum(prev => prev + 1)
+        setQuestion(questions[questionNum])
+        setAnswer("")
+    }
+    const nextQuestion = () => {
+        setType("question")
+        setModalText(question.text)
+    }
+    const nextModal = () => {
+        if (dialogueIndex >= 10) {
+            setQuizStart(true)
+            setModalText(question.text)
+            setType("question")
+            return;
+        }
+        setDialogueIndex(prev => prev + 1)
+        setModalText(introDialogue[dialogueIndex + 1])
+        setBgIndex(prev => (prev + 1) % 2)
+    }
+    const showModal = () => {
+        document.getElementById("my_modal_5").classList.add("modal-open")
+    }
+    const hideModal = () => {
+        document.getElementById("my_modal_5").classList.remove("modal-open")
+        setIsAlert(true)// reset
+        setDialogueIndex(0)
+        setModalText(introDialogue[0])
+    }
+    //says goodbye to player during intro
+    const farewell = () => {
+        setIsAlert(false)
+        setModalText("We'll be seeing you.")
+
+    }
+    const issueStrike = () => {
+        console.log("issue strike")
+        console.log(strikeNum)
+        let message = ""
+        switch (strikeNum) {
+            case 0:
+                message = "This is your first Strike. Some questions have answer choices deemed to be unacceptable. The penalty of selecting these choices is the deduction of DOUBLE the COST points from you SCORE. As the saying goes: 3 STRIKES and you're out. We advise you to avoid this.";
+
+                break;
+            case 1:
+                message = "This is your second Strike. We will not tolerate any disobedience."
+                break;
+            case 2:
+                message = "You were warned."
+                break;
+            case 3:
+                message = "game over crash"
+                break;
+            default:
+                message = "game over crash"
+        }
+        setStrikeNum(prev => prev + 1)
+        setModalText(message)
+        setType("confirm")
+        setScore(prev => prev - 2 * cost)
+    }
+
+    const background = [
         asciiArt,
         ascii_art_sharp
     ]
-    const dialogue =[
-        "Hello Player. Are you ready to be tested?",
-        "Ok Lets Begin",
-        `this is your score ${score}`,
-        "The goal of this experiment is the accumulate as many points as you can..."
-    ]
-    const farewell="We'll be seeing you."
-    function AskQuestion(){
-        let q={};
-        q.cost=1
 
-        console.log(q)
-        return q
-    }
+
     console.log(questions)
-    return(
+    return (
         <>
             <div className="Game h-[95vh]">
-    
-                <LMG/>
+
+                <LMG />
                 <div
                     className="flex items-center justify-center w-full h-full bg-cover bg-center bg-no-repeat"
-                    style={{backgroundImage:`url(${background[bgIndex]})`}}>
+                    style={{ backgroundImage: `url(${background[bgIndex]})` }}>
                     <Modal
-                        dialogue={dialogue}
+                        type={type}
+                        dialogue={introDialogue}
                         farewell={farewell}
                         setBgIndex={setBgIndex}
+                        questions={questions}
+                        showModal={showModal}
+                        hideModal={hideModal}
+                        cost={cost}
+                        score={score}
+                        modalText={modalText}
+                        question={question}
+                        answer={answer}
+                        setAnswer={setAnswer}
+                        submitAnswer={submitAnswer}
+                        issueStrike={issueStrike}
+                        isAlert={isAlert}
+                        nextModal={nextModal}
+                        quizStart={quizStart}
+                        nextQuestion={nextQuestion}
+
                     />
-                    {/* {questions.map((question)=>(
-                        <Modal
-                            key={question.Qnum}
-                            question={question}
-                        />
-                    ))} */}
+
                 </div>
-                
-                {/* <img src={asciiArt} alt="" /> */}
-                
+
+
+
             </div>
-            
+
         </>
     )
 }

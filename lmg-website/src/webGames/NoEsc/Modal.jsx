@@ -1,39 +1,104 @@
 import { useState } from "react"
 
-export default function Modal(props){
-    // console.log(question)
-    // console.log(question.cost)
-    const [dialogueIndex, setDialogueIndex]= useState(0)
-    console.log(props.dialogue)
-    const nextModal = ()=>{
-        setDialogueIndex(prev=> prev+ 1)
-        props.setBgIndex(prev=>(prev+1)%2)
-    }
-    const showModal = ()=>{
-        document.getElementById("my_modal_5").classList.add("modal-open")
-    }
-    const hideModal = ()=>{
-        document.getElementById("my_modal_5").classList.remove("modal-open")
-        
-    }
-    return(
+export default function Modal({
+    type,
+    showModal,
+    quizStart,
+    cost,
+    score,
+    modalText,
+    question,
+    answer,
+    setAnswer,
+    submitAnswer,
+    issueStrike,
+    farewell,
+    isAlert,
+    nextModal,
+    hideModal,
+    nextQuestion
+}) {
+    return (
         <>
-        {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button className="btn" onClick={showModal}>Start?</button>
+            {/* Button to open the modal */}
+            <button className="btn" onClick={showModal}>
+                Start?
+            </button>
+
+            {/* Modal structure */}
+
             <div id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-            <div className="modal-box">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-6 sm:right-2 top-2">✕</button>
-                <h3 className="font-bold text-lg"></h3>
-                <p className="py-4">{props.dialogue[dialogueIndex]}</p>
-                <div className="modal-action">
-                <form method="dialog" className="w-full flex justify-between ">
-                    {/* if there is a button in form, it will close the modal */}
-                        <button onClick={nextModal} className="btn">Ok</button>
-                        <button onClick={hideModal} className="btn">Close</button>                    
-                </form>
+                <div className="modal-box">
+                    {/* Close button */}
+                    <button
+                        onClick={quizStart ? issueStrike : farewell}
+                        className="btn btn-sm btn-circle btn-ghost absolute right-6 sm:right-2 top-2"
+                    >
+                        ✕
+                    </button>
+
+                    {/* Display cost and score if the quiz has started */}
+                    {quizStart && (
+                        <>
+                            <h3 className="font-bold text-lg">Cost: {cost}</h3>
+                            <h3 className="font-bold text-lg">Score: {score}</h3>
+                        </>
+                    )}
+
+                    {/* Modal text */}
+                    <p className="py-4">{modalText}</p>
+
+                    {/* Modal action area */}
+                    <div className="modal-action">
+                        {type == "confirm" && (
+                            <div className="w-full">
+                                <div className="flex justify-between">
+                                    <button onClick={nextQuestion} className="btn">
+                                        ok
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {type == "question" && (
+                            <div className="w-full">
+                                {question?.type === "Open" && (
+                                    <input
+                                        type="text"
+                                        value={answer}
+                                        onChange={(e) => setAnswer(e.target.value)}
+                                        placeholder={question.placeholder}
+                                        className="input input-bordered w-full max-w-xs"
+                                    />
+                                )}
+                                <div className="flex justify-between">
+                                    <button onClick={submitAnswer} className="btn">
+                                        Submit
+                                    </button>
+                                    <button onClick={issueStrike} className="btn">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {type == "intro" && (
+                            <div className="w-full flex justify-between">
+                                <button
+                                    onClick={isAlert ? nextModal : hideModal}
+                                    className="btn"
+                                >
+                                    Ok
+                                </button>
+                                {isAlert && (
+                                    <button onClick={farewell} className="btn">
+                                        Close
+                                    </button>
+                                )}
+                            </div>
+                        )}
+
+                    </div>
                 </div>
             </div>
-            </div>
         </>
-    )
+    );
 }
