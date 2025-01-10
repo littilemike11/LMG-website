@@ -4,7 +4,9 @@ import asciiArt from "./images/asciiArt.png"
 import ascii_art_sharp from "./images/ascii_art_sharp.png"
 import "../../game.css"
 import questions from "./questions"
+import background from "./bgImages"
 import { useState } from "react"
+
 
 const introDialogue = [
     "Hello Player. Are you ready to be tested?",
@@ -67,7 +69,7 @@ export default function NoEsc() {
         }
         setDialogueIndex(prev => prev + 1)
         setModalText(introDialogue[dialogueIndex + 1])
-        setBgIndex(prev => (prev + 1) % 2)
+        setBgIndex(prev => (prev + 1) % background.length)
     }
     const showModal = () => {
         document.getElementById("my_modal_5").classList.add("modal-open")
@@ -111,13 +113,9 @@ export default function NoEsc() {
         setScore(prev => prev - 2 * cost)
     }
 
-    const background = [
-        asciiArt,
-        ascii_art_sharp
-    ]
 
 
-    console.log(questions)
+    console.log(background.length)
     return (
         <>
             <div className="Game h-[95vh]">
