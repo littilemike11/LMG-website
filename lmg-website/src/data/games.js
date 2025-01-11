@@ -1,7 +1,15 @@
 import UnderConstruction from "../assets/webGameIcons/UnderConstruction.jpg"
 import WheresOneIcon from "../assets/webGameIcons/WheresOneIcon.jpg"
 import NoEscIcon from "../assets/webGameIcons/NoEscIcon.png"
+import NerdBowlIcon from "../assets/webGameIcons/NerdBowlIcon.jpg"
 let catalogue = [
+    {
+        id:"NerdBowl",
+        title:"Nerd Bowl",
+        img:NerdBowlIcon,
+        summary:"Test your knowledge in all things nerdy",
+        link:"/NerdBowl"
+    },
     {
         id:"NoEsc",
         title: "No Esc",
@@ -23,5 +31,6 @@ let catalogue = [
         summary: "Absurd summary",
         link:"/absurdapp"
     }
+    
 ]
 export default catalogue;
