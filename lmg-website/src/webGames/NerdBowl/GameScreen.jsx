@@ -1,11 +1,11 @@
+import AnswerChoice from "./AnswerChoice";
 import { useEffect, useState } from "react";
 
-export default function GameScreen({ score, questionCount, questions, submitAnswer, setUserAnswer, answerChoices, setAnswerChoices }) {
+export default function GameScreen({ score, questionCount, questions, submitAnswer, nextQuestion, answerChoices, setAnswerChoices, selectedAnswer }) {
     // get current question
-    // const [question, setQuestion] = useState(questions[questionCount])
     let question = questions[questionCount]
     console.log(question)
-    // the questions may contain some html elements
+    // the questions or answer may contain some html elements
     //remove them for easier readability
     function decodeHTMLEntities(encodedString) {
         const parser = new DOMParser();
@@ -14,11 +14,31 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
     }
     //shuffle multiple choice answer choices for new questions
     useEffect(() => {
-        if (question.type == "multiple") {
-            setAnswerChoices(shuffleAnswers([...question.incorrect_answers, question.correct_answer]))
-            console.log("shuffle")
+         
+        // for each old incorrect answer, make a label for it being wrong
+        let answers = [
+            ...question.incorrect_answers.map((answer) => ({
+                text: answer,
+                isCorrect: false,
+            })), // add a label to correct answer being true
+            { text: question.correct_answer, isCorrect: true },
+        ];// shuffle answers
+        if (question.type === "multiple"){
+            setAnswerChoices(shuffleAnswers(answers));
         }
-    }, [questionCount])
+        else{// question is true or false
+            if (answers[0].text==false) {
+                //swap to keep true as first response
+                let temp = answers[0]
+                answers[0]=answers[1]
+                answers[1]= temp
+            }   
+            setAnswerChoices(answers)
+        }
+        
+        
+    }, [questionCount]);
+    
     function shuffleAnswers(array) {
         let currentIndex = array.length;
 
@@ -37,39 +57,28 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
     }
 
 
-
     return (
         <>
-            <div>
+            <div className="text-xl flex flex-col m-auto gap-2 md:w-1/2 ">
                 <p>Score: {score}</p>
                 <p>{questionCount + 1}.{decodeHTMLEntities(question.question)} </p>
-                {question.type == "boolean" &&
-
-
-                    <div className="flex-col items-center border ">
-                        <div className="flex p-2">
-                            <input onClick={() => setUserAnswer("True")} value={"True"} type="radio" name="radio-2" className="radio radio-primary mr-2" />
-                            <p htmlFor="radio-2">True</p>
-                        </div>
-                        <div className="flex p-2">
-                            <input onClick={() => setUserAnswer("False")} value={"False"} type="radio" name="radio-2" className="radio radio-primary mr-2" />
-                            <p htmlFor="radio-2">False</p>
-                        </div>
-
-                    </div>
-                }
-                {question.type == "multiple" &&
-                    //shuffle incorrect and correct answer
-                    answerChoices.map((answer, index) => (
-
-                        <li key={index} className="flex p-2">
-                            <input onClick={() => setUserAnswer(answer)} value={answer} type="radio" name="radio-2" className="radio radio-primary mr-2" />
-                            <p htmlFor="radio-2">{decodeHTMLEntities(answer)}</p>
-                        </li>
-                    ))
-                }
-
-                <button onClick={submitAnswer} className="btn">Next</button>
+                <ul >
+                    {
+                            //shuffle incorrect and correct answer
+                        answerChoices.map((answer, index) => (
+                            <AnswerChoice             
+                                key={index}
+                                answer={answer}
+                                type={question.type}
+                                submitAnswer={submitAnswer}
+                                selectedAnswer={selectedAnswer}
+                                decodeHTMLEntities={decodeHTMLEntities}
+                                
+                            />
+                        ))
+                    }
+                </ul>
+            <button onClick={nextQuestion} className="btn w-max self-end btn-ghost">Next</button>
             </div>
         </>
     )

@@ -1,60 +1,92 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LMG from "../../components/game-components/LMG"
 import "../../game.css"
 import axios from "axios";
 import CategorySelect from "./CategorySelect";
 import GameScreen from "./GameScreen";
+import EndScreen from "./EndScreen";
 export default function NerdBowl() {
     const [score, setScore] = useState(0) //keep track of player score
     const [questionCount, setQuestionCount] = useState(0)//keeps track which question # user on
-    const [userAnswer, setUserAnswer] = useState("") //stores user current answer
-    const [correctAnswer, setCorrectAnswer] = useState("") //store correct answer from api
     const [questions, setQuestions] = useState([])//store data from api
-    const [question, setQuestion] = useState({})
-    const [uri, setUri] = useState("") // url to call api
+    const [selectedAnswer, setSelectedAnswer]= useState(false)
+    // const [uri, setUri] = useState("") // url to call api
     const [categoryID, setCategoryID] = useState("") // state of user selected category
     const [startGame, setStartGame] = useState(false);
+    const [endGame,setEndGame] = useState(false)
     // states used to prevent shuffling after selecting answer
     const [answerChoices, setAnswerChoices] = useState([])
-    async function fetchData(Category) {
-
+    // depending on user category choice, return corresponding url
+    
+    async function playGame(){
+        if(!categoryID) return
+        console.log(categoryID)
+        let uri = createApi();
+        await fetchData(uri);
+    }
+    function createApi() {
+        let url =
+        "https://opentdb.com/api.php?amount=10&category=" + categoryID;
+        console.log(url);
+        return url
+    }
+    async function fetchData(uri) {
         try {
             //const response = await axios.get(uri);
-            const response = await axios.get("https://opentdb.com/api.php?amount=10&category=31");
-            console.log(response.data.results)
+            const response = await axios.get(uri);
+            console.log(response.data)
             //for each element in results copy it into question array
             //api results and questions arr should be same
             setQuestions(response.data.results)
-            console.log(questions);
-            setQuestion(questions[questionCount])
-            console.log(question)
-            // //   console.log(response.data.results[0].question);
-            // //   console.log(response.data.results[0].correct_answer);
-            // correctAnswer = questions[0].correct_answer;
-            // //setting question text to the question on api
-            // //innerhtml used to make text more readable ( instead of &quot)
-            // questionText.innerHTML = questions[0].question;
-            // questionCounter.textContent = "1.";
             setStartGame(true)
         } catch (error) {
             console.error("Error fetching data:", error);
         }
 
-        //console.log(response.data);
     }
 
-    function submitAnswer() {
-        console.log(questions[questionCount].correct_answer)
-        console.log(userAnswer)
+    function submitAnswer(answer) {
+        if(selectedAnswer)return ;
+        setSelectedAnswer(true)
         //give a point if correct
-        if (userAnswer == questions[questionCount].correct_answer) {
+        if (answer) {
             setScore(prev => prev + 1)
+            return true // return true if correct otherwise return false
         }
-        //reset user answer
-        setUserAnswer("")
-        setAnswerChoices([])
+        return false
+        
+    }
+    const nextQuestion = ()=>{
         //go to next question
         setQuestionCount(prev => prev + 1)
+        //reset answer
+        setSelectedAnswer(false)
+        setAnswerChoices([])
+        // setUserAnswer("")
+        if(questionCount>=9){
+            setEndGame(true)
+        }
+    }
+    
+    //reset game variables
+    const resetGame = ()=>{
+        setScore(0)
+        setQuestionCount(0)
+    }
+
+    // new api call
+    //  go to 1st question
+    async function restartQuiz(){
+        resetGame();
+        await playGame();
+        setEndGame(false)
+
+    }
+    //go back to category select screen
+    function changeCategory(){
+        resetGame();
+        setStartGame(false)
+        setEndGame(false)
     }
 
     return (
@@ -63,22 +95,34 @@ export default function NerdBowl() {
                 <LMG />
 
                 <h1 className="text-5xl font-serif m-4">Nerd Bowl</h1>
-                {
+                {!startGame && !endGame &&
                     <CategorySelect
-                        fetchData={fetchData}
+                        setCategoryID={setCategoryID}
+                        playGame={playGame}
                     />
                 }
-                {startGame &&
+                {startGame && !endGame &&
                     <GameScreen
                         score={score}
                         questions={questions}
                         questionCount={questionCount}
-                        setUserAnswer={setUserAnswer}
+                        selectedAnswer={selectedAnswer}
                         submitAnswer={submitAnswer}
+                        nextQuestion={nextQuestion}
                         answerChoices={answerChoices}
                         setAnswerChoices={setAnswerChoices}
+                        setEndGame={setEndGame}
                     />
                 }
+                {
+                    endGame && 
+                    <EndScreen
+                    score={score}
+                        restartQuiz={restartQuiz}
+                        changeCategory={changeCategory}
+                    />
+                }
+                
 
             </div>
         </>
