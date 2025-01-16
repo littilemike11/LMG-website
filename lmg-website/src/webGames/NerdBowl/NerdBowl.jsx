@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LMG from "../../components/game-components/LMG"
 import "../../game.css"
 import axios from "axios";
@@ -13,6 +13,7 @@ export default function NerdBowl() {
     const [selectedAnswer, setSelectedAnswer]= useState(false)
     // const [uri, setUri] = useState("") // url to call api
     const [categoryID, setCategoryID] = useState("") // state of user selected category
+    const [categories, setCategories] = useState([])
     const [startGame, setStartGame] = useState(false);
     const [endGame,setEndGame] = useState(false)
     // states used to prevent shuffling after selecting answer
@@ -25,6 +26,15 @@ export default function NerdBowl() {
         let uri = createApi();
         await fetchData(uri);
     }
+    const fetchCategories = async() =>{
+        const response = await axios.get("https://opentdb.com/api_category.php")
+        console.log(response.data.trivia_categories)
+        setCategories(response.data.trivia_categories)
+    }
+    //get all categories at pg load
+    useEffect(()=>{
+         fetchCategories();
+    },[])
     function createApi() {
         let url =
         "https://opentdb.com/api.php?amount=10&category=" + categoryID;
@@ -63,6 +73,7 @@ export default function NerdBowl() {
         
     }
     const nextQuestion = ()=>{
+        const scrollPosition = window.scrollY;
         //go to next question
         setQuestionCount(prev => prev + 1)
         //reset answer
@@ -103,8 +114,10 @@ export default function NerdBowl() {
                 <h1 className="text-5xl font-serif m-4">Nerd Bowl</h1>
                 {!startGame && !endGame &&
                     <CategorySelect
+                        categories={categories}
                         setCategoryID={setCategoryID}
                         playGame={playGame}
+                        categoryID={categoryID}
                     />
                 }
                 {startGame && !endGame &&
@@ -118,6 +131,7 @@ export default function NerdBowl() {
                         answerChoices={answerChoices}
                         setAnswerChoices={setAnswerChoices}
                         setEndGame={setEndGame}
+                        quit={changeCategory}
                     />
                 }
                 {
@@ -128,7 +142,9 @@ export default function NerdBowl() {
                         changeCategory={changeCategory}
                     />
                 }
-                
+                <div className="mt-6">
+                    <p>Special Thanks to <a className="underline italic" target="_blank" href="https://opentdb.com/">Open Trivia Database</a> for all the questions!</p>
+                </div>
 
             </div>
         </>

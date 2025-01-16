@@ -1,7 +1,7 @@
 import AnswerChoice from "./AnswerChoice";
 import { useEffect } from "react";
 
-export default function GameScreen({ score, questionCount, questions, submitAnswer, nextQuestion, answerChoices, setAnswerChoices, selectedAnswer }) {
+export default function GameScreen({ score, questionCount, questions, submitAnswer, nextQuestion, answerChoices, setAnswerChoices, selectedAnswer,quit }) {
     // get current question
     let question = questions[questionCount]
     console.log(question)
@@ -59,10 +59,11 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
 
     return (
         <>
-            <div className="text-xl flex flex-col m-auto gap-2 md:w-1/2 ">
-                <p>Score: {score}</p>
+            <div className=" flex flex-col m-auto gap-2 md:w-1/2 ">
+                <p>Catgegory: {decodeHTMLEntities(question.category)}</p>
                 <p>Difficulty: {question.difficulty.toUpperCase()}</p>
-                <p>{questionCount + 1}.{decodeHTMLEntities(question.question)} </p>
+                <p>Score: {score}</p>
+                <p className="mt-4 text-xl">{questionCount + 1}.{decodeHTMLEntities(question.question)} </p>
                 <ul >
                     {
                             //shuffle incorrect and correct answer
@@ -79,7 +80,11 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
                         ))
                     }
                 </ul>
-            <button onClick={nextQuestion} className="btn w-max self-end btn-ghost">Next</button>
+                <div className="flex justify-between">
+                    <button onClick={quit} className="btn btn-ghost"> Quit</button>
+                    <button onClick={nextQuestion} className="btn btn-ghost">Next</button> 
+                </div>
+                
             </div>
         </>
     )

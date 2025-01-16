@@ -4,15 +4,14 @@ export default function CategorySelect(props) {
             <div className="flex-col text-xl">
                 <div className="p-4">
                         {/* powered by onchange in select */}
-                    <select onChange={(e)=>props.setCategoryID(e.target.value)} name="categories" className="select select-bordered w-full max-w-xs text-xl">
-                        <option disabled selected defaultValue={""}>Choose a Quiz Category</option>
-                        <option value="15">Video Games</option>
-
-                        <option value="16">Board Games</option>
-                        <option value="29">Comics</option>
-
-                        <option value="31">Anime & Manga</option>
-                        {/* <option value="32">Cartoons & Animations</option> */}
+                    <select onChange={(e)=>props.setCategoryID(e.target.value)} value={props.categoryID} name="categories" className="select select-bordered w-full max-w-xs text-xl">
+                        <option disabled value={""}>Choose a Quiz Category</option>
+                        {
+                            props.categories.map((category, index)=>(
+                                <option key={index} value={category.id}>{category.name}</option>
+                            ) )
+                        }
+                        
                     </select>
 
                 </div>
