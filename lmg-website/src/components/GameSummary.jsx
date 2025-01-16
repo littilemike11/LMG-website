@@ -8,7 +8,7 @@ export default function GameSummary(props) {
                 <Link 
                     to={props.link}
                     className="self-end">
-                        <button className="btn">play</button>
+                        <button className="btn">Play</button>
                 </Link>
                 
             </div>
