@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LMG from "../../components/game-components/LMG"
 import "../../game.css"
 import axios from "axios";
 import CategorySelect from "./CategorySelect";
 import GameScreen from "./GameScreen";
 import EndScreen from "./EndScreen";
+// achievements = perfect score on quiz categories
 export default function NerdBowl() {
     const [score, setScore] = useState(0) //keep track of player score
     const [questionCount, setQuestionCount] = useState(0)//keeps track which question # user on
@@ -35,6 +36,11 @@ export default function NerdBowl() {
             //const response = await axios.get(uri);
             const response = await axios.get(uri);
             console.log(response.data)
+             // Define the order of difficulty
+            const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+            // Sort the array based on difficulty
+            response.data.results.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);
+            questions.sort
             //for each element in results copy it into question array
             //api results and questions arr should be same
             setQuestions(response.data.results)

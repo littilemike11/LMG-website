@@ -12,7 +12,7 @@ export default function AnswerChoice({answer,type, submitAnswer, selectedAnswer,
     return(
     <>  
     {/* once player chooses an answer, reveil the correct answer */}
-        <li onClick={handleClick} className={`btn ${type == "multiple" && "flex"} text-xl m-4 ${bgColor} ${selectedAnswer && answer.isCorrect && "bg-success hover:bg-success"}`}>
+        <li onClick={handleClick} className={`btn ${type == "multiple" && "flex"} text-xl m-4 h-max ${bgColor} ${selectedAnswer && answer.isCorrect && "bg-success hover:bg-success"}`}>
             {decodeHTMLEntities(answer.text)}
         </li>
     </>

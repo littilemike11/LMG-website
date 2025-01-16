@@ -1,5 +1,5 @@
 import AnswerChoice from "./AnswerChoice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function GameScreen({ score, questionCount, questions, submitAnswer, nextQuestion, answerChoices, setAnswerChoices, selectedAnswer }) {
     // get current question
@@ -27,11 +27,11 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
             setAnswerChoices(shuffleAnswers(answers));
         }
         else{// question is true or false
-            if (answers[0].text==false) {
+            if (answers[0].text=="False") {
                 //swap to keep true as first response
-                let temp = answers[0]
-                answers[0]=answers[1]
-                answers[1]= temp
+                let temp = answers[0];
+                answers[0]=answers[1];
+                answers[1]= temp;
             }   
             setAnswerChoices(answers)
         }
@@ -61,6 +61,7 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
         <>
             <div className="text-xl flex flex-col m-auto gap-2 md:w-1/2 ">
                 <p>Score: {score}</p>
+                <p>Difficulty: {question.difficulty.toUpperCase()}</p>
                 <p>{questionCount + 1}.{decodeHTMLEntities(question.question)} </p>
                 <ul >
                     {
