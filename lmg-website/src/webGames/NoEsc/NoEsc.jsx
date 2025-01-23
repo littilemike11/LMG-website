@@ -36,7 +36,7 @@ export default function NoEsc() {
     const [strikeNum, setStrikeNum] = useState(0)// num of times player got an "extreme" wrong answer
     const [isAlert, setIsAlert] = useState(true)
     const [isConfirm, setIsConfirm] = useState(false)
-
+    console.log(questions.length)
     let desertion = "Desertion will not be tolerated. Desertion results in 1 strike"
     function submitAnswer() {
         console.log("submitted answer")
