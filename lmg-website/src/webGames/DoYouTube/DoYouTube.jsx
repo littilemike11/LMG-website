@@ -3,15 +3,22 @@ import "../../game.css"
 import CategorySelect from "../../components/game-components/CategorySelect"
 import videoCategories from "./youtubeCategories"
 import { useState } from "react"
+import VideoHalf from "./VideoHalf"
 export default function DoYouTube() {
     const [categoryID, setCategoryID] = useState("")
     const [gameState, setGameState] = useState("Menu")
+    const [score, setScore] = useState(0)
+    //round num is score +1
     const playGame = () => {
         if (categoryID) {
             setGameState("Playing")
         }
     }
+    const submitAnswer = (answer) => {
+        //if answer correct
+        console.log(answer)
 
+    }
     return (
         <>
             <div className="Game">
@@ -24,15 +31,26 @@ export default function DoYouTube() {
                         playGame={playGame}
                     />
                 }
-                <div className="flex w-full flex-col lg:flex-row">
+                {
+                    gameState == "Playing" &&
+                    (
+                        <div>
+                            <p>Score:  {score}</p>
+                            <p>Round Number: {score + 1}</p>
+                        </div>
+                    )
+                }
+                <div className="flex w-full h-[80vh] flex-col lg:flex-row">
 
-                    <div className="card bg-base-300 rounded-box grid h-32 flex-grow place-items-center">
-                        content
-                    </div>
+                    <VideoHalf
+                        isRight={false}
+
+                    />
                     <div className="divider lg:divider-horizontal">vs</div>
-                    <div className="card bg-base-300 rounded-box grid h-32 flex-grow place-items-center">
-                        content
-                    </div>
+                    <VideoHalf
+                        isRight={true}
+                        submitAnswer={submitAnswer}
+                    />
                 </div>
             </div>
         </>
