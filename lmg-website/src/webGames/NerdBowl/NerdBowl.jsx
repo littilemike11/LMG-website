@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import LMG from "../../components/game-components/LMG"
 import "../../game.css"
 import axios from "axios";
-import CategorySelect from "./CategorySelect";
+import CategorySelect from "../../components/game-components/CategorySelect";
 import GameScreen from "./GameScreen";
 import EndScreen from "./EndScreen";
 // achievements = perfect score on quiz categories
@@ -10,34 +10,34 @@ export default function NerdBowl() {
     const [score, setScore] = useState(0) //keep track of player score
     const [questionCount, setQuestionCount] = useState(0)//keeps track which question # user on
     const [questions, setQuestions] = useState([])//store data from api
-    const [selectedAnswer, setSelectedAnswer]= useState(false)
+    const [selectedAnswer, setSelectedAnswer] = useState(false)
     // const [uri, setUri] = useState("") // url to call api
     const [categoryID, setCategoryID] = useState("") // state of user selected category
     const [categories, setCategories] = useState([])
     const [startGame, setStartGame] = useState(false);
-    const [endGame,setEndGame] = useState(false)
+    const [endGame, setEndGame] = useState(false)
     // states used to prevent shuffling after selecting answer
     const [answerChoices, setAnswerChoices] = useState([])
     // depending on user category choice, return corresponding url
-    
-    async function playGame(){
-        if(!categoryID) return
+
+    async function playGame() {
+        if (!categoryID) return
         console.log(categoryID)
         let uri = createApi();
         await fetchData(uri);
     }
-    const fetchCategories = async() =>{
+    const fetchCategories = async () => {
         const response = await axios.get("https://opentdb.com/api_category.php")
         console.log(response.data.trivia_categories)
         setCategories(response.data.trivia_categories)
     }
     //get all categories at pg load
-    useEffect(()=>{
-         fetchCategories();
-    },[])
+    useEffect(() => {
+        fetchCategories();
+    }, [])
     function createApi() {
         let url =
-        "https://opentdb.com/api.php?amount=10&category=" + categoryID;
+            "https://opentdb.com/api.php?amount=10&category=" + categoryID;
         console.log(url);
         return url
     }
@@ -46,7 +46,7 @@ export default function NerdBowl() {
             //const response = await axios.get(uri);
             const response = await axios.get(uri);
             console.log(response.data)
-             // Define the order of difficulty
+            // Define the order of difficulty
             const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
             // Sort the array based on difficulty
             response.data.results.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);
@@ -62,7 +62,7 @@ export default function NerdBowl() {
     }
 
     function submitAnswer(answer) {
-        if(selectedAnswer)return ;
+        if (selectedAnswer) return;
         setSelectedAnswer(true)
         //give a point if correct
         if (answer) {
@@ -70,9 +70,9 @@ export default function NerdBowl() {
             return true // return true if correct otherwise return false
         }
         return false
-        
+
     }
-    const nextQuestion = ()=>{
+    const nextQuestion = () => {
         const scrollPosition = window.scrollY;
         //go to next question
         setQuestionCount(prev => prev + 1)
@@ -80,27 +80,27 @@ export default function NerdBowl() {
         setSelectedAnswer(false)
         setAnswerChoices([])
         // setUserAnswer("")
-        if(questionCount>=9){
+        if (questionCount >= 9) {
             setEndGame(true)
         }
     }
-    
+
     //reset game variables
-    const resetGame = ()=>{
+    const resetGame = () => {
         setScore(0)
         setQuestionCount(0)
     }
 
     // new api call
     //  go to 1st question
-    async function restartQuiz(){
+    async function restartQuiz() {
         resetGame();
         await playGame();
         setEndGame(false)
 
     }
     //go back to category select screen
-    function changeCategory(){
+    function changeCategory() {
         resetGame();
         setStartGame(false)
         setEndGame(false)
@@ -135,9 +135,9 @@ export default function NerdBowl() {
                     />
                 }
                 {
-                    endGame && 
+                    endGame &&
                     <EndScreen
-                    score={score}
+                        score={score}
                         restartQuiz={restartQuiz}
                         changeCategory={changeCategory}
                     />
