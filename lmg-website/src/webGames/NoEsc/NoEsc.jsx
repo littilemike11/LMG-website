@@ -114,7 +114,7 @@ export default function NoEsc() {
 
     const endGame = () => {
         let message = "You have failed the experiment. You have not been chosen for the exodus."
-        setType(confirm)
+        setType("exit")
         setModalText(message)
 
     }
