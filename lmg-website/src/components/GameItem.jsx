@@ -4,7 +4,7 @@ export default function GameItem(props) {
     }
     return (
         <>
-            <div id={props.id} className="carousel-item w-11/12 aspect-square ">
+            <div id={props.id} className="carousel-item w-11/12 aspect-square relative ">
 
                 {props.img ?
                     (<img
@@ -12,10 +12,10 @@ export default function GameItem(props) {
                         className=" rounded-box" />) :
                     props.icon
                 }
-                {/* <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                     <a onClick={() => changeSlide(props.prev)} href={`#${props.prev.id}`} className="btn btn-circle">❮</a>
                     <a onClick={() => changeSlide(props.next)} href={`#${props.next.id}`} className="btn btn-circle">❯</a>
-                </div> */}
+                </div>
             </div>
         </>
     )
