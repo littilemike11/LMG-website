@@ -9,6 +9,7 @@ import AboutPage from './components/AboutPage.jsx';
 import WheresOne from './webGames/WheresOne/WheresOne.jsx';
 import NoEsc from './webGames/NoEsc/NoEsc.jsx';
 import NerdBowl from './webGames/NerdBowl/NerdBowl.jsx';
+import DoYouTube from './webGames/DoYouTube/DoYouTube.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 const router = createBrowserRouter([
   {
@@ -29,16 +30,20 @@ const router = createBrowserRouter([
   },
   // webgame pgs
   {
-    path:'/WheresOne',
-    element:<WheresOne/>
+    path: '/WheresOne',
+    element: <WheresOne />
   },
   {
-    path:'/NoEsc',
-    element:<NoEsc/>
+    path: '/NoEsc',
+    element: <NoEsc />
   },
   {
-    path:'/NerdBowl',
-    element:<NerdBowl/>
+    path: '/NerdBowl',
+    element: <NerdBowl />
+  },
+  {
+    path: '/DoYouTube',
+    element: <DoYouTube />
   }
 ])
 

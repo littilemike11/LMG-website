@@ -8,10 +8,10 @@ export default function GameShowcase(props) {
     let length = games.length
     //stupid js cant handle negative mods
     // console.log(Math.max(0 - 1 % 2, 0))
-    console.log(props)
+
     return (
         <>
-            <div className="">
+            <div>
                 <GameCarousel
                     content={
                         games.map((game, index) => (
@@ -19,6 +19,7 @@ export default function GameShowcase(props) {
                             < GameItem
                                 key={index}
                                 img={game.img}
+                                icon={game.icon}
                                 id={game.id}
                                 prev={index == 0 ? games[length - 1] : games[index - 1]}
                                 next={games[(index + 1) % length]}
