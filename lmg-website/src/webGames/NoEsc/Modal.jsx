@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { Link } from "react-router-dom";
 export default function Modal({
     type,
     showModal,
@@ -93,6 +93,17 @@ export default function Modal({
                                         Close
                                     </button>
                                 )}
+                            </div>
+                        )}
+                        {type == "exit" && (
+                            <div className="w-full">
+                                <div className="flex justify-between">
+                                    <Link to={"/WebGames"}>
+                                        <button className="btn">
+                                            ok
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
                         )}
 

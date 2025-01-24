@@ -1,11 +1,9 @@
 import LMG from "../../components/game-components/LMG"
 import Modal from "./Modal"
-import asciiArt from "./images/asciiArt.png"
-import ascii_art_sharp from "./images/ascii_art_sharp.png"
 import "../../game.css"
 import questions from "./questions"
 import background from "./bgImages"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 const introDialogue = [
@@ -107,12 +105,25 @@ export default function NoEsc() {
             default:
                 message = "game over crash"
         }
-        setStrikeNum(prev => prev + 1)
+
         setModalText(message)
         setType("confirm")
         setScore(prev => prev - 2 * cost)
+        setStrikeNum(prev => prev + 1)
     }
 
+    const endGame = () => {
+        let message = "You have failed the experiment. You have not been chosen for the exodus."
+        setType(confirm)
+        setModalText(message)
+
+    }
+
+    useEffect(() => {
+        if (score < 0 || strikeNum >= 3) {
+            endGame();
+        }
+    }, [score, strikeNum])
 
 
     console.log(background.length)
