@@ -11,7 +11,7 @@ export default function WebGamesPage() {
 
             <NavBar />
 
-            <div className="webGamePage px-[2rem]">
+            <div className="webGamePage ">
                 <Sidebar
                     catalogue={catalogue}
                 />

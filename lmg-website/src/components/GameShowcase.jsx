@@ -8,10 +8,10 @@ export default function GameShowcase(props) {
     let length = games.length
     //stupid js cant handle negative mods
     // console.log(Math.max(0 - 1 % 2, 0))
-    console.log(props)
+
     return (
         <>
-            <div className="">
+            <div>
                 <GameCarousel
                     content={
                         games.map((game, index) => (
