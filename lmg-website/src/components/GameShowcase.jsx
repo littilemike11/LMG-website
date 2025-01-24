@@ -19,6 +19,7 @@ export default function GameShowcase(props) {
                             < GameItem
                                 key={index}
                                 img={game.img}
+                                icon={game.icon}
                                 id={game.id}
                                 prev={index == 0 ? games[length - 1] : games[index - 1]}
                                 next={games[(index + 1) % length]}
