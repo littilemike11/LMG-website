@@ -8,6 +8,8 @@ export default function DoYouTube() {
     const [categoryID, setCategoryID] = useState("")
     const [gameState, setGameState] = useState("Menu")
     const [score, setScore] = useState(0)
+    const apikey = import.meta.env.VITE_API_KEY
+    console.log(apikey)
     //round num is score +1
     const playGame = () => {
         if (categoryID) {
@@ -35,6 +37,7 @@ export default function DoYouTube() {
                     gameState == "Playing" &&
                     (
                         <div>
+
                             <p>Score:  {score}</p>
                             <p>Round Number: {score + 1}</p>
                         </div>
