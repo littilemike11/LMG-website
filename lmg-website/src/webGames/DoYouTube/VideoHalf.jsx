@@ -19,7 +19,7 @@ export default function VideoHalf({ videos, isRight, submitted, round, submitAns
 
                 }
                 }
-                className="card bg-blend-hard-light bg-base-300 w-full rounded-box grid flex-grow place-items-center md:text-xl lg:text-3xl"
+                className="card bg-blend-hard-light bg-base-300 w-full rounded-box grid flex-1 text-slate-50 place-items-center lg:w-1/2 md:text-xl lg:text-3xl"
             >
 
                 <p>{videos[round + isRight]?.snippet.title}</p>

@@ -39,13 +39,15 @@ export default function DoYouTube() {
             setScore(prev => prev + 1)
         }
         else {
-            setScore(prev => prev - 1)
+            await revealAnswer();
+            endGame();
+            return;
         }
         await revealAnswer();
         if (round >= videos.length - 2) {
             endGame();
         } else {
-
+            // setSubmitted(false); // Reset `submitted` at the start of the new round
             setRound(prev => prev + 1)
 
         }
@@ -139,7 +141,8 @@ export default function DoYouTube() {
                                     isRight={false}
                                     videos={videos}
                                     round={round}
-                                    setSubmitted={setSubmitted}
+                                    submitted={submitted}
+                                    submitAnswer={submitAnswer}
 
                                 />
                                 <div className="divider lg:divider-horizontal">vs</div>
@@ -147,9 +150,9 @@ export default function DoYouTube() {
                                     isRight={true}
                                     videos={videos}
                                     round={round}
+                                    submitted={submitted}
                                     submitAnswer={submitAnswer}
-                                    revealAnswer={revealAnswer}
-                                    setSubmitted={setSubmitted}
+
                                 />
                             </div>
                         </div>
@@ -159,7 +162,7 @@ export default function DoYouTube() {
                 {gameState == "End" &&
                     < EndScreen
                         score={score}
-                        round={round}
+                        round={videos.length}
                         submitted={submitted}
                         restartQuiz={restartQuiz}
                         changeCategory={changeCategory}
