@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Grid from './Grid';
 import Timer from './Timer';
 import Lives from './Lives';
-import Rules from './Rules';
+import Rules from '../../components/game-components/Rules';
 import LMG from '../../components/game-components/LMG';
 import './WheresOne.css'; // Import the CSS
 
 function WheresOne() {
   const [round, setRound] = useState(1);
   const [prevRound, setPrevRound] = useState(1);
-  const [resetTrigger,setResetTrigger] = useState(false)
+  const [resetTrigger, setResetTrigger] = useState(false)
   const [gridSize, setGridSize] = useState(0);
   const [lives, setLives] = useState(3);
   const [timer, setTimer] = useState(round + 2);
   const [isTimerOn, setIsTimerOn] = useState(false);
-  const [progress, setProgress] =useState(100)   
+  const [progress, setProgress] = useState(100)
   const [gameStart, setGameStart] = useState(false);
 
 
   const startGame = () => {
-    if (gameStart)return;
+    if (gameStart) return;
     setGameStart(true);
     setResetTrigger(true)
     setGridSize(2); // Start with a 2x2 grid
@@ -98,7 +98,7 @@ function WheresOne() {
           <p>Previous Round: {prevRound}</p>
           <p>Round: {round}</p>
           <Lives lives={lives} />
-          
+
           <Timer
             onTimerEnd={() => { lostRound(); }}
             isActive={isTimerOn}
@@ -112,10 +112,10 @@ function WheresOne() {
         </div>
 
         <Grid
-            gridSize={gridSize}
-            onGridClick={handleGridClick}
-            resetTrigger={resetTrigger}
-          />
+          gridSize={gridSize}
+          onGridClick={handleGridClick}
+          resetTrigger={resetTrigger}
+        />
       </main>
     </div>
   );
