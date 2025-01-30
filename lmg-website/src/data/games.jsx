@@ -5,6 +5,13 @@ import NerdBowlIcon from "../assets/webGameIcons/NerdBowlIcon.jpg";
 import DoYouTubeIcon from "./webGameIcons/DoYouTubeIcon.jsx";
 let catalogue = [
   {
+    id: "ChainGame",
+    title: "Chain Game",
+    img: UnderConstruction,
+    summary: "Connect words together through common phrases",
+    link: "/ChainGame",
+  },
+  {
     id: "NerdBowl",
     title: "Nerd Bowl",
     img: NerdBowlIcon,
@@ -37,8 +44,8 @@ let catalogue = [
     id: "AbsurdApp",
     title: "Absurd App",
     img: UnderConstruction,
-    summary: "Absurd summary",
-    link: "/absurdapp",
+    summary: "Apply to thew best company in the world: Faux Firms",
+    link: "",
   },
 ];
 export default catalogue;

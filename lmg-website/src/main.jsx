@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import WebGamesPage from './components/WebGamesPage.jsx';
 import DeveloperNotesPage from './components/DeveloperNotesPage.jsx';
@@ -10,7 +11,9 @@ import WheresOne from './webGames/WheresOne/WheresOne.jsx';
 import NoEsc from './webGames/NoEsc/NoEsc.jsx';
 import NerdBowl from './webGames/NerdBowl/NerdBowl.jsx';
 import DoYouTube from './webGames/DoYouTube/DoYouTube.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ChainGame from './webGames/ChainGame/ChainGame.jsx';
+
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -44,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: '/DoYouTube',
     element: <DoYouTube />
+  },
+  {
+    path: '/ChainGame',
+    element: <ChainGame />
   }
 ])
 
