@@ -32,7 +32,7 @@ export default function VideoHalf({ videos, isRight, submitted, round, submitAns
                         <button onClick={() => submitAnswer(false)} className="btn glass text-black">Lower ▼</button>
                     </div>
                     :
-                    <p className="font-bold italic">
+                    <p className="font-bold tracking-widest bg-base-300 p-2 rounded-xl italic">
                         {addCommas(videos[round + isRight]?.statistics.viewCount)}
                     </p>
                 }

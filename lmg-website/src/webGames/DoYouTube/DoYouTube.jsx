@@ -1,4 +1,5 @@
 import LMG from "../../components/game-components/LMG"
+import ToolTip from "../../components/game-components/ToolTip"
 import "../../game.css"
 import CategorySelect from "../../components/game-components/CategorySelect"
 import videoCategories from "./youtubeCategories"
@@ -119,6 +120,7 @@ export default function DoYouTube() {
                 {gameState == "Menu" &&
                     <div>
                         <h1 className="text-5xl font-serif m-4">Do YouTube?</h1>
+
                         <CategorySelect
                             categories={videoCategories}
                             categoryID={categoryID}
@@ -132,6 +134,10 @@ export default function DoYouTube() {
                     gameState == "Playing" &&
                     (
                         <div>
+                            <ToolTip
+                                tip={"Determine if the youtube video on the Right(PC)/Bottom(Mobile) has more views than the video on the Left(PC)/Top(Mobile)"}
+                                direction={"tooltip-bottom"}
+                            />
                             <div >
                                 <p>Score:  {score}</p>
                                 <p>Round Number: {round + 1}</p>
