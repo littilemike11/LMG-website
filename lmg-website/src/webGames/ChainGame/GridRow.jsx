@@ -1,12 +1,14 @@
 import Letter from "./Letter";
 
-export default function GridRow({ word, isRevealed }) {
+export default function GridRow({ word, isRevealed, isActiveRow,revealedLetters }) {
+
     return (
         <>
             {word.split('').map((letter, index) => (
                 <Letter
                     key={index}
-                    isRevealed={isRevealed || index == 0}
+                    isActiveRow={isActiveRow}
+                    isRevealed={isRevealed || revealedLetters.includes(index)}
                     letter={letter}
                 />
             ))}

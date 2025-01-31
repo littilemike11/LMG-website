@@ -1,16 +1,9 @@
-export default function Letter({ isRevealed, letter }) {
+export default function Letter({ isRevealed, letter, isActiveRow }) {
     return (
-        <>
-            {
-                isRevealed ?
-                    <div className="bg-base-300 border">
-                        <p>{letter}</p>
-                    </div>
-                    :
-                    <div className="bg-base-300 border" >
-                        <p></p>
-                    </div>
-            }
+        <>               
+            <div  className={`border ${isActiveRow ? "bg-primary" : "bg-base-300"}`}>
+                <p>{isRevealed ? letter :""}</p>
+            </div>
 
 
         </>
