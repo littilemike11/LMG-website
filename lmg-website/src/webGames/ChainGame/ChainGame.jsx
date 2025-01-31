@@ -30,7 +30,7 @@ export default function ChainGame() {
                     model: "gpt-4o-mini", // or 'gpt-3.5-turbo'
                     messages: [
                         { role: "system", content: "Given game show Chain Reaction" },
-                        { role: "user", content: "Can you generate 8 words as an example chain, where each consecutive pair is commonly said together . Words must be unique, not repeat and nonhyponated. Only return the 8 words separated by commas." }
+                        { role: "user", content: "Can you generate 8 words as an example chain, where each consecutive word pair is commonly said together. The list of words must be unique, cannot not repeat and nonhyponated. Only return the 8 words separated by commas." }
                     ]
                 },
                 {
