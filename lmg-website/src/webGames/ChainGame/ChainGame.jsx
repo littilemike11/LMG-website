@@ -9,9 +9,9 @@ export default function ChainGame() {
     const OPEN_AI_API_KEY = import.meta.env.VITE_OPEN_AI_KEY
     const OPEN_AI_ORG = import.meta.env.VITE_OPEN_AI_ORG
     const OPEN_AI_PROJ = import.meta.env.VITE_OPEN_AI_PROJ
-    const [wordChain, setWordChain] = useState("")
+    const [wordChain, setWordChain] = useState([])
     const [activeRow, setActiveRow] = useState(1)
-    const [solvedRows, setSolvedRows] = useState([0, wordChain.length - 1])
+    const [solvedRows, setSolvedRows] = useState([0, 7])
     const [solveTop, setSolveTop] = useState(true)
     const [topRow, setTopRow] = useState(1)
     const [botRow, setBotRow] = useState(6)
@@ -21,6 +21,7 @@ export default function ChainGame() {
     const [isWrong, setIsWrong] = useState(false)
     const [hintCount, setHintCount] = useState(0)
     const [incorrectCount, setIncorrectCount] = useState(0)
+
     const fetchWordChain = async () => {
         try {
             const response = await axios.post(
@@ -29,7 +30,7 @@ export default function ChainGame() {
                     model: "gpt-4o-mini", // or 'gpt-3.5-turbo'
                     messages: [
                         { role: "system", content: "Given game show Chain Reaction" },
-                        { role: "user", content: "can you generate 8 common consecutive words as an example chain. Words must be unique and nonhyponated. Only return the 8 words." }
+                        { role: "user", content: "Can you generate 8 words as an example chain, where each consecutive pair is commonly said together . Words must be unique, not repeat and nonhyponated. Only return the 8 words separated by commas." }
                     ]
                 },
                 {
@@ -45,10 +46,10 @@ export default function ChainGame() {
             console.log(response.data.choices[0].message.content)
             setWordChain(
                 response.data.choices[0].message.content
-                    .split(',')
+                    .split(',', 8)
                     .map(word => word.trim().toUpperCase()) // Trim each word
             );
-            console.log(wordChain)
+
         } catch (error) {
             console.log(error)
         }
@@ -99,7 +100,6 @@ export default function ChainGame() {
     const submitAnswer = () => {
         //if player right
         if (input.toUpperCase() == wordChain[activeRow]) {
-            console.log("correct")
             setSolvedRows([...solvedRows, activeRow])
             //if player won
             if (wordChain.length - 1 <= solvedRows.length) {
@@ -124,7 +124,7 @@ export default function ChainGame() {
     }
     return (
         <>
-            <div className="Game">
+            <div className="Game mx-4">
                 <LMG />
 
                 <Rules
@@ -140,7 +140,7 @@ export default function ChainGame() {
                         </ol>
                     }
                 />
-                {wordChain ?
+                {wordChain.length > 0 ?
                     (<div className="animate-fadeIn">
                         <div className=" grid grid-cols-12">
                             {wordChain.map((word, index) => (
