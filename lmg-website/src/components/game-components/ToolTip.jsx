@@ -11,7 +11,7 @@ export default function ToolTip({ tip, label = "How to Play", direction = "toolt
 
     return (
         <>
-            <div className={`tooltip ${toggleTip ? "tooltip-open" : "tooltip-close"} ${direction}`} data-tip={tip}>
+            <div className={` join-item tooltip ${toggleTip ? "tooltip-open" : "tooltip-close"} ${direction}`} data-tip={tip}>
                 {/* button click is for mobile devices */}
                 <button onClick={() => { setToggleTip(!toggleTip) }} className="btn">{label}</button>
             </div>
