@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 export default function SettingsPage() {
     //retro by default?
     // have achievement unlock more themes
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "retro");
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "default");
 
     // Apply theme to <html> tag whenever it changes
     useEffect(() => {
