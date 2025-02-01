@@ -9,7 +9,7 @@ export default function GameCarousel(props) {
                     {props.highlightedGame.title}
                 </div> */}
 
-                <div className=" carousel carousel-center bg-neutral rounded-box max-w-xl space-x-4 p-4 m-4">
+                <div className=" carousel carousel-center bg-neutral rounded-box  max-w-lg lg:max-w-xl space-x-4 p-4 m-4">
                     {props.content}
                 </div>
 
