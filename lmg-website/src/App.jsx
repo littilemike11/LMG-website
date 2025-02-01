@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import './App.css'
 import Footer from './components/Footer'
 import TitleScreenLinks from './components/TitleScreenLinks'
@@ -8,8 +7,8 @@ function App() {
   return (
     <>
       <div className=' bgContainer'>
-        <div className="flex flex-col justify-end gap-2  items-end w-full h-full ">
-          <ul className="mr-4 mb-12 gap-x-64 menu menu-vertical rounded-box">
+        <div className="flex flex-col justify-end items-end w-full h-full ">
+          <ul className="mr-6 mb-12 menu menu-vertical rounded-box">
             <TitleScreenLinks
               link={"/WebGames"}
               title="Start Game"
