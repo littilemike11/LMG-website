@@ -25,14 +25,14 @@ export default function NavBar() {
                             className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 w-52 p-2 shadow">
 
                             <li>
-                                <a>Extra</a>
+                                <Link to={"/Extra"}>Extra</Link>
                                 <ul className="p-2">
-                                    <li><a>Cuber</a></li>
-                                    <li><a>Bomb Blitz</a></li>
+                                    <li><Link to={"/Extra"}>Cuber</Link></li>
+                                    <li><Link to={"/Extra"}>Bomb Blitz</Link></li>
                                 </ul>
                             </li>
-                            <li><a>Settings</a></li>
-                            <li><a>Credits</a></li>
+                            <li><Link to={"/Settings"}>Settings</Link></li>
+                            <li><Link to={"/Credits"}>Credits</Link></li>
                         </ul>
                     </div>
                     <Link to="/" className="btn btn-ghost text-xl">LMG Games</Link>
@@ -44,13 +44,13 @@ export default function NavBar() {
                             <details>
                                 <summary>Extra</summary>
                                 <ul className="p-2">
-                                    <li><a>Cuber</a></li>
-                                    <li><a>BombBlitz</a></li>
+                                    <li><Link to={"/Extra"}>Cuber</Link></li>
+                                    <li><Link to={"/Extra"}>Bomb Blitz</Link></li>
                                 </ul>
                             </details>
                         </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Credits</a></li>
+                        <li><Link to={"/Settings"}>Settings</Link></li>
+                        <li><Link to={"/Credits"}>Credits</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end">

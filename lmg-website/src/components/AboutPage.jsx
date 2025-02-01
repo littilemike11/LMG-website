@@ -1,7 +1,13 @@
+import NavBar from "./NavBar"
+import Footer from "./Footer"
 export default function AboutPage() {
     return (
         <>
-            <h1>About Pg</h1>
+
+            <NavBar />
+            <h1 className="text-3xl my-5">Credits</h1>
+            <Footer />
+
         </>
     )
 }
