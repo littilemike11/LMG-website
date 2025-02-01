@@ -2,9 +2,9 @@ import GameShowcase from "./GameShowcase"
 export default function Sidebar(props) {
     return (
         <>
-            <div className=" absolute drawer lg:drawer-open">
+            <div className="fixed h-screen drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center ">
+                <div className="drawer-content flex flex-col h-full items-center ">
                     {/* Page content here */}
 
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
@@ -17,7 +17,7 @@ export default function Sidebar(props) {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu bg-base-200 text-base-content min-h-screen w-72 p-4">
+                    <ul className="menu bg-base-200 text-base-content h-full w-72 shadow rounded-r-lg p-4">
                         {/* Sidebar content here */}
                         {props.catalogue.map((game, index) => (
                             <li key={index}><a href={`#${game.id}`} >{game.title}</a></li>

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
     return (
         <>
-            <div className="navbar bg-base-100">
-                <div className="navbar-start">
+            <div className="navbar bg-base-100 shadow-lg">
+                <div className="navbar-start flex items-center">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg
@@ -22,37 +22,39 @@ export default function NavBar() {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                            <li><a>Item 1</a></li>
+                            className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 w-52 p-2 shadow">
+
                             <li>
-                                <a>Parent</a>
+                                <a>Extra</a>
                                 <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
+                                    <li><a>Cuber</a></li>
+                                    <li><a>Bomb Blitz</a></li>
                                 </ul>
                             </li>
-                            <li><a>Item 3</a></li>
+                            <li><a>Settings</a></li>
+                            <li><a>Credits</a></li>
                         </ul>
                     </div>
                     <Link to="/" className="btn btn-ghost text-xl">LMG Games</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
+                    <ul className="menu z-10  menu-horizontal px-1">
+
                         <li>
                             <details>
-                                <summary>Parent</summary>
+                                <summary>Extra</summary>
                                 <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
+                                    <li><a>Cuber</a></li>
+                                    <li><a>BombBlitz</a></li>
                                 </ul>
                             </details>
                         </li>
-                        <li><a>Item 3</a></li>
+                        <li><a>Settings</a></li>
+                        <li><a>Credits</a></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <Link to={"/WebGames"} className="btn">Start Game</Link>
                 </div>
             </div>
         </>
