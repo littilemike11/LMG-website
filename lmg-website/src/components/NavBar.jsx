@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
-
+import { useEffect } from "react";
 export default function NavBar() {
+    //get theme from local storage
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "default");
+    },);
     return (
         <>
             <div className="navbar bg-base-100 shadow-lg">
@@ -54,7 +58,7 @@ export default function NavBar() {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to={"/WebGames"} className="btn">Start Game</Link>
+                    <Link to={"/WebGames"} className="btn btn-neutral">Games</Link>
                 </div>
             </div>
         </>

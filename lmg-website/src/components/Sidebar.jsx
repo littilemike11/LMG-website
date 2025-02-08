@@ -1,6 +1,9 @@
 import GameShowcase from "./GameShowcase"
+import { useState } from "react"
 export default function Sidebar(props) {
+    const [highlightedGame, setHighlightedGame] = useState(props.catalogue[0])
     return (
+
         <>
             <div className=" drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -11,7 +14,10 @@ export default function Sidebar(props) {
                         Open Games
                     </label>
                     <GameShowcase
+                        highlightedGame={highlightedGame}
+                        setHighlightedGame={setHighlightedGame}
                         catalogue={props.catalogue}
+
                     />
 
                 </div>
@@ -20,7 +26,7 @@ export default function Sidebar(props) {
                     <ul className="menu bg-base-200 text-base-content h-full w-72 shadow rounded-r-lg p-4">
                         {/* Sidebar content here */}
                         {props.catalogue.map((game, index) => (
-                            <li key={index}><a href={`#${game.id}`} >{game.title}</a></li>
+                            <li onClick={() => setHighlightedGame(props.catalogue[index])} key={index}><a href={`#${game.id}`} >{game.title}</a></li>
                         ))}
 
 

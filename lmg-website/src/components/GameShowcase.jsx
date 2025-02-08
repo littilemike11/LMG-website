@@ -1,9 +1,7 @@
 import GameCarousel from "./GameCarousel";
 import GameItem from "./GameItem";
-import { useState } from "react";
 
 export default function GameShowcase(props) {
-    const [highlightedGame, setHighlightedGame] = useState(props.catalogue[0])
     let games = props.catalogue;
     let length = games.length
     //stupid js cant handle negative mods
@@ -23,14 +21,14 @@ export default function GameShowcase(props) {
                                 id={game.id}
                                 prev={index == 0 ? games[length - 1] : games[index - 1]}
                                 next={games[(index + 1) % length]}
-                                setHighlightedGame={setHighlightedGame}
+                                setHighlightedGame={props.setHighlightedGame}
                                 catalogue={games}
                             />
 
                         ))
                     }
                     highlightedGame={
-                        highlightedGame
+                        props.highlightedGame
                     }
                 />
 
