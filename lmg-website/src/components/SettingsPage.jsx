@@ -28,6 +28,7 @@ export default function SettingsPage() {
                     Theme Selector
                 </div>
                 <input
+                    checked={theme === "default"}
                     type="radio"
                     name="theme-buttons"
                     className="btn theme-controller join-item"
@@ -35,6 +36,7 @@ export default function SettingsPage() {
                     aria-label="Default"
                     value="default" />
                 <input
+                    checked={theme === "retro"}
                     type="radio"
                     name="theme-buttons"
                     className="btn theme-controller join-item"
@@ -42,6 +44,7 @@ export default function SettingsPage() {
                     aria-label="Retro"
                     value="retro" />
                 <input
+                    checked={theme === "cyberpunk"}
                     type="radio"
                     name="theme-buttons"
                     className="btn theme-controller join-item"
@@ -49,6 +52,7 @@ export default function SettingsPage() {
                     aria-label="Cyberpunk"
                     value="cyberpunk" />
                 <input
+                    checked={theme === "valentine"}
                     type="radio"
                     name="theme-buttons"
                     className="btn theme-controller join-item"
@@ -56,6 +60,7 @@ export default function SettingsPage() {
                     aria-label="Valentine"
                     value="valentine" />
                 <input
+                    checked={theme === "aqua"}
                     type="radio"
                     name="theme-buttons"
                     className="btn theme-controller join-item"

@@ -2,7 +2,7 @@ import GameShowcase from "./GameShowcase"
 export default function Sidebar(props) {
     return (
         <>
-            <div className="fixed h-screen drawer lg:drawer-open">
+            <div className=" drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col h-full items-center ">
                     {/* Page content here */}
