@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom'
-export default function LMG(){
-    return(
+import { useEffect } from 'react';
+export default function LMG() {
+    //get theme from local storage
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "default");
+    },);
+    return (
         <>
             <div className='flex justify-start'>
                 <Link to="/webgames">

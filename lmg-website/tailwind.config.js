@@ -8,13 +8,23 @@ export default {
           from: { transform: "translateX(0%)" },
           to: { transform: "translateX(-100%)" },
         },
+        slideRight: {
+          from: { transform: "translateX(0%)" },
+          to: { transform: "translateX(100%)" },
+        },
         fadeIn: {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
+        slideFromRight: {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0%)" },
+        },
       },
       animation: {
         slideLeft: "slideLeft 1s ease-in-out forwards",
+        slideRight: "slideRight 1s ease-in-out forwards",
+        slideFromRight: "slideFromRight 1s ease-in-out forwards",
         fadeIn: "fadeIn 1s ease-in-out forwards",
       },
     },
