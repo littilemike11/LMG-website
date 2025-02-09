@@ -1,18 +1,25 @@
-import GameSummary from "./GameSummary";
-
-export default function GameCarousel(props) {
+import GameItem from "./GameItem"
+export default function GameCarousel({ catalogue }) {
+    let length = catalogue.length
     return (
         <>
             <div className="mx-2">
-                <div className=" carousel carousel-center bg-neutral rounded-box  max-w-lg lg:max-w-xl space-x-4 p-4 m-4">
-                    {props.content}
+                <div className=" carousel carousel-center bg-neutral rounded-box w-full max-w-lg md:max-w-xl lg:max-w-2xl space-x-10 p-4 m-4">
+                    {
+                        catalogue.map((game, index) => (
+
+                            < GameItem
+                                key={index}
+                                game={game}
+                                prev={index == 0 ? catalogue[length - 1] : catalogue[index - 1]}
+                                next={catalogue[(index + 1) % length]}
+                            // highlightedGame={props.highlightedGame}
+                            />
+
+                        ))
+                    }
                 </div>
 
-                <GameSummary
-                    title={props.highlightedGame.title}
-                    summary={props.highlightedGame.summary}
-                    link={props.highlightedGame.link}
-                />
 
             </div>
 
