@@ -5,7 +5,7 @@ export default function GameItem({ game, prev, next }) {
     return (
         <>
             {/* id needed fot links + arrows */}
-            <div id={game.id} className="carousel-item w-96 md:w-10/12 lg:11/12 relative ">
+            <div id={game.id} className="carousel-item w-96 md:h-10/12 lg:h-11/12 relative ">
                 <div className="card card-compact bg-base-200 w-full shadow-xl">
                     <figure className="shadow-lg">
                         {game.img ?
