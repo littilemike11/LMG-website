@@ -6,7 +6,7 @@ export default function Sidebar(props) {
         <>
             <div className=" drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col border h-full items-center ">
+                <div className="drawer-content flex flex-col h-full items-center ">
                     {/* Page content here */}
 
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">

@@ -12,18 +12,22 @@ function App() {
             <TitleScreenLinks
               link={"/WebGames"}
               title="Start Game"
+              delayTime={0}
             />
             <TitleScreenLinks
               link={"/Extra"}
               title="Extra"
+              delayTime={.4}
             />
             <TitleScreenLinks
               link={"/Settings"}
               title="Settings"
+              delayTime={.8}
             />
             <TitleScreenLinks
               link={"/Credits"}
               title="Credits"
+              delayTime={1.2}
             />
           </ul>
         </div>
