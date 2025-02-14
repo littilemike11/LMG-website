@@ -9,36 +9,28 @@ export default function AboutPage() {
     <>
       <NavBar />
 
-      {/* Animated Title */}
+      {/* Animated Title with Parallax Effect */}
       <motion.h1 
         className="text-3xl my-5 text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        whileInView={{ y: [10, 0], opacity: [0.5, 1] }} // Moves in as user scrolls
+        transition={{ duration: 0.7, ease: "easeOut" }}
       >
         Credits
       </motion.h1>
 
-      {/* Animated Timeline Container */}
+      {/* Animated Timeline */}
       <motion.ul 
         className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 1 },
-          visible: { 
-            opacity: 1,
-            transition: { staggerChildren: 0.2 } // Staggers timeline items
-          }
-        }}
       >
         {timeline.map((item, index) => (
           <motion.li 
             key={index}
-            variants={{
-              hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-            }}
+            initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+            whileInView={{ opacity: 1, x: 0 }} // Animates when it enters viewport
+            transition={{ ease: "easeOut", duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true, amount: "some" }} // Ensures smooth entrance
           >
             <TimelineItem
               time={item.time}
