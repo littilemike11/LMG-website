@@ -17,17 +17,17 @@ function App() {
             <TitleScreenLinks
               link={"/Extra"}
               title="Extra"
-              delayTime={.4}
+              delayTime={.3}
             />
             <TitleScreenLinks
               link={"/Settings"}
               title="Settings"
-              delayTime={.8}
+              delayTime={.6}
             />
             <TitleScreenLinks
               link={"/Credits"}
               title="Credits"
-              delayTime={1.2}
+              delayTime={.9}
             />
           </ul>
         </div>

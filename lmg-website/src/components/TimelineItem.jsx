@@ -2,8 +2,7 @@ export default function TimelineItem({ time, title, description, left }) {
     return (
         <>
             {/* left side index = even */}
-            {
-                <li>
+
                     <div className="timeline-middle">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -22,8 +21,7 @@ export default function TimelineItem({ time, title, description, left }) {
                         {description}
                     </div>
                     <hr />
-                </li>
-            }
+
         </>
     )
 }
