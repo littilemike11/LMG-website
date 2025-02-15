@@ -27,7 +27,7 @@ export default function NavBar() {
                         <ul
                             tabIndex={0}
                             className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 w-52 p-2 shadow">
-
+                            <li><Link to={"/Achievements"}>Achievements</Link></li>
                             <li>
                                 <Link to={"/Extra"}>Extra</Link>
                                 <ul className="p-2">
@@ -43,7 +43,7 @@ export default function NavBar() {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu z-10  menu-horizontal px-1">
-
+                        <li><Link to={"/Achievements"}>Achievements</Link></li>
                         <li>
                             <details>
                                 <summary>Extra</summary>
