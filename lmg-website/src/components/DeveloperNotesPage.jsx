@@ -1,6 +1,9 @@
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import Divider from "./Divider";
+import PageTitle from "./PageTitle";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 //#region Image Imports
 //cuber
 import CuberScreenshot from "../assets/cuber/CuberScreenshot.webp"
@@ -27,15 +30,22 @@ import BombBlitzMenuDemo from "../assets/bombBlitz/BombBlitzMenuDemo.gif"
 //#endregion
 
 export default function DeveloperNotesPage() {
+    const location = useLocation();
+    // for scrolling to bomb blitz from navbar
+    useEffect(() => {
+        if (location.hash) {
+        const element = document.getElementById(location.hash.substring(1));
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+        }
+    }, [location]);
     return (
         <>
             <NavBar />
-
             <div className="px-[2rem]">
 
-
-                <h1 className="text-3xl my-4">Developer Notes</h1>
-
+                <PageTitle title={"Developer Notes"}/>
                 <h2 id="section-Cuber"></h2>
                 <main>
                     <div
@@ -147,7 +157,7 @@ export default function DeveloperNotesPage() {
                     </div>
                     <div className="divider divider-primary"></div>
 
-                    <div className="bombBlitz">
+                    <div id="BombBlitz" className="bombBlitz">
 
                         <h2 className="my-5" id="section-BombBlitz"></h2>
                         <div className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">

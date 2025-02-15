@@ -32,7 +32,7 @@ export default function NavBar() {
                                 <Link to={"/Extra"}>Extra</Link>
                                 <ul className="p-2">
                                     <li><Link to={"/Extra"}>Cuber</Link></li>
-                                    <li><Link to={"/Extra"}>Bomb Blitz</Link></li>
+                                    <li><Link to={"/Extra#BombBlitz"}>Bomb Blitz</Link></li>
                                 </ul>
                             </li>
                             <li><Link to={"/Settings"}>Settings</Link></li>
@@ -49,7 +49,7 @@ export default function NavBar() {
                                 <summary>Extra</summary>
                                 <ul className="p-2">
                                     <li><Link to={"/Extra"}>Cuber</Link></li>
-                                    <li><Link to={"/Extra"}>Bomb Blitz</Link></li>
+                                    <li><Link to={"/Extra#BombBlitz"}>Bomb Blitz</Link></li>
                                 </ul>
                             </details>
                         </li>

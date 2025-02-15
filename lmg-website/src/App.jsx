@@ -28,7 +28,7 @@ function App() {
             >
             {pages.map((page,index)=>(
               <motion.li 
-              whileHover={{ scale: 1.1, transition:{duration:.3,ease:"easeOut"} }}
+              whileHover={{ scale: 1.1, transition:{duration:.2,ease:"easeOut"} }}
               key={index}
               variants={{
                 hidden:{opacity:0, translateX:"100%"},

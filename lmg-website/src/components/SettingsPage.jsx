@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import PageTitle from "./PageTitle";
 import { useState, useEffect } from "react";
 
 export default function SettingsPage() {
@@ -20,9 +21,7 @@ export default function SettingsPage() {
     return (
         <>
             <NavBar />
-            <div >
-                <h1 className="text-5xl my-4 ">Settings</h1>
-            </div>
+            <PageTitle title={"Settings"}/>
             <div className="join join-vertical">
                 <div className="join-item text-2xl ">
                     Theme Selector
