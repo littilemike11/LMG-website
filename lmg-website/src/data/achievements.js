@@ -26,6 +26,11 @@ export function lockAchievement(achievementID){
     if (achievement) achievement.isUnlocked=false;
     localStorage.setItem("achievements",JSON.stringify(storedAchievements))
 }
+export function isUnlocked(achievementID){
+    let storedAchievements = JSON.parse(localStorage.achievements)
+    let achievement = storedAchievements.find(achievement => achievement.id == achievementID)
+    return achievement.isUnlocked
+}
 const findAchievement =(achievementID) =>{
     let storedAchievements = JSON.parse(localStorage.achievements)
     return storedAchievements.find(achievement => achievement.id == achievementID)
