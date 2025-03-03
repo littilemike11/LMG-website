@@ -54,6 +54,8 @@ function WheresOne() {
     setIsTimerOn(false);
     setPrevRound(round);
     setProgress(100)
+    //set achievements
+    
   };
 
   const lostRound = () => {

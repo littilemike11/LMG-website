@@ -1,10 +1,42 @@
-const achievements=[
+export const getAchievements= () =>{
+    return JSON.parse(localStorage.getItem("achievements"))
+}
+export function createAchievements(){
+    if(localStorage.achievements){
+        console.log("achievements exist")
+        console.log(JSON.parse(localStorage.getItem("achievements")))
+        return
+    }
+    localStorage.setItem("achievements",JSON.stringify(achievements) )
+    let storedAchievements = JSON.parse(localStorage.achievements)
+    console.log(storedAchievements)
+}
+export function unlockAchievement(achievementID){
+    if(!localStorage.achievements) return
+    let storedAchievements = JSON.parse(localStorage.achievements)
+    let achievement = storedAchievements.find(achievement => achievement.id == achievementID)
+    if (achievement) achievement.isUnlocked=true;
+    localStorage.setItem("achievements",JSON.stringify(storedAchievements))
+}
+// for testing
+export function lockAchievement(achievementID){
+    if(!localStorage.achievements) return
+    let storedAchievements = JSON.parse(localStorage.achievements)
+    let achievement = storedAchievements.find(achievement => achievement.id == achievementID)
+    if (achievement) achievement.isUnlocked=false;
+    localStorage.setItem("achievements",JSON.stringify(storedAchievements))
+}
+const findAchievement =(achievementID) =>{
+    let storedAchievements = JSON.parse(localStorage.achievements)
+    return storedAchievements.find(achievement => achievement.id == achievementID)
+}
+export const achievements=[
     {
         id:1,
         game:"Where's 1",
         title:"1 and done",
         description:"Play a round of Where's 1",
-        isUnlocked:true,
+        isUnlocked:false,
         rewardType: "theme",
         reward:"Aqua"
 
@@ -91,4 +123,3 @@ const achievements=[
     },
 ];
 
-export default achievements;
