@@ -9,7 +9,7 @@ export default function Banner(achievement) {
                     <p>{achievement.achievement.title}</p>
                     <p>hi</p>
                 </div> */}
-                <div className="card bg-base-100 w-96 shadow-sm">
+                <div className="card bg-base-100 w-96 shadow-xs">
                     <div className="card-body">
                         <div className="card-actions justify-end">
                             <button className="btn btn-square btn-sm">

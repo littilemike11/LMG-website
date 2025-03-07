@@ -26,7 +26,7 @@ export default function NavBar() {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 w-52 p-2 shadow">
+                            className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 w-52 p-2 shadow-sm">
                             <li><Link to={"/Achievements"}>Achievements</Link></li>
                             <li>
                                 <Link to={"/Extra"}>Extra</Link>
