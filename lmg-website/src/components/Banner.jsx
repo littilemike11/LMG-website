@@ -3,12 +3,11 @@ import { Link } from "react-router-dom"
 export default function Banner(achievement) {
     const [isVisible, setIsVisible] = useState(true)
     const [toggleOpen, setToggleOpen] = useState(false)
-    console.log(achievement)
     return (
         <>
             {
                 isVisible && (
-                    <div className="toast z-50">
+                    <div>
                         {
                             toggleOpen ?
                                 (
