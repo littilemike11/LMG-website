@@ -1,21 +1,14 @@
 import NavBar from "./NavBar"
 import Footer from "./Footer"
 import PageTitle from "./PageTitle"
-import { getAchievements ,unlockAchievement,lockAchievement, isUnlocked} from "/src/data/achievements"
+import { getAchievements} from "/src/data/achievements"
 import Achievement from "./Achievement"
 // import Sidebar from "./Sidebar"
 import catalogue from "/src/data/games"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 export default function AchievementsPage() {
     const [selected,setSelected]=useState("all")
     const achievements = getAchievements();
-    useEffect(()=>{
-        unlockAchievement(2)
-        isUnlocked(2)
-        lockAchievement(2)
-        isUnlocked(2)
-        // lockAchievement(1)
-    },[])
     return (
         <>
             <NavBar />

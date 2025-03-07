@@ -1,3 +1,4 @@
+import Banner from "/src/components/Banner"
 export const getAchievements= () =>{
     return JSON.parse(localStorage.getItem("achievements"))
 }
@@ -17,6 +18,7 @@ export function unlockAchievement(achievementID){
     let achievement = storedAchievements.find(achievement => achievement.id == achievementID)
     if (achievement) achievement.isUnlocked=true;
     localStorage.setItem("achievements",JSON.stringify(storedAchievements))
+    return achievement
 }
 // for testing
 export function lockAchievement(achievementID){
@@ -31,7 +33,8 @@ export function isUnlocked(achievementID){
     let achievement = storedAchievements.find(achievement => achievement.id == achievementID)
     return achievement.isUnlocked
 }
-const findAchievement =(achievementID) =>{
+
+export function findAchievement(achievementID){
     let storedAchievements = JSON.parse(localStorage.achievements)
     return storedAchievements.find(achievement => achievement.id == achievementID)
 }

@@ -5,7 +5,8 @@ import Lives from './Lives';
 import Rules from '../../components/game-components/Rules';
 import LMG from '../../components/game-components/LMG';
 import './WheresOne.css'; // Import the CSS
-import { unlockAchievement,isUnlocked } from '/src/data/achievements';
+import { unlockAchievement,isUnlocked, findAchievement } from '/src/data/achievements';
+import Banner from '/src/components/Banner';
 
 function WheresOne() {
   const [round, setRound] = useState(1);
@@ -48,9 +49,10 @@ function WheresOne() {
 
   const endGame = () => {
     //set achievements 
-    if(!isUnlocked(1)){
-      unlockAchievement(1)
-    }
+    // if(!isUnlocked(1)){
+    //   unlockAchievement(1)
+    // }
+    let achievement = unlockAchievement(1)
     if(round >=50 && !isUnlocked(2)){
       unlockAchievement(2)
     }
@@ -79,6 +81,7 @@ function WheresOne() {
 
       <main>
         <div className="">
+          <Banner achievement={findAchievement(1)}/>
           <div className='flex justify-normal'>
             <Rules
               content={

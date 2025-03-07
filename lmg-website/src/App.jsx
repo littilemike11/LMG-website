@@ -3,7 +3,7 @@ import Footer from './components/Footer'
 import TitleScreenLinks from './components/TitleScreenLinks'
 import { motion } from 'motion/react'
 import { useEffect } from 'react'
-import {achievements , createAchievements} from './data/achievements'
+import {createAchievements} from './data/achievements'
 function App() {
 
   const pages = [
@@ -16,7 +16,7 @@ function App() {
 
   //set achievements
   useEffect(()=>{
-    localStorage.removeItem("achievements")
+    if(localStorage.achievements) return
     createAchievements();
   },[])
 
