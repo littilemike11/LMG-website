@@ -3,7 +3,7 @@ import Footer from './components/Footer'
 import TitleScreenLinks from './components/TitleScreenLinks'
 import { motion } from 'motion/react'
 import { useEffect } from 'react'
-import {createAchievements} from './data/achievements'
+import { createAchievements } from './data/achievements'
 function App() {
 
   const pages = [
@@ -15,10 +15,13 @@ function App() {
   ];
 
   //set achievements
-  useEffect(()=>{
-    if(localStorage.achievements) return
-    createAchievements();
-  },[])
+  useEffect(() => {
+    if (!localStorage.achievements) createAchievements();
+    if (!localStorage.unlockedThemes) {
+      localStorage.setItem("unlockedThemes", JSON.stringify(["default", "light", "dark"]));
+    }
+
+  }, [])
 
   return (
     <>

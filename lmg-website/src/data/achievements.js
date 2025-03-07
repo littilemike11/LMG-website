@@ -18,8 +18,19 @@ export function unlockAchievement(achievementID) {
   let achievement = storedAchievements.find(
     (achievement) => achievement.id == achievementID
   );
-  if (achievement) achievement.isUnlocked = true;
-  localStorage.setItem("achievements", JSON.stringify(storedAchievements));
+  if (achievement) {
+    achievement.isUnlocked = true;
+    localStorage.setItem("achievements", JSON.stringify(storedAchievements));
+    //unlock theme
+    if (achievement.rewardType == "theme") {
+      let unlockedThemes = JSON.parse(localStorage.getItem("unlockedThemes"));
+      // Prevent duplicate themes
+      if (!unlockedThemes.includes(achievement.reward.toLowerCase())) {
+        unlockedThemes.push(achievement.reward.toLowerCase());
+        localStorage.setItem("unlockedThemes", JSON.stringify(unlockedThemes));
+      }
+    }
+  }
   return achievement;
 }
 // for testing
@@ -52,6 +63,10 @@ export function getGameAchievements(gameName) {
     (achievement) => achievement.game == gameName
   );
 }
+export function getUnlockedAchievements() {
+  let storedAchievements = JSON.parse(localStorage.achievements);
+  return storedAchievements.filter((achievement) => achievement.isUnlocked);
+}
 export const achievements = [
   {
     id: 1,
@@ -60,7 +75,7 @@ export const achievements = [
     description: "Play a round of Where's 1",
     isUnlocked: false,
     rewardType: "theme",
-    reward: "Aqua",
+    reward: "Retro",
   },
   // marathon seeker
   // fifty shades of 1
