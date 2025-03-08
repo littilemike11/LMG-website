@@ -82,6 +82,7 @@ function WheresOne() {
 
       <main>
         <div className="">
+          {/* show achievements */}
           <div className="toast z-50 flex flex-col gap-2">
             {achievements.map((achievement, index) => (
               <Banner key={index} achievement={achievement} />

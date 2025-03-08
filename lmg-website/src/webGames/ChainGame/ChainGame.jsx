@@ -4,6 +4,8 @@ import Rules from "../../components/game-components/Rules"
 import "../../game.css"
 import GridRow from "./GridRow"
 import axios from "axios"
+import { unlockAchievement, isUnlocked } from '/src/data/achievements';
+import Banner from '/src/components/Banner';
 export default function ChainGame() {
     // achievement win without hints + errors
     const OPEN_AI_API_KEY = import.meta.env.VITE_OPEN_AI_KEY
@@ -21,6 +23,7 @@ export default function ChainGame() {
     const [isWrong, setIsWrong] = useState(false)
     const [hintCount, setHintCount] = useState(0)
     const [incorrectCount, setIncorrectCount] = useState(0)
+    const [achievements, setAchievements] = useState([])
 
     const fetchWordChain = async () => {
         try {
@@ -96,6 +99,18 @@ export default function ChainGame() {
 
     const endgame = () => {
         setIsEndgame(true)
+        //set achievements 
+        let unlockedAchievements = []
+        if (!isUnlocked(7)) {
+            unlockedAchievements.push(unlockAchievement(7))
+        }
+        if (!isUnlocked(8) && hintCount === 0) {
+            unlockedAchievements.push(unlockAchievement(8))
+        }
+        if (!isUnlocked(9) && hintCount === 0 && incorrectCount === 0) {
+            unlockedAchievements.push(unlockAchievement(9))
+        }
+        setAchievements(unlockedAchievements);
     }
     const submitAnswer = () => {
         //if player right
@@ -200,6 +215,12 @@ export default function ChainGame() {
                         </div>
                     </div>
                 )}
+                {/* show achievements */}
+                <div className="toast z-50 flex flex-col gap-2">
+                    {achievements.map((achievement, index) => (
+                        <Banner key={index} achievement={achievement} />
+                    ))}
+                </div>
 
             </div>
         </>

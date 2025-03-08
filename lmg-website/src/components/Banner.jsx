@@ -31,7 +31,7 @@ export default function Banner(achievement) {
                                                 </button>
                                             </div>
                                             <h2 className="card-title italic">{achievement.achievement.title}</h2>
-                                            <p>{achievement.achievement.description}</p>
+                                            <p className="break-words whitespace-normal">{achievement.achievement.description}</p>
                                             <div className="card-actions justify-end">
                                                 <button className="btn btn-info">
                                                     <Link to={"/Achievements"}>

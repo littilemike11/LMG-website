@@ -4,6 +4,8 @@ import "../../game.css"
 import CategorySelect from "../../components/game-components/CategorySelect"
 import videoCategories from "./youtubeCategories"
 import { useState } from "react"
+import { unlockAchievement, isUnlocked } from '/src/data/achievements';
+import Banner from '/src/components/Banner';
 import VideoHalf from "./VideoHalf"
 import axios from "axios"
 import EndScreen from "./EndScreen"
@@ -14,6 +16,8 @@ export default function DoYouTube() {
     const [round, setRound] = useState(0)
     const [videos, setVideos] = useState([])
     const [submitted, setSubmitted] = useState(false)
+    const [achievements, setAchievements] = useState([])
+
     const apiKey = import.meta.env.VITE_API_KEY
     //round num is score +1
     const playGame = async () => {
@@ -93,6 +97,15 @@ export default function DoYouTube() {
     }
     const endGame = () => {
         setGameState("End")
+        //set achievements 
+        let unlockedAchievements = []
+        if (!isUnlocked(3)) {
+            unlockedAchievements.push(unlockAchievement(3))
+        }
+        if (!isUnlocked(4) && (round >= videos.length - 2)) {
+            unlockedAchievements.push(unlockAchievement(4))
+        }
+        setAchievements(unlockedAchievements);
     }
     //reset game variables
     const resetGame = () => {
@@ -117,6 +130,12 @@ export default function DoYouTube() {
         <>
             <div className="Game">
                 <LMG />
+                {/* show achievements */}
+                <div className="toast z-50 flex flex-col gap-2">
+                    {achievements.map((achievement, index) => (
+                        <Banner key={index} achievement={achievement} />
+                    ))}
+                </div>
                 {gameState == "Menu" &&
                     <div>
                         <h1 className="text-5xl font-serif m-4">Do YouTube?</h1>
