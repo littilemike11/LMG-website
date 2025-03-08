@@ -21,7 +21,7 @@ export default function GameItem({ game, prev, next, setActiveGame }) {
                             <Link
                                 to={game.link}
                                 className="self-end">
-                                <button className="btn btn-primary">Play</button>
+                                <button className="btn btn-primary">{game.link ? "Play" : "Under Development"}</button>
                             </Link>
                         </div>
                     </div>

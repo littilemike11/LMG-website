@@ -3,11 +3,12 @@ import WheresOneIcon from "../assets/webGameIcons/WheresOneIcon.jpg";
 import NoEscIcon from "../assets/webGameIcons/NoEscIcon.png";
 import NerdBowlIcon from "../assets/webGameIcons/NerdBowlIcon.jpg";
 import DoYouTubeIcon from "./webGameIcons/DoYouTubeIcon.jsx";
+import ChainGameIcon from "/src/assets/webGameIcons/ChainGameIcon.jpg"
 let catalogue = [
   {
     id: "ChainGame",
     title: "Chain Game",
-    img: UnderConstruction,
+    img: ChainGameIcon,
     summary: "Connect words together through common phrases",
     link: "/ChainGame",
   },

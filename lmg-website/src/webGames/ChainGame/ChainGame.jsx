@@ -25,33 +25,80 @@ export default function ChainGame() {
     const [incorrectCount, setIncorrectCount] = useState(0)
     const [achievements, setAchievements] = useState([])
 
+    const chains = [
+        "Fire, Alarm, Clock, Tower, Bridge, Gap, Year, Book",
+        "Light, House, Party, Trick, Shot, Glass, Window, Seat",
+        "Paper, Plane, Ticket, Booth, Box, Office, Chair, Lift",
+        "Water, Bottle, Cap, Lock, Key, Ring, Bell, Tower",
+        "Road, Trip, Wire, Fence, Post, Office, Space, Bar",
+        "Power, Plant, Pot, Hole, Card, Trick, Shot, Glass",
+        "Ice, Cream, Cone, Head, Start, Line, Dance, Floor",
+        "Hand, Shake, Well, Done, Deal, Breaker, Room, Service",
+        "Chain, Link, Up, Front, Door, Step, Stone, Wall",
+        "Gold, Medal, Stand, Still, Life, Guard, Rail, Track",
+        "Star, Light, Bulb, Socket, Wrench, Monkey, Bar, Code",
+        "Moon, Walk, Way, Point, Blank, Page, Number, Line",
+        "Green, House, Plant, Food, Chain, Reaction, Time, Zone",
+        "Fast, Track, Record, Label, Maker, Space, Bar, Stool",
+        "Blue, Print, Shop, Keeper, Key, Lock, Down, Town",
+        "Sound, Wave, Length, Cut, Corner, Store, Room, Service",
+        "Deep, Sea, Shell, Shock, Wave, Length, Line, Graph",
+        "Hot, Dog, House, Party, Line, Dance, Floor, Mat",
+        "Cold, Case, File, Cabinet, Door, Bell, Tower, Clock",
+        "Sun, Flower, Pot, Hole, Punch, Line, Dance, Floor",
+        "Rock, Star, Light, House, Party, Trick, Shot, Glass",
+        "Wind, Mill, Stone, Wall, Street, Light, Bulb, Socket",
+        "Sharp, Edge, Case, Study, Guide, Book, Store, Front",
+        "Full, Moon, Walk, Way, Out, Door, Step, Stool",
+        "Clear, Sky, Line, Dance, Floor, Mat, Finish, Touch",
+        "Glass, Window, Seat, Belt, Buckle, Up, Front, Door",
+        "Hot, Dog, Food, Court, House, Party, Time, Zone",
+        "Electric, Chair, Lift, Ticket, Booth, Box, Office, Space",
+        "Fire, Escape, Room, Key, Ring, Door, Bell, Tower",
+        "Quick, Draw, Bridge, Club, House, Party, Hat, Trick",
+        "Light, Bulb, Socket, Plug, In, Place, Setting, Sun",
+        "Ice, Cube, Tray, House, Plant, Food, Court, Case",
+        "Silver, Spoon, Handle, Bar, Code, Breaker, Room, Service",
+        "Green, Tea, Pot, Luck, Charm, Stone, Wall, Street"
+    ]
+
+
     const fetchWordChain = async () => {
+        // ### MAY NEED TO FIND ALTERNATE MODES ###
         try {
-            const response = await axios.post(
-                "https://api.openai.com/v1/chat/completions",
-                {
-                    model: "gpt-4o-mini", // or 'gpt-3.5-turbo'
-                    messages: [
-                        { role: "system", content: "Given game show Chain Reaction" },
-                        { role: "user", content: "Can you generate 8 words as an example chain, where each consecutive word pair is commonly said together. The list of words must be unique, cannot not repeat and nonhyponated. Only return the 8 words separated by commas." }
-                    ]
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${OPEN_AI_API_KEY}`,
-                        "Content-Type": "application/json",
-                        "OpenAi-Organization": OPEN_AI_ORG,
-                        "OpenAi-Project": OPEN_AI_PROJ,
-                    },
-                }
-            );
-            console.log(response.data)
-            console.log(response.data.choices[0].message.content)
+            let randomIndex = Math.floor(Math.random() * chains.length);
+            console.log(randomIndex)
+            console.log(chains[randomIndex])
             setWordChain(
-                response.data.choices[0].message.content
+                chains[randomIndex]
                     .split(',', 8)
                     .map(word => word.trim().toUpperCase()) // Trim each word
             );
+            // const response = await axios.post(
+            //     "https://api.openai.com/v1/chat/completions",
+            //     {
+            //         model: "gpt-4o-mini", // or 'gpt-3.5-turbo'
+            //         messages: [
+            //             { role: "system", content: "Given game show Chain Reaction" },
+            //             { role: "user", content: "Can you generate 8 words as an example chain, where each consecutive word pair is commonly said together. The list of words must be unique, cannot not repeat and nonhyponated. Only return the 8 words separated by commas." }
+            //         ]
+            //     },
+            //     {
+            //         headers: {
+            //             Authorization: `Bearer ${OPEN_AI_API_KEY}`,
+            //             "Content-Type": "application/json",
+            //             "OpenAi-Organization": OPEN_AI_ORG,
+            //             "OpenAi-Project": OPEN_AI_PROJ,
+            //         },
+            //     }
+            // );
+            // console.log(response.data)
+            // console.log(response.data.choices[0].message.content)
+            // setWordChain(
+            //     response.data.choices[0].message.content
+            //         .split(',', 8)
+            //         .map(word => word.trim().toUpperCase()) // Trim each word
+            // );
 
         } catch (error) {
             console.log(error)
