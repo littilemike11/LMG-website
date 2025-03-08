@@ -10,6 +10,7 @@ export default function SettingsPage() {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "default");
     const [unlockedThemes, setUnlockedThemes] = useState(JSON.parse(localStorage.getItem("unlockedThemes")))
     // Apply theme to <html> tag whenever it changes
+
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme); // Persist theme selection
@@ -17,6 +18,12 @@ export default function SettingsPage() {
 
     // useful for if i decide to change the rewards for achievements and have player keep old theme/reward
     useEffect(() => {
+        // if coming from link set theme
+        const hash = window.location.hash.replace("#", ""); // Remove '#' from hash
+        console.log(hash)
+        if (hash) {
+            setTheme(hash)
+        }
         let achievements = getUnlockedAchievements()
         // Filter only theme-related achievements
         let themeAchievements = achievements.filter(achievement => achievement.rewardType === "theme");
@@ -38,26 +45,52 @@ export default function SettingsPage() {
     }
 
     return (
-        <>
+        <div className="min-h-screen flex flex-col"> {/* Ensures the full height is used */}
             <NavBar />
             <PageTitle title={"Settings"} />
-            <div className="join join-vertical">
-                <div className="join-item text-2xl ">
-                    Theme Selector
+
+            <div className="flex flex-col md:flex-row place-items-center justify-around flex-grow pb-20">
+                <div className="join join-vertical">
+                    <div className="join-item text-2xl">Theme Selector</div>
+                    {unlockedThemes.map((themeOption, index) => (
+                        <input
+                            key={index}
+                            checked={theme === themeOption}
+                            type="radio"
+                            name="theme-buttons"
+                            className="btn theme-controller join-item"
+                            onChange={(e) => handleInput(e.target.value)}
+                            aria-label={capitalize(themeOption)}
+                            value={themeOption}
+                        />
+                    ))}
                 </div>
-                {unlockedThemes.map((themeOption, index) => (
-                    <input
-                        key={index}
-                        checked={theme === themeOption}
-                        type="radio"
-                        name="theme-buttons"
-                        className="btn theme-controller join-item"
-                        onChange={(e) => handleInput(e.target.value)}
-                        aria-label={capitalize(themeOption)}
-                        value={themeOption} />
-                ))}
+
+                <div>
+                    <div className="text-2xl">Preview</div>
+                    <div className="w-96 h-48">
+                        <div className="h-full w-full border border-base-content grid grid-flow-col grid-rows-3">
+                            <div className="row-span-3 bg-base-200">BG 2</div>
+                            <div className="col-span-2 bg-base-100">BG 1</div>
+                            <div className="col-span-2 row-span-2 border bg-base-300">BG 03</div>
+                        </div>
+                        <div className="flex gap-2 flex-wrap justify-center">
+
+                            <button className="btn btn-primary">Primary</button>
+                            <button className="btn btn-secondary">Secondary</button>
+                            <button className="btn btn-accent">Accent</button>
+                            <button className="btn btn-neutral">Neutral</button>
+                            <button className="btn btn-info">Info</button>
+                            <button className="btn btn-success">Success</button>
+                            <button className="btn btn-warning">Warning</button>
+                            <button className="btn btn-error">Error</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <Footer />
-        </>
-    )
+        </div>
+    );
+
 }

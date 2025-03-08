@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-export default function Banner(achievement) {
+import catalogue from "/src/data/games"
+export default function Banner({ achievement }) {
     const [isVisible, setIsVisible] = useState(true)
     const [toggleOpen, setToggleOpen] = useState(false)
+    console.log(achievement)
+    const link = catalogue.find((game) => game.title == achievement.game).link.slice(1)
     return (
         <>
             {
@@ -30,12 +33,12 @@ export default function Banner(achievement) {
                                                     </svg>
                                                 </button>
                                             </div>
-                                            <h2 className="card-title italic">{achievement.achievement.title}</h2>
-                                            <p className="break-words whitespace-normal">{achievement.achievement.description}</p>
+                                            <h2 className="card-title italic">{achievement.title}</h2>
+                                            <p className="break-words whitespace-normal">{achievement.description}</p>
                                             <div className="card-actions justify-end">
                                                 <button className="btn btn-info">
-                                                    <Link to={"/Achievements"}>
-                                                        Go Now
+                                                    <Link to={`/Achievements#${link}`}>
+                                                        See Now
                                                     </Link>
                                                 </button>
                                             </div>
@@ -44,7 +47,7 @@ export default function Banner(achievement) {
                                 ) :
                                 (
                                     <div className="alert alert-info flex items-baseline justify-between">
-                                        <p>Achievement Unlocked: {achievement.achievement.title}</p>
+                                        <p>Achievement Unlocked: {achievement.title}</p>
                                         <div>
                                             <button onClick={() => setToggleOpen(true)} className="btn btn-sm btn-info">more...</button>
                                             <button onClick={() => setIsVisible(false)} className="btn btn-square btn-xs btn-info">

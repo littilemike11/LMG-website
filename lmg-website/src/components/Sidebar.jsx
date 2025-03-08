@@ -48,14 +48,14 @@ export default function Sidebar({ catalogue }) {
                         {/* Sidebar content here */}
                         {catalogue.map((game, index) => (
                             <motion.li
-                                className={`p-2 rounded-lg ${activeGame === game.id ? "bg-neutral text-base-100" : ""}`}
+                                className={`p-2 rounded-lg ${activeGame === game.id ? "bg-neutral text-neutral-content" : ""}`}
                                 key={index}
                                 whileHover={{ x: 10, scale: 1.05 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                                 whileTap={{ scale: 1.1 }}
                                 onClick={() => setActiveGame(game.id)}
                             >
-                                <a href={`#${game.id}`}>{game.title}</a>
+                                <a className="hover:bg-neutral hover:text-neutral-content" href={`#${game.id}`}>{game.title}</a>
                             </motion.li>
                         ))}
                     </ul>

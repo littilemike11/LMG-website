@@ -1,4 +1,3 @@
-import Banner from "/src/components/Banner";
 export const getAchievements = () => {
   return JSON.parse(localStorage.getItem("achievements"));
 };

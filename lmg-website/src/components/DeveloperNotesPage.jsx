@@ -235,9 +235,9 @@ export default function DeveloperNotesPage() {
                                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                                     <div className="lg:pr-4">
                                         <div className="lg:max-w-lg">
-                                            <p className="text-base font-semibold leading-7 text-indigo-600">Objective : Survive</p>
-                                            <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bomb Blitz</h1>
-                                            <p className="mt-6 text-xl leading-8 text-gray-700">
+                                            <p className="text-base font-semibold leading-7 text-secondary">Objective : Survive</p>
+                                            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Bomb Blitz</h1>
+                                            <p className="mt-6 text-xl leading-8 ">
                                                 A 2d survival game to click and drag citizens out of harms way.
                                             </p>
                                             <button className="btn mt-2 btn-primary">
@@ -258,12 +258,12 @@ export default function DeveloperNotesPage() {
                                 </div>
                                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                                     <div className="lg:pr-4">
-                                        <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
+                                        <div className="max-w-xl text-base leading-7 lg:max-w-lg">
 
-                                            <ul role="list" className="mt-8 space-y-8 text-gray-600">
+                                            <ul role="list" className="mt-8 space-y-8">
                                                 <li className="flex gap-x-3">
                                                     <figure>
-                                                        <figcaption><strong className="font-semibold text-gray-900">Map Selection. </strong>Start screen with choosing different maps and modes. </figcaption>
+                                                        <figcaption><strong className="font-semibold ">Map Selection. </strong>Start screen with choosing different maps and modes. </figcaption>
                                                         <img
                                                             src={BombBlitzMaps}
                                                             className="w-full"
@@ -272,7 +272,7 @@ export default function DeveloperNotesPage() {
                                                 </li>
                                                 <li className="flex gap-x-3">
                                                     <figure>
-                                                        <figcaption><strong className="font-semibold text-gray-900">Shop. </strong>Use gold earned as in-game points to buy new hair styles, tops, bottoms or dresses for your citizens to potentially wear. </figcaption>
+                                                        <figcaption><strong className="font-semibold ">Shop. </strong>Use gold earned as in-game points to buy new hair styles, tops, bottoms or dresses for your citizens to potentially wear. </figcaption>
                                                         <img
                                                             src={BombBlitzShop}
                                                             className="w-full"
@@ -281,7 +281,7 @@ export default function DeveloperNotesPage() {
                                                 </li>
                                                 <li className="flex gap-x-3">
                                                     <figure>
-                                                        <figcaption><strong className="font-semibold text-gray-900">Stats. </strong>Track your highest scores across the different level modifiers. </figcaption>
+                                                        <figcaption><strong className="font-semibold">Stats. </strong>Track your highest scores across the different level modifiers. </figcaption>
                                                         <img
                                                             src={BombBlitzStats}
                                                             className="w-full"
@@ -307,7 +307,7 @@ export default function DeveloperNotesPage() {
                             <p>Click and drag to sliders to see the old (left) and new (right) changes</p>
                             <div className="flex justify-center">
                                 <div className="diff w-5/6 h-[48rem]">
-                                    <div className="diff-item-1">
+                                    <div className="diff-item-2">
                                         <div style={{
                                             backgroundImage: `url(${BombBlitzMaps})`,
                                             backgroundPosition: "center",
@@ -319,7 +319,7 @@ export default function DeveloperNotesPage() {
                                         </div>
 
                                     </div>
-                                    <div className="diff-item-2">
+                                    <div className="diff-item-1">
                                         <div style={{
                                             backgroundImage: `url(${BombBlitzMenuDemo})`,
                                             backgroundPosition: "center",
@@ -347,8 +347,8 @@ export default function DeveloperNotesPage() {
                                             change in realtime.</li>
                                         <li>Players would click and drag at least 1 mode into Mode Select black box area.</li>
                                         <li>Tooltips were added to try and help inform players of what different symbols meant.</li>
-                                        <li>The black boxes would turn green if selectionw as valid and red if invalid.
-                                            Later changed because player testing reveiled the UI was unintuitive and players had trouble starting
+                                        <li>The black boxes would turn green if selection as valid and red if invalid.
+                                            Later changed because player testing revealed the UI was unintuitive and players had trouble starting
                                             the
                                             game on their own.</li>
                                     </ul>}
@@ -378,7 +378,7 @@ export default function DeveloperNotesPage() {
 
                             <div className="flex justify-center">
                                 <div className="diff w-5/6 h-[48rem]">
-                                    <div className="diff-item-1">
+                                    <div className="diff-item-2">
                                         <div style={{
                                             backgroundImage: `url(${BombBlitzGameplay})`,
                                             backgroundPosition: "center",
@@ -390,7 +390,7 @@ export default function DeveloperNotesPage() {
                                         </div>
 
                                     </div>
-                                    <div className="diff-item-2">
+                                    <div className="diff-item-1">
                                         <div style={{
                                             backgroundImage: `url(${BombBlitzGameplayDemo})`,
                                             backgroundPosition: "center",
@@ -421,7 +421,7 @@ export default function DeveloperNotesPage() {
                                     <ul className="list-disc text-start" >
                                         <h5>New</h5>
                                         <li>Particles on explosion added. Amount of particles based on strength of bomb.</li>
-                                        <li>Citizens spawn with a temporary bubble shield with timer to show how long invincibilty lasts.</li>
+                                        <li>Citizens spawn with a temporary bubble shield with timer to show how long invincibility lasts.</li>
                                         <li>Citizens spawn with random clothes and colors based off what player purchased in Shop.</li>
                                     </ul>} />
                         </motion.div>

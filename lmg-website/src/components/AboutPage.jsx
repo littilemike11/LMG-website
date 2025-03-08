@@ -23,7 +23,7 @@ export default function AboutPage() {
             }}
             whileInView={{ opacity: 1, x: 0 }} // Animates when it enters viewport
             transition={{ ease: "easeOut", duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: true, amount: "some" }} // Ensures smooth entrance
+            viewport={{ once: true, amount: .2 }} // Ensures smooth entrance
           >
             <TimelineItem
               time={item.time}

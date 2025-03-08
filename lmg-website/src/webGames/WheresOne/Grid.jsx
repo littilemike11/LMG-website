@@ -55,6 +55,7 @@ function Grid({ gridSize, onGridClick, resetTrigger }) {
             onClick={() => handleCellClick(cell.isCorrect)}
             className={cell.isCorrect ? "cellCorrect" : "cellIncorrect"}
             content={cell.content}
+            isCorrect={cell.isCorrect}
           />
         ))}
       </div>
