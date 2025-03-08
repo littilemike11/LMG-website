@@ -31,7 +31,6 @@ function Grid({ gridSize, onGridClick, resetTrigger }) {
   // Regenerate grid when `resetTrigger` or `gridSize` changes
   useEffect(() => {
     generateGrid();
-    console.log(resetTrigger)
   }, [resetTrigger, gridSize]);
 
   const handleCellClick = (isCorrect) => {

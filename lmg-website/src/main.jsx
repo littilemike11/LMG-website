@@ -5,6 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import WebGamesPage from './components/WebGamesPage.jsx';
+import AchievementsPage from './components/AchievementsPage.jsx'
 import DeveloperNotesPage from './components/DeveloperNotesPage.jsx';
 import SettingsPage from './components/SettingsPage.jsx'
 import AboutPage from './components/AboutPage.jsx';
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/WebGames',
     element: <WebGamesPage />,
+  },
+  {
+    path: '/Achievements',
+    element: <AchievementsPage />
   },
   {
     path: '/Extra',

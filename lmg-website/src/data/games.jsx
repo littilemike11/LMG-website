@@ -27,18 +27,18 @@ let catalogue = [
     link: "/DoYouTube",
   },
   {
-    id: "NoEsc",
-    title: "No Esc",
-    img: NoEscIcon,
-    summary: "Can you escape this?",
-    link: "/NoEsc",
-  },
-  {
     id: "WheresOne",
     title: "Where's 1",
     img: WheresOneIcon,
     summary: "The where's Waldo but for 1",
     link: "/WheresOne",
+  },
+  {
+    id: "NoEsc",
+    title: "No Esc",
+    img: NoEscIcon,
+    summary: "Can you escape this?",
+    link: "",
   },
   {
     id: "AbsurdApp",

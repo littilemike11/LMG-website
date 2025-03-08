@@ -3,6 +3,8 @@ import LMG from "../../components/game-components/LMG"
 import "../../game.css"
 import axios from "axios";
 import CategorySelect from "../../components/game-components/CategorySelect";
+import { unlockAchievement, isUnlocked } from '/src/data/achievements';
+import Banner from '/src/components/Banner';
 import GameScreen from "./GameScreen";
 import EndScreen from "./EndScreen";
 // achievements = perfect score on quiz categories
@@ -19,16 +21,15 @@ export default function NerdBowl() {
     // states used to prevent shuffling after selecting answer
     const [answerChoices, setAnswerChoices] = useState([])
     // depending on user category choice, return corresponding url
+    const [achievements, setAchievements] = useState([])
 
     async function playGame() {
         if (!categoryID) return
-        console.log(categoryID)
         let uri = createApi();
         await fetchData(uri);
     }
     const fetchCategories = async () => {
         const response = await axios.get("https://opentdb.com/api_category.php")
-        console.log(response.data.trivia_categories)
         setCategories(response.data.trivia_categories)
     }
     //get all categories at pg load
@@ -73,7 +74,6 @@ export default function NerdBowl() {
 
     }
     const nextQuestion = () => {
-        const scrollPosition = window.scrollY;
         //go to next question
         setQuestionCount(prev => prev + 1)
         //reset answer
@@ -81,10 +81,21 @@ export default function NerdBowl() {
         setAnswerChoices([])
         // setUserAnswer("")
         if (questionCount >= 9) {
-            setEndGame(true)
+            finishGame();
         }
     }
-
+    const finishGame = () => {
+        setEndGame(true)
+        //set achievements 
+        let unlockedAchievements = []
+        if (!isUnlocked(5)) {
+            unlockedAchievements.push(unlockAchievement(5))
+        }
+        if (!isUnlocked(6) && score >= 10) {
+            unlockedAchievements.push(unlockAchievement(6))
+        }
+        setAchievements(unlockedAchievements);
+    }
     //reset game variables
     const resetGame = () => {
         setScore(0)
@@ -144,6 +155,12 @@ export default function NerdBowl() {
                 }
                 <div className="mt-6">
                     <p>Special Thanks to <a className="underline italic" target="_blank" href="https://opentdb.com/">Open Trivia Database</a> for all the questions!</p>
+                </div>
+                {/* show achievements */}
+                <div className="toast z-50 flex flex-col gap-2">
+                    {achievements.map((achievement, index) => (
+                        <Banner key={index} achievement={achievement} />
+                    ))}
                 </div>
 
             </div>

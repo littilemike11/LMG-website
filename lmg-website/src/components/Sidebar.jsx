@@ -42,7 +42,7 @@ export default function Sidebar({ catalogue }) {
                         transition={{ duration: 0.3 }}
                     ></motion.label>
 
-                    <ul className="menu gap-2 bg-base-200 text-base-content min-h-full w-72 shadow rounded-r-lg p-4">
+                    <ul className="menu gap-2 bg-base-200 text-base-content min-h-full w-72 shadow-sm rounded-r-lg p-4">
                         <p className="text-lg pb-4">Choose a Game Below!</p>
 
                         {/* Sidebar content here */}
@@ -88,7 +88,7 @@ export default function Sidebar({ catalogue }) {
 //                 className="drawer-side"
 //             >
 //                 {/* Background overlay */}
-//                 <ul className="menu gap-2 bg-base-200 text-base-content min-h-full w-72 shadow rounded-r-lg p-4">
+//                 <ul className="menu gap-2 bg-base-200 text-base-content min-h-full w-72 shadow-sm rounded-r-lg p-4">
 //                     <p className="text-lg pb-4">Choose a Game Below!</p>
 
 //                     {/* Sidebar content here */}

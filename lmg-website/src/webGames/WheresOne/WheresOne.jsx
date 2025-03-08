@@ -5,6 +5,8 @@ import Lives from './Lives';
 import Rules from '../../components/game-components/Rules';
 import LMG from '../../components/game-components/LMG';
 import './WheresOne.css'; // Import the CSS
+import { unlockAchievement, isUnlocked } from '/src/data/achievements';
+import Banner from '/src/components/Banner';
 
 function WheresOne() {
   const [round, setRound] = useState(1);
@@ -16,7 +18,7 @@ function WheresOne() {
   const [isTimerOn, setIsTimerOn] = useState(false);
   const [progress, setProgress] = useState(100)
   const [gameStart, setGameStart] = useState(false);
-
+  const [achievements, setAchievements] = useState([])
 
   const startGame = () => {
     if (gameStart) return;
@@ -46,6 +48,15 @@ function WheresOne() {
   };
 
   const endGame = () => {
+    //set achievements 
+    let unlockedAchievements = []
+    if (!isUnlocked(1)) {
+      unlockedAchievements.push(unlockAchievement(1))
+    }
+    if (!isUnlocked(2) && round >= 50) {
+      unlockedAchievements.push(unlockAchievement(2))
+    }
+    setAchievements(unlockedAchievements);
     setGameStart(false);
     setLives(3);
     setRound(1);
@@ -54,6 +65,8 @@ function WheresOne() {
     setIsTimerOn(false);
     setPrevRound(round);
     setProgress(100)
+
+
   };
 
   const lostRound = () => {
@@ -69,6 +82,13 @@ function WheresOne() {
 
       <main>
         <div className="">
+          {/* show achievements */}
+          <div className="toast z-50 flex flex-col gap-2">
+            {achievements.map((achievement, index) => (
+              <Banner key={index} achievement={achievement} />
+            ))}
+          </div>
+
           <div className='flex justify-normal'>
             <Rules
               content={

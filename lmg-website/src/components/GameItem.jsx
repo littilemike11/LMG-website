@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
 export default function GameItem({ game, prev, next, setActiveGame }) {
-    console.log(game)
     return (
         <>
             {/* id needed fot links + arrows */}
