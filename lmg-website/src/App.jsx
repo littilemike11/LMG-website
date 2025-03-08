@@ -14,15 +14,6 @@ function App() {
     { title: "Credits", link: "/Credits" }
   ];
 
-  //set achievements
-  useEffect(() => {
-    if (!localStorage.achievements) createAchievements();
-    if (!localStorage.unlockedThemes) {
-      localStorage.setItem("unlockedThemes", JSON.stringify(["default", "light", "dark"]));
-    }
-
-  }, [])
-
   return (
     <>
       <div className=' bgContainer'>
@@ -35,7 +26,7 @@ function App() {
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: { staggerChildren: .5 }
+                transition: { staggerChildren: .3 }
               }
             }}
           >
