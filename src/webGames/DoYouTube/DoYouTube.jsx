@@ -19,7 +19,7 @@ export default function DoYouTube() {
     const [achievements, setAchievements] = useState([])
 
     const apiKey = import.meta.env.VITE_API_KEY
-    //round num is score +1
+
     const playGame = async () => {
         if (!categoryID) return
         setGameState("Playing")
