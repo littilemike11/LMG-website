@@ -8,9 +8,9 @@ import { unlockAchievement, isUnlocked } from '/src/data/achievements';
 import Banner from '/src/components/Banner';
 export default function ChainGame() {
     // achievement win without hints + errors
-    const OPEN_AI_API_KEY = import.meta.env.VITE_OPEN_AI_KEY
-    const OPEN_AI_ORG = import.meta.env.VITE_OPEN_AI_ORG
-    const OPEN_AI_PROJ = import.meta.env.VITE_OPEN_AI_PROJ
+    // const OPEN_AI_API_KEY = import.meta.env.VITE_OPEN_AI_KEY
+    // const OPEN_AI_ORG = import.meta.env.VITE_OPEN_AI_ORG
+    // const OPEN_AI_PROJ = import.meta.env.VITE_OPEN_AI_PROJ
     const [wordChain, setWordChain] = useState([])
     const [activeRow, setActiveRow] = useState(1)
     const [solvedRows, setSolvedRows] = useState([0, 7])
