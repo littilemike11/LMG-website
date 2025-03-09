@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { HashRouter, Routes, Route } from 'react-router-dom'; import { createAchievements } from '/src/data/achievements.js'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createAchievements } from '/src/data/achievements.js'
 import WebGamesPage from './components/WebGamesPage.jsx';
 import AchievementsPage from './components/AchievementsPage.jsx'
 import DeveloperNotesPage from './components/DeveloperNotesPage.jsx';
@@ -26,22 +27,56 @@ const initializeStorage = () => {
 };
 initializeStorage()
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />
+  },
+  {
+    path: '/WebGames',
+    element: <WebGamesPage />,
+  },
+  {
+    path: '/Achievements',
+    element: <AchievementsPage />
+  },
+  {
+    path: '/Extra',
+    element: <DeveloperNotesPage />
+  },
+  {
+    path: '/Settings',
+    element: <SettingsPage />
+  },
+  {
+    path: '/Credits',
+    element: <AboutPage />
+  },
+  // webgame pgs
+  {
+    path: '/WheresOne',
+    element: <WheresOne />
+  },
+  {
+    path: '/NoEsc',
+    element: <NoEsc />
+  },
+  {
+    path: '/NerdBowl',
+    element: <NerdBowl />
+  },
+  {
+    path: '/DoYouTube',
+    element: <DoYouTube />
+  },
+  {
+    path: '/ChainGame',
+    element: <ChainGame />
+  }
+])
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/WebGames" element={<WebGamesPage />} />
-        <Route path="/Achievements" element={<AchievementsPage />} />
-        <Route path="/Extra" element={<DeveloperNotesPage />} />
-        <Route path="/Settings" element={<SettingsPage />} />
-        <Route path="/Credits" element={<AboutPage />} />
-        <Route path="/WheresOne" element={<WheresOne />} />
-        <Route path="/NoEsc" element={<NoEsc />} />
-        <Route path="/NerdBowl" element={<NerdBowl />} />
-        <Route path="/DoYouTube" element={<DoYouTube />} />
-        <Route path="/ChainGame" element={<ChainGame />} />
-      </Routes>
-    </HashRouter>
-  </React.StrictMode>
-);
+    <RouterProvider router={router} />
+  </React.StrictMode>,
+)
