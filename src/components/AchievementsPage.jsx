@@ -3,7 +3,6 @@ import Footer from "./Footer"
 import PageTitle from "./PageTitle"
 import { getAchievements } from "/src/data/achievements"
 import Achievement from "./Achievement"
-// import Sidebar from "./Sidebar"
 import catalogue from "/src/data/games"
 import { useState, useEffect } from "react"
 export default function AchievementsPage() {
