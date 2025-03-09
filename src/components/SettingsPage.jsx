@@ -58,7 +58,7 @@ export default function SettingsPage() {
                             checked={theme === themeOption}
                             type="radio"
                             name="theme-buttons"
-                            className="btn theme-controller join-item"
+                            className="btn theme-controller w-full join-item"
                             onChange={(e) => handleInput(e.target.value)}
                             aria-label={capitalize(themeOption)}
                             value={themeOption}

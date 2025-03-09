@@ -19,7 +19,7 @@ function App() {
       <div className=' bgContainer'>
         <div className="flex flex-col justify-end items-end w-full h-full ">
           <motion.ul
-            className="mr-6 mb-12 gap-4 menu menu-vertical rounded-box"
+            className="mr-6 mb-24 gap-4 menu menu-vertical rounded-box"
             initial="hidden"
             animate="visible"
             variants={{
