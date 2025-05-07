@@ -1,58 +1,46 @@
 import './App.css'
 import Footer from './components/Footer'
-import TitleScreenLinks from './components/TitleScreenLinks'
-import { motion } from 'motion/react'
+import Hero from './components/Hero';
+import WebGamesPage from "./components/WebGamesPage"
+import catalogue from './data/games';
 function App() {
-
-  const pages = [
-    { title: "Start Game", link: "/WebGames" },
-    { title: "Achievements", link: "/Achievements" },
-    { title: "Extra", link: "/Extra" },
-    { title: "Settings", link: "/Settings" },
-    { title: "Credits", link: "/Credits" }
-  ];
 
   return (
     <>
-      <div className=' bgContainer'>
-        <div className="flex flex-col justify-end items-end w-full h-full ">
-          <motion.ul
-            className="mr-6 mb-24 gap-4 menu menu-vertical rounded-box"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: { staggerChildren: .3 }
-              }
-            }}
-          >
-            {pages.map((page, index) => (
-              <motion.li
-                whileHover={{ scale: 1.1, transition: { duration: .2, ease: "easeOut" } }}
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, translateX: "100%" },
-                  visible: {
-                    opacity: 1,
-                    translateX: "0%",
-                    transition: { ease: "easeOut", duration: 1 }
-                  }
-                }}>
-                <TitleScreenLinks
-                  title={page.title}
-                  link={page.link}
-                />
-              </motion.li>
-            ))}
-          </motion.ul>
-        </div>
-        <div className='absolute bottom-0 left-0'>
-          <Footer />
+        <Hero/>  
+        <WebGamesPage/>    
+        <Footer />     
+
+      <div className="min-h-screen w-full bg-black flex items-center justify-center p-10">
+      <div className="z-40 inset-0 fixed rounded-3xl border-8 border-pink-600 shadow-[0_0_40px_#ff00ff] w-full overflow-hidden">
+
+        {/* Scanlines */}
+        {/* <div className="absolute inset-0 z-10 pointer-events-none opacity-20 bg-[linear-gradient(transparent_95%,#ff00ff_96%)] bg-[length:100%_2px]"></div> */}
+        {/* <div className="absolute inset-0 z-10 pointer-events-none scanlines"></div> */}
+
+
+        {/* Header */}
+        <div className=" z-40 text-center text-white mb-6">
+            <header className="bg-gradient-to-r from-pink-500 to-purple-700 py-6 text-center shadow-lg ">
+              <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-widest neon-glow">
+                LMG Arcade
+              </h1>
+              <p className="text-xl mt-2 text-gray-200">
+              Learn · Make · Game
+              </p>
+            </header>
+          
         </div>
 
-      </div>
+        {/* Fake Buttons */}
+        {/* <div className="flex justify-center absolute bottom-0 gap-4">
+          <div className="w-8 h-8 bg-red-600 rounded-full shadow-lg"></div>
+          <div className="w-8 h-8 bg-yellow-400 rounded-full shadow-lg"></div>
+          <div className="w-8 h-8 bg-green-500 rounded-full shadow-lg"></div>
+        </div> */}
+        </div>
+        </div>
+
 
     </>
   )

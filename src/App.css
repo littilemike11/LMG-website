@@ -1,25 +1,31 @@
 #root {
   /* applys to all pgs*/
-  margin: 0 auto;
+  margin: 0 0;
   /* padding: 2rem;  */
   text-align: center;
 
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* 
+.neon-glow {
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #f0f,
+    0 0 20px #f0f,
+    0 0 40px #f0f;
+} */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.15;
+  mix-blend-mode:multiply;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
 .bgContainer {
   /* overflow: hidden; */
