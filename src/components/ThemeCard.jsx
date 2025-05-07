@@ -5,8 +5,9 @@ export default function ThemeCard({theme}){
             <div style={{background:daisyUIThemes[theme].base100}} className={`card card-compact w-96 shadow-xl h-full text-primary-content}`}>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title flex items-center">
-                        Theme: {theme}
+                        Reward: Theme
                     </h2>
+                    <p className="italic text-2xl">{theme}</p>
                     <div className="flex gap-2">
                          <button style={{background:daisyUIThemes[theme].primary}} className="btn btn-circle">A</button>
                          <button style={{background:daisyUIThemes[theme].secondary}} className="btn btn-circle">B</button>

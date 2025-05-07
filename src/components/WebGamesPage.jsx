@@ -16,9 +16,9 @@ export default function WebGamesPage() {
             <div className="flex lg:ml-6 justify-center lg:justify-start">
                 <PageTitle title="The Start of a Bountiful Collection ..." />
             </div>
-            <div className="bg-base-100 grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 place-items-center">
+            <div className="bg-base-100 grid grid-cols-1 gap-4 p-4 md:grid-cols-2 xl:grid-cols-3 place-items-center">
                 {catalogue.map(game=>(
-                    <GameItem game={game}/>
+                    <GameItem key={game.id} game={game}/>
                 ))}
 
             </div>

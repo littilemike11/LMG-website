@@ -39,7 +39,7 @@ export default function AchievementsPage() {
                     </li>
                 ))}
             </ul>
-            <div>Flip to see reward</div>
+            <div> <span className="italic text-info font-bold">Flip</span> to see <span className="text-success capitalize">Rewards</span></div>
             <ul className=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 place-items-center">
                 {achievements.filter(achievement => selected === "all" || achievement.game === selected).map(achievement => (
                     <li key={achievement.id}>

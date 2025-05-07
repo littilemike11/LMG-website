@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 #root {
   /* applys to all pgs*/
   margin: 0 0;
@@ -5,14 +7,20 @@
   text-align: center;
 
 }
-/* 
+
+.arcade-font {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .neon-glow {
   text-shadow:
     0 0 5px #fff,
     0 0 10px #f0f,
     0 0 20px #f0f,
     0 0 40px #f0f;
-} */
+}
 .scanlines {
   background-image: repeating-linear-gradient(
     to bottom,

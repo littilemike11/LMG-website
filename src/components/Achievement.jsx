@@ -12,13 +12,13 @@ export default function Achievement({ achievement, link }) {
                     <div className={`card  bg-base-100 w-96 shadow-xl ${achievement.isUnlocked ? "bg-primary text-primary-content" : "bg-neutral text-neutral-content"}`}>
                         <div className="card-body items-center text-center">
                             {achievement.isUnlocked ? <FaLockOpen /> : <FaLock />}
-                            <h2 className="card-title flex items-center">
+                            <h2 className="card-title flex italic font-mono items-center">
                                 {achievement.title}
                             </h2>
                             <p>{achievement.description}</p>
-                            <div className="badge badge-outline">{achievement.game}</div>
+                            <div className={`badge badge-outline ${!achievement.isUnlocked &&  "badge-primary"}`}>{achievement.game}</div>
                             <div className="card-actions">
-                                <Link to={link} className={`btn ${achievement.isUnlocked ? "btn-neutral" : "btn-primary"}`}>{achievement.isUnlocked ? "Try Now" : "Unlock Now"}</Link>
+                                <Link to={link} className={`btn ${achievement.isUnlocked ? "btn-neutral" : "btn-primary"}`}>{achievement.isUnlocked ? "Try Theme" : "Go To"}</Link>
                             </div>
                         </div>
                     </div>
