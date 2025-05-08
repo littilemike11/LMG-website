@@ -4,12 +4,16 @@ import Footer from "./Footer";
 import TimelineItem from "./TimelineItem";
 import timeline from "../data/Timeline";
 import PageTitle from "./PageTitle";
+import Portfolio from "./Portfolio";
 export default function AboutPage() {
   return (
     <>
       <NavBar />
       <PageTitle title={"Credits"} />
+      <Portfolio />
 
+      <PageTitle title={"My Journey"} isSubtitle={true} />
+      <p>See how my tech career all started</p>
       {/* Animated Timeline */}
       <motion.ul
         className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
