@@ -8,7 +8,7 @@ export default function LMG() {
     return (
         <>
             <div className='flex justify-start'>
-                <Link to="/webgames">
+                <Link to="/">
                     <button className='btn outline hover:scale-110 text-3xl' >LMG Games</button>
                 </Link>
             </div>

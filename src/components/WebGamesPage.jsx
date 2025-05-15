@@ -2,9 +2,9 @@ import NavBar from "./NavBar";
 import Sidebar from "./Sidebar"
 import Footer from "./Footer.jsx"
 import PageTitle from "./PageTitle.jsx"
-import "../webgamepg.css"
+// import "../webgamepg.css"
 
-import catalogue from "../data/games.jsx";
+import catalogue from "../data/games.js";
 import GameItem from "./GameItem.jsx";
 export default function WebGamesPage() {
 
@@ -13,18 +13,21 @@ export default function WebGamesPage() {
             {/* can have a banner for new games */}
 
             {/* <NavBar /> */}
-            <div className="flex lg:ml-6 justify-center lg:justify-start">
+            <div>
+                 <div className="">
                 <PageTitle title="The Start of a Bountiful Collection ..." />
+                </div>
+                <div className="bg-base-100 grid grid-cols-1 justify-items-center items-center gap-x-10 gap-y-14 sm:gap-y-5 m-auto sm:p-10 sm:place-items-center sm:grid-cols-2 lg:grid-cols-3 ">
+                    {catalogue.map(game=>(
+                        <GameItem key={game.id} game={game}/>
+                    ))}
+                    
+                </div>
             </div>
-            <div className="bg-base-100 grid grid-cols-1 gap-4 p-4 md:grid-cols-2 xl:grid-cols-3 place-items-center">
-                {catalogue.map(game=>(
-                    <GameItem key={game.id} game={game}/>
-                ))}
+           
 
-            </div>
-
-            {/* <Sidebar catalogue={catalogue}/>
-            <Footer /> */}
+            {/* <Sidebar catalogue={catalogue}/> */}
+            
         </>
     )
 }

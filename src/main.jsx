@@ -33,10 +33,6 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: '/WebGames',
-    element: <WebGamesPage />,
-  },
-  {
     path: '/Achievements',
     element: <AchievementsPage />
   },

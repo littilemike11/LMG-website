@@ -39,11 +39,11 @@ export default function NavBar() {
                             <li><Link to={"/Credits"}>Credits</Link></li>
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost text-xl">LMG Games</Link>
+                    <Link to="/" className="btn btn-ghost text-xl arcade-font">LMG Games</Link>
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className="navbar-end hidden lg:flex">
                     <ul className="menu z-10  menu-horizontal px-1">
-                        <li><Link to={"/Achievements"}>Achievements</Link></li>
+                        <li><Link to={"/Achievements"}>Rewards</Link></li>
                         <li>
                             <details>
                                 <summary>Extra</summary>
@@ -53,13 +53,13 @@ export default function NavBar() {
                                 </ul>
                             </details>
                         </li>
-                        <li><Link to={"/Settings"}>Settings</Link></li>
-                        <li><Link to={"/Credits"}>Credits</Link></li>
+                        <li><Link to={"/Settings"}>Customize</Link></li>
+                        <li><Link to={"/Credits"}>About</Link></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <Link to={"/WebGames"} className="btn btn-neutral">Games</Link>
-                </div>
+                {/* <div className="navbar-end">
+                    <Link to={"/WebGames"} className="btn btn-neutral">Play</Link>
+                </div> */}
             </div>
         </>
     )

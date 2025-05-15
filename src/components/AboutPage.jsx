@@ -9,7 +9,7 @@ export default function AboutPage() {
   return (
     <>
       <NavBar />
-      <PageTitle title={"Credits"} />
+      <PageTitle title={"About M.E"} />
       <Portfolio />
 
       <PageTitle title={"My Journey"} isSubtitle={true} />
