@@ -152,7 +152,7 @@ export const achievements = [
     game: "Chain Game",
     title: "Flawless Chain",
     description:
-      "Complete a round of Chain Game without using hints and without a single wrong guess",
+      "Complete a round of Chain Game without using hints and an incorrect guess",
     isUnlocked: false,
     rewardType: "theme",
     reward: "Fantasy",

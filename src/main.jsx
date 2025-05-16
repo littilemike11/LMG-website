@@ -33,15 +33,11 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: '/WebGames',
-    element: <WebGamesPage />,
-  },
-  {
     path: '/Achievements',
     element: <AchievementsPage />
   },
   {
-    path: '/Extra',
+    path: '/dev-notes',
     element: <DeveloperNotesPage />
   },
   {
@@ -49,7 +45,7 @@ const router = createBrowserRouter([
     element: <SettingsPage />
   },
   {
-    path: '/Credits',
+    path: '/about',
     element: <AboutPage />
   },
   // webgame pgs
