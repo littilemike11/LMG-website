@@ -7,10 +7,13 @@ export default function NavBar() {
     },);
     return (
         <>
-            <div className="navbar bg-base-100 shadow-lg">
+            <div className="navbar z-50 bg-base-100 shadow-lg">
                 <div className="navbar-start flex items-center gap-2">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                    <Link to="/" className="btn btn-ghost text-xl arcade-font">LMG Games</Link>
+                </div>
+                <div className="navbar-end">
+                    <div className="dropdown dropdown-bottom dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -27,34 +30,34 @@ export default function NavBar() {
                         <ul
                             tabIndex={0}
                             className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 w-52 p-2 shadow-sm">
-                            <li><Link to={"/Achievements"}>Achievements</Link></li>
+                            <li><Link to={"/about"}>About</Link></li>
                             <li>
-                                <Link to={"/Extra"}>Extra</Link>
+                                <Link to={"/dev-notes"}>Dev Notes</Link>
                                 <ul className="p-2">
-                                    <li><Link to={"/Extra"}>Cuber</Link></li>
-                                    <li><Link to={"/Extra#BombBlitz"}>Bomb Blitz</Link></li>
+                                    <li><Link to={"/dev-notes"}>Cuber</Link></li>
+                                    <li><Link to={"/dev-notes#BombBlitz"}>Bomb Blitz</Link></li>
                                 </ul>
                             </li>
+                            <li><Link to={"/Achievements"}>Achievements</Link></li>
+
                             <li><Link to={"/Settings"}>Settings</Link></li>
-                            <li><Link to={"/Credits"}>Credits</Link></li>
+
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost text-xl arcade-font">LMG Games</Link>
-                </div>
-                <div className="navbar-end hidden lg:flex">
-                    <ul className="menu z-10  menu-horizontal px-1">
-                        <li><Link to={"/Achievements"}>Rewards</Link></li>
+                    <ul className="menu z-10  menu-horizontal px-1 hidden md:flex">
+                        <li><Link to={"/about"}>About</Link></li>
                         <li>
                             <details>
-                                <summary>Extra</summary>
+                                <summary>Dev Notes</summary>
                                 <ul className="p-2">
-                                    <li><Link to={"/Extra"}>Cuber</Link></li>
-                                    <li><Link to={"/Extra#BombBlitz"}>Bomb Blitz</Link></li>
+                                    <li><Link to={"/dev-notes"}>Cuber</Link></li>
+                                    <li><Link to={"/dev-notes#BombBlitz"}>Bomb Blitz</Link></li>
                                 </ul>
                             </details>
                         </li>
-                        <li><Link to={"/Settings"}>Customize</Link></li>
-                        <li><Link to={"/Credits"}>About</Link></li>
+                        <li><Link to={"/Achievements"}>Achievements</Link></li>
+                        <li><Link to={"/Settings"}>Settings</Link></li>
+
                     </ul>
                 </div>
                 {/* <div className="navbar-end">

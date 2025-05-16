@@ -13,7 +13,7 @@ export default function Achievement({ achievement, link }) {
         <div className={`swap-off card bg-base-100 w-96 shadow-xl ${achievement.isUnlocked ? "bg-primary text-primary-content" : "bg-neutral text-neutral-content"}`}>
           <div className="card-body items-center text-center relative">
             {achievement.isUnlocked ? <FaLockOpen className="text-6xl mb-2" /> : <FaLock className="text-6xl mb-2" />}
-            <h2 className="card-title flex italic text-2xl font-mono items-center">
+            <h2 className="card-title flex arcade-font italic text-xl  items-center">
               {achievement.title}
             </h2>
             <p className="text-lg">{achievement.description}</p>
@@ -23,7 +23,7 @@ export default function Achievement({ achievement, link }) {
                 {achievement.isUnlocked ? "Try Theme" : "Go To"}
               </Link>
             </div>
-            
+
             {/* Flip Icon with Tooltip */}
             <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
               <FaSyncAlt className="text-lg" />

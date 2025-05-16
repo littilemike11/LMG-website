@@ -10,23 +10,23 @@ import catalogue from './data/games';
 function App() {
   return (
     <>
-        <NavBar/>
-          {/* <Hero /> */}
-  
-                 
-                <PageTitle title="The Start of a Bountiful Collection ..." />
-                
-                <ul className="bg-base-100 mb-10 grid grid-cols-1 justify-items-center items-center gap-x-10 gap-y-14 sm:gap-y-5 m-auto sm:p-10 sm:place-items-center sm:grid-cols-2 lg:grid-cols-3 ">
-                    {catalogue.map(game=>(
-                        <li key={game.id}>
-                          <GameItem game={game}/>
-                          </li>
-                    ))}
-                    
-                </ul>
-            
-          <Footer />
-    
+      <NavBar />
+      {/* <Hero /> */}
+
+
+      <PageTitle title="Web Game Hub" />
+      <p className="text-lg ">Browse and play mobile or pc games</p>
+      <ul className="bg-base-100 mb-10 grid grid-cols-1 justify-items-center items-center gap-x-10 gap-y-14 sm:gap-y-5 m-auto sm:p-10 sm:place-items-center sm:grid-cols-2 lg:grid-cols-3 ">
+        {catalogue.map(game => (
+          <li key={game.id}>
+            <GameItem game={game} />
+          </li>
+        ))}
+
+      </ul>
+
+      <Footer />
+
     </>
   );
 }

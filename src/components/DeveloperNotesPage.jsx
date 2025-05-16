@@ -51,6 +51,8 @@ export default function DeveloperNotesPage() {
             <div className="px-[2rem]">
 
                 <PageTitle title={"Developer Notes"} />
+                <p className="text-lg ">Explore the process of how games are made, from concept to launch</p>
+
                 <h2 id="section-Cuber"></h2>
                 <main>
                     <div >
@@ -59,12 +61,12 @@ export default function DeveloperNotesPage() {
                             variants={fadeInUp}
                             initial="hidden"
                             animate="visible"
-                            className="hero min-h-screen"
+                            className="hero sm:min-h-screen"
                             style={{ backgroundImage: `url(${CuberScreenshot})` }}>
                             <div className="hero-overlay bg-opacity-60"></div>
                             <div className="hero-content text-neutral-content text-center">
                                 <div className="max-w-md">
-                                    <h1 className="mb-5 text-5xl font-bold">Cuber</h1>
+                                    <h1 className="arcade-font mb-5 text-5xl font-bold">Cuber</h1>
                                     <p className="mb-5">
                                         A 3d runner with flappy bird elements. Endless and handcrafted levels.
                                     </p>
@@ -83,7 +85,7 @@ export default function DeveloperNotesPage() {
                             whileInView="visible"
                             viewport={{ once: true, amount: "some" }}
                         >
-                            <h3 className="text-2xl my-4">Gameplay</h3>
+                            <h3 className="arcade-font text-2xl my-4">Gameplay</h3>
                             <Divider
                                 content1=
                                 {<figure >
@@ -108,7 +110,7 @@ export default function DeveloperNotesPage() {
                             whileInView="visible"
                             viewport={{ once: true, amount: "some" }}
                         >
-                            <h3 className="text-2xl my-4">Levels</h3>
+                            <h3 className="arcade-font text-2xl my-4">Levels</h3>
                             <Divider
 
                                 content1={
@@ -128,7 +130,7 @@ export default function DeveloperNotesPage() {
                             whileInView="visible"
                             viewport={{ once: true, amount: "some" }}
                         >
-                            <h3 className="text-2xl my-4">Old Gameplay</h3>
+                            <h3 className="arcade-font text-2xl my-4">Old Gameplay</h3>
                             <p>These gameplay clips are before the level progression bar was implemented and before the next level title was
                                 named.These clips are from the unity editor.
                             </p>
@@ -158,37 +160,46 @@ export default function DeveloperNotesPage() {
                             whileInView="visible"
                             viewport={{ once: true, amount: "some" }}
                         >
-                            <h3 className="text-2xl my-4">Planning / Notes</h3>
-                            <p>Use the <kbd className="kbd">◀︎</kbd> <kbd className="kbd">▶︎</kbd> arrows to control the slide show below </p>
-                            <div className="carousel rounded-box w-1/2 lg:w-1/3">
-                                <div className="carousel-item w-full">
-                                    <figure>
-                                        <figcaption>Initial design of potential levels</figcaption>
-                                        <img
-                                            src={initialObstacleDesigns}
-                                            className="w-full"
-                                            alt="Initial design of potential levels" />
-                                    </figure>
+                            <h3 className="arcade-font text-2xl my-4">Planning / Notes</h3>
+                            <div className="carousel max-w-md">
+                                <div id="slide1" className="carousel-item relative w-full">
+                                    <p className="bg-neutral absolute bottom-0 text-neutral-content ">Initial design of potential levels</p>
+                                    <img
+                                        src={initialObstacleDesigns}
+                                        className="w-full"
+                                        alt="Initial design of potential levels" />
+                                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                                        <a href="#slide3" className="btn btn-circle">❮</a>
+                                        <a href="#slide2" className="btn btn-circle">❯</a>
+                                    </div>
                                 </div>
-                                <div className="carousel-item w-full">
-                                    <figure>
-                                        <figcaption>List of potential level names</figcaption>
-                                        <img
-                                            src={potentialLvlNames}
-                                            className="w-full"
-                                            alt="List of potential level names" />
-                                    </figure>
+                                <div id="slide2" className="carousel-item relative w-full">
+                                    <p className="bg-neutral absolute bottom-0 text-neutral-content ">List of potential level names</p>
+
+                                    <img
+                                        src={potentialLvlNames}
+                                        className="w-full"
+                                        alt="List of potential level names" />
+                                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                                        <a href="#slide1" className="btn btn-circle">❮</a>
+                                        <a href="#slide3" className="btn btn-circle">❯</a>
+                                    </div>
                                 </div>
-                                <div className="carousel-item w-full">
-                                    <figure>
-                                        <figcaption>Game design notes</figcaption>
-                                        <img
-                                            src={notes}
-                                            className="w-full"
-                                            alt="Game design notes" />
-                                    </figure>
+                                <div id="slide3" className="carousel-item relative w-full">
+                                    <p className="bg-neutral absolute bottom-0 text-neutral-content ">Game design notes</p>
+
+                                    <img
+                                        src={notes}
+                                        className="w-full"
+                                        alt="Game design notes" />
+                                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                                        <a href="#slide2" className="btn btn-circle">❮</a>
+                                        <a href="#slide1" className="btn btn-circle">❯</a>
+                                    </div>
                                 </div>
+
                             </div>
+
                         </motion.div>
 
                     </div>
@@ -236,7 +247,7 @@ export default function DeveloperNotesPage() {
                                     <div className="lg:pr-4">
                                         <div className="lg:max-w-lg">
                                             <p className="text-base font-semibold leading-7 text-secondary">Objective : Survive</p>
-                                            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Bomb Blitz</h1>
+                                            <h1 className="arcade-font mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Bomb Blitz</h1>
                                             <p className="mt-6 text-xl leading-8 ">
                                                 A 2d survival game to click and drag citizens out of harms way.
                                             </p>
@@ -249,7 +260,7 @@ export default function DeveloperNotesPage() {
                                     </div>
                                 </div>
                                 {/* Sticky image */}
-                                <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                                <div className="sm:-ml-12 -mt-12 sm:p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
                                     <img
                                         alt="Gif of gameplay from Bomb Blitz"
                                         src={BombBlitzGameplay}
@@ -302,11 +313,11 @@ export default function DeveloperNotesPage() {
                             whileInView="visible"
                             viewport={{ once: true, amount: "some" }}
                         >
-                            <h3 className="text-2xl my-4">Old vs New Gameplay</h3>
+                            <h3 className="arcade-font text-2xl my-4">Old vs New Gameplay</h3>
                             <h4 className="text-xl my-4">Start Menu</h4>
                             <p>Click and drag to sliders to see the old (left) and new (right) changes</p>
                             <div className="flex justify-center">
-                                <div className="diff w-5/6 h-[48rem]">
+                                <div className="diff w-full sm:w-5/6 h-96 sm:h-[48rem]">
                                     <div className="diff-item-2">
                                         <div style={{
                                             backgroundImage: `url(${BombBlitzMaps})`,
@@ -377,7 +388,7 @@ export default function DeveloperNotesPage() {
                             <p>Click and drag to sliders to see the old (left) and new (right) changes</p>
 
                             <div className="flex justify-center">
-                                <div className="diff w-5/6 h-[48rem]">
+                                <div className="diff w-full sm:w-5/6 h-96 sm:h-[48rem]">
                                     <div className="diff-item-2">
                                         <div style={{
                                             backgroundImage: `url(${BombBlitzGameplay})`,

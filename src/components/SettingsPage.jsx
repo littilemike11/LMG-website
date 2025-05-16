@@ -47,11 +47,12 @@ export default function SettingsPage() {
     return (
         <div className="min-h-screen flex flex-col"> {/* Ensures the full height is used */}
             <NavBar />
-            <PageTitle title={"Settings"} />
+            <PageTitle title={"Themes"} />
+            <p className="text-lg ">Try on different unlocked themes</p>
 
             <div className="flex flex-col md:flex-row place-items-center justify-around md:items-baseline flex-grow pb-20">
                 <div className="join join-vertical shadow-2xl">
-                    <div className="join-item font-semibold text-2xl">Theme Selector</div>
+                    <div className="join-item arcade-font font-semibold text-2xl">Theme Selector</div>
                     {unlockedThemes.map((themeOption, index) => (
                         <input
                             key={index}
@@ -67,7 +68,7 @@ export default function SettingsPage() {
                 </div>
 
                 <div className="pt-10 sm:pt-0 sm:border-2 p-4 shadow-2xl">
-                    <div className="text-2xl  font-semibold">Theme Preview</div>
+                    <div className="text-2xl arcade-font font-semibold">Theme Preview</div>
                     <div className="w-96 h-fit p-2">
                         <div className="h-48 w-full border border-base-content grid grid-flow-col grid-rows-3">
                             <div className="row-span-3 bg-base-200">BG 2</div>

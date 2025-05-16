@@ -12,10 +12,10 @@ export default function AboutPage() {
       <PageTitle title={"About M.E"} />
       <Portfolio />
 
-      <PageTitle title={"My Journey"} isSubtitle={true} />
-      <p>See how my tech career all started</p>
+      {/* <PageTitle title={"My Journey"} isSubtitle={true} />
+      <p>See how my tech career all started</p> */}
       {/* Animated Timeline */}
-      <motion.ul
+      {/* <motion.ul
         className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
       >
         {timeline.map((item, index) => (
@@ -37,7 +37,7 @@ export default function AboutPage() {
             />
           </motion.li>
         ))}
-      </motion.ul>
+      </motion.ul> */}
 
       <Footer />
 
