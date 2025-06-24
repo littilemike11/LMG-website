@@ -8,6 +8,10 @@ import Portfolio from "./Portfolio";
 import GameInfo from "./GameInfo";
 import catalogue from "../data/games";
 export default function AboutPage() {
+  // **************** ALTERNATIVE IDEAS***********
+  // 1. an info/learn more button on homepage for each game card. info button opens up a modal with sumary
+  // 2. learn more button links to new page about each game, idk if this fits for such various game sizes
+
   return (
     <>
       <NavBar />
