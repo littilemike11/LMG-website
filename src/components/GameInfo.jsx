@@ -1,24 +1,37 @@
-import { Link } from "react-router-dom"
+import { useRef } from "react";
+
 export default function GameInfo({ game }) {
+    const dialogRef = useRef(null);
+
+    const openModal = () => {
+        if (dialogRef.current) {
+            dialogRef.current.showModal();
+        }
+    };
+
+    const closeModal = () => {
+        if (dialogRef.current) {
+            dialogRef.current.close();
+        }
+    };
+
     return (
         <>
-            <div className="relative flex-col place-items-center h-96 w-96 sm:h-full sm:w-full">
-                <Link to={game.link}>
-                    <div className="relative hover:scale-105 transition duration-300">
-                        <img src={game.img} alt={`image of ${game.title} icon`} className="h-80 w-80 object-cover rounded-box shadow-lg" />
-                        {game.isPCOnly && <div className="absolute top-2 right-5 text-3xl text-black z-10">📵</div>}
-                    </div>
-                </Link>
+            <button className="cursor-pointer hover:scale-110" onClick={openModal}>
+                ℹ️
+            </button>
 
-                <div className="w-72 sm:cursor-help text-left p-2 relative group">
-                    <h2 className="text-xl sm:text-2xl italic font-semibold arcade-font transition-opacity duration-300 opacity-100 sm:group-hover:opacity-0">
-                        {game.title}
-                    </h2>
-                    <p className="text-sm sm:text-lg sm:absolute p-2 top-0 left-0 text-pretty transition-opacity duration-300  opacity-100 sm:opacity-0 group-hover:opacity-100">
-                        {game.summary}
-                    </p>
+            <dialog ref={dialogRef} className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">{"About " + game.title}</h3>
+                    <div className="mx-auto px-4 py-6 text-left space-y-4">
+                        {game.info}
+                    </div>
+                    <div className="modal-action">
+                        <button onClick={closeModal} className="btn">Close</button>
+                    </div>
                 </div>
-            </div>
+            </dialog>
         </>
-    )
+    );
 }

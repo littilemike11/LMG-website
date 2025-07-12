@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import catalogue from "/src/data/games"
+import catalogue from "/src/data/games.jsx"
 export default function Banner({ achievement }) {
     const [isVisible, setIsVisible] = useState(true)
     const [toggleOpen, setToggleOpen] = useState(false)

@@ -3,7 +3,7 @@ import Footer from "./Footer"
 import PageTitle from "./PageTitle"
 import { getAchievements } from "/src/data/achievements"
 import Achievement from "./Achievement"
-import catalogue from "/src/data/games"
+import catalogue from "/src/data/games.jsx"
 import { useState, useEffect } from "react"
 export default function AchievementsPage() {
     const [selected, setSelected] = useState("all")
@@ -21,7 +21,7 @@ export default function AchievementsPage() {
         <>
             <NavBar />
             <PageTitle title="Achievements" />
-            <p className="text-lg ">Complete challenges, earn achievements and unlock unique rewards</p>
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Complete challenges, earn achievements and unlock unique rewards</h2   >
 
             {/* game choices */}
             <ul>
