@@ -1,52 +1,53 @@
-import { div } from "motion/react-m";
-import { useEffect } from "react";
+export default function VideoHalf({ videos, isRight, submitted, round, submitAnswer, isCorrect, selected }) {
+    const video = videos[round + isRight];
 
-export default function VideoHalf({ videos, isRight, submitted, round, submitAnswer }) {
     function addCommas(num) {
-        if (num) {
-            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
+        return num ? num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "";
     }
+
+    const shouldShowViews = submitted || !isRight; // show views on left/top video always; show both after submission
+
     return (
-        <>
-            <div
-                // num + true = num +1 / num + false = num +0
-                style={{
-                    backgroundImage: `url(${videos[round + isRight]?.snippet.thumbnails.standard.url})`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
+        <div
+            onClick={() => { !submitted && submitAnswer(isRight) }}
+            style={{
+                backgroundImage: `url(${video?.snippet?.thumbnails?.standard?.url})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+            }}
+            className={`cursor-pointer transition-transform duration-200 hover:scale-105 
+  bg-blend-darken bg-base-300 w-full rounded-box flex flex-col justify-between 
+  items-center text-slate-50 text-center p-6 h-full lg:w-1/2 md:text-xl lg:text-3xl border-8
+  ${!submitted
+                    ? "border"
+                    : selected && isCorrect
+                        ? "border-success"
+                        : selected && !isCorrect
+                            ? "border-error"
+                            : "border-transparent"
+                }`}
 
-                }
-                }
-                className="card bg-blend-hard-light bg-base-300 w-full rounded-box grid flex-1 text-slate-50 place-items-center lg:w-1/2 md:text-xl lg:text-3xl"
-            >
-
-                <p className="bg-base-300 text-base-content">{videos[round + isRight]?.snippet.title}</p>
-                <p className="bg-base-300 text-base-content">By: {videos[round + isRight]?.snippet.channelTitle}</p>
-                {/* <p>{videos[round + isRight]?.snippet.publishedAt} </p> */}
-                <p className="bg-base-300 text-base-content">has</p>
-                {isRight && !submitted ?
-                    <div>
-                        <div className="flex gap-8">
-                            <button onClick={() => submitAnswer(true)} className="btn glass btn-lg text-black">Higher ▲</button>
-                            <button onClick={() => submitAnswer(false)} className="btn glass btn-lg text-black">Lower ▼</button>
-                        </div>
-                        <div>Views</div>
-                    </div>
-
-                    :
-                    <p className="font-bold tracking-widest bg-base-300 text-base-content p-2 rounded-xl italic">
-                        {addCommas(videos[round + isRight]?.statistics.viewCount)}
-                    </p>
-                }
-
-
+        >
+            <div className="space-y-2 bg-base-300/80 p-4 rounded-xl w-full">
+                <p className="capitalize font-semibold text-base-content line-clamp-2">
+                    {video?.snippet?.title || "Untitled Video"}
+                </p>
+                <p className="text-sm text-base-content">
+                    By: {video?.snippet?.channelTitle || "Unknown Channel"}
+                </p>
             </div>
 
-
-
-        </>
-    )
+            <div className="bg-base-300/80 mt-4 p-2 rounded-xl">
+                <p className="text-base-content mb-1">has</p>
+                {shouldShowViews ? (
+                    <p className="font-bold tracking-widest text-base-content italic">
+                        {addCommas(video?.statistics?.viewCount)} views
+                    </p>
+                ) : (
+                    <p className="text-base-content italic">??? views</p>
+                )}
+            </div>
+        </div>
+    );
 }
