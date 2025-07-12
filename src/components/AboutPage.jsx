@@ -5,42 +5,61 @@ import TimelineItem from "./TimelineItem";
 import timeline from "../data/Timeline";
 import PageTitle from "./PageTitle";
 import Portfolio from "./Portfolio";
+import GameInfo from "./GameInfo";
+import catalogue from "../data/games.jsx";
 export default function AboutPage() {
+  // **************** ALTERNATIVE IDEAS***********
+  // 1. an info/learn more button on homepage for each game card. info button opens up a modal with sumary
+  // 2. learn more button links to new page about each game, idk if this fits for such various game sizes
+
   return (
     <>
-      <NavBar />
-      <PageTitle title={"About M.E"} />
-      <Portfolio />
+      <div className="min-h-screen flex flex-col">
+        <NavBar />
+        <main className="flex-grow">
 
-      {/* <PageTitle title={"My Journey"} isSubtitle={true} />
-      <p>See how my tech career all started</p> */}
-      {/* Animated Timeline */}
-      {/* <motion.ul
-        className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
-      >
-        {timeline.map((item, index) => (
-          <motion.li
-            key={index}
-            initial={{
-              opacity: 0,
-              x: window.innerWidth < 768 ? 0 : (index % 2 === 0 ? -100 : 100), // Slide left/right desktop
-            }}
-            whileInView={{ opacity: 1, x: 0 }} // Animates when it enters viewport
-            transition={{ ease: "easeOut", duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: true, amount: .2 }} // Ensures smooth entrance
-          >
-            <TimelineItem
-              time={item.time}
-              title={item.title}
-              description={item.description}
-              left={index % 2 === 0}
-            />
-          </motion.li>
-        ))}
-      </motion.ul> */}
+          <PageTitle title="About LMG" />
 
-      <Footer />
+          <div className="max-w-4xl mx-auto px-6 sm:px-10 mt-10 space-y-6">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+              Understand how this website came to be.
+            </h2>
 
+            <section className="bg-base-100 rounded-lg shadow-md p-8 sm:p-12 space-y-6 leading-relaxed text-gray-700">
+              <p>
+                <span className="text-primary font-extrabold">LMGGames.com</span> is a
+                personal gaming portfolio showcasing the full catalog of games I've
+                created. Over time, it’s grown into more than just a gallery—it now
+                explores the creative process behind each game through the lenses of
+                a designer, developer, and learner.
+              </p>
+
+              <p>
+                You'll find a wide variety of games here — from quizzes to word
+                puzzles, mobile to desktop experiences, and everything from
+                lighthearted ideas to deeper narratives. These games are built using
+                vanilla JavaScript or game engines like Unity, depending on the
+                vision and scope of each project.
+              </p>
+
+              <p>
+                In the spirit of play, the site itself functions a bit like a game,
+                offering challenges, achievements, and rewards for you to obtain.
+              </p>
+
+              <p>I’m excited to keep building, learning, and sharing more games.</p>
+
+              <p className="text-center font-semibold text-lg text-accent mt-10">
+                Thanks for playing.
+              </p>
+            </section>
+          </div>
+        </main>
+
+
+
+        <Footer />
+      </div>
     </>
   );
 }

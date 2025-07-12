@@ -47,48 +47,51 @@ export default function SettingsPage() {
     return (
         <div className="min-h-screen flex flex-col"> {/* Ensures the full height is used */}
             <NavBar />
-            <PageTitle title={"Themes"} />
-            <p className="text-lg ">Try on different unlocked themes</p>
+            <main className="flex-grow">
 
-            <div className="flex flex-col md:flex-row place-items-center justify-around md:items-baseline flex-grow pb-20">
-                <div className="join join-vertical shadow-2xl">
-                    <div className="join-item arcade-font font-semibold text-2xl">Theme Selector</div>
-                    {unlockedThemes.map((themeOption, index) => (
-                        <input
-                            key={index}
-                            checked={theme === themeOption}
-                            type="radio"
-                            name="theme-buttons"
-                            className="btn theme-controller w-full join-item"
-                            onChange={(e) => handleInput(e.target.value)}
-                            aria-label={capitalize(themeOption)}
-                            value={themeOption}
-                        />
-                    ))}
-                </div>
+                <PageTitle title={"Themes"} />
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Try on different unlocked themes</h2>
 
-                <div className="pt-10 sm:pt-0 sm:border-2 p-4 shadow-2xl">
-                    <div className="text-2xl arcade-font font-semibold">Theme Preview</div>
-                    <div className="w-96 h-fit p-2">
-                        <div className="h-48 w-full border border-base-content grid grid-flow-col grid-rows-3">
-                            <div className="row-span-3 bg-base-200">BG 2</div>
-                            <div className="col-span-2 bg-base-100">BG 1</div>
-                            <div className="col-span-2 row-span-2 border bg-base-300">BG 03</div>
-                        </div>
-                        <div className="flex gap-2 p-2 flex-wrap  justify-center">
+                <div className="flex flex-col md:flex-row place-items-center justify-around md:items-baseline flex-grow pb-20">
+                    <div className="join join-vertical shadow-2xl">
+                        <div className="join-item arcade-font font-semibold text-2xl">Theme Selector</div>
+                        {unlockedThemes.map((themeOption, index) => (
+                            <input
+                                key={index}
+                                checked={theme === themeOption}
+                                type="radio"
+                                name="theme-buttons"
+                                className="btn theme-controller w-full join-item"
+                                onChange={(e) => handleInput(e.target.value)}
+                                aria-label={capitalize(themeOption)}
+                                value={themeOption}
+                            />
+                        ))}
+                    </div>
 
-                            <button className="btn btn-primary">Primary</button>
-                            <button className="btn btn-secondary">Secondary</button>
-                            <button className="btn btn-accent">Accent</button>
-                            <button className="btn btn-neutral">Neutral</button>
-                            <button className="btn btn-info">Info</button>
-                            <button className="btn btn-success">Success</button>
-                            <button className="btn btn-warning">Warning</button>
-                            <button className="btn btn-error">Error</button>
+                    <div className="pt-10 sm:pt-0 sm:border-2 p-4 shadow-2xl">
+                        <div className="text-2xl arcade-font font-semibold">Theme Preview</div>
+                        <div className="w-96 h-fit p-2">
+                            <div className="h-48 w-full border border-base-content grid grid-flow-col grid-rows-3">
+                                <div className="row-span-3 bg-base-200">BG 2</div>
+                                <div className="col-span-2 bg-base-100">BG 1</div>
+                                <div className="col-span-2 row-span-2 border bg-base-300">BG 03</div>
+                            </div>
+                            <div className="flex gap-2 p-2 flex-wrap  justify-center">
+
+                                <button className="btn btn-primary">Primary</button>
+                                <button className="btn btn-secondary">Secondary</button>
+                                <button className="btn btn-accent">Accent</button>
+                                <button className="btn btn-neutral">Neutral</button>
+                                <button className="btn btn-info">Info</button>
+                                <button className="btn btn-success">Success</button>
+                                <button className="btn btn-warning">Warning</button>
+                                <button className="btn btn-error">Error</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </main>
 
             <Footer />
         </div>

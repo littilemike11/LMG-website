@@ -4,7 +4,7 @@ import Footer from "./Footer.jsx"
 import PageTitle from "./PageTitle.jsx"
 // import "../webgamepg.css"
 
-import catalogue from "../data/games.js";
+import catalogue from "../data/games.jsx";
 import GameItem from "./GameItem.jsx";
 export default function WebGamesPage() {
 
