@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Cell from "./Cell";
-import "./WheresOne.css"
 
 const wrongLetters = ["i", "l", "!", "|", "I", "L", "¦"];
 
@@ -54,7 +53,6 @@ function Grid({ gridSize, onGridClick, resetTrigger }) {
           <Cell
             key={index}
             onClick={() => handleCellClick(cell.isCorrect)}
-            className={cell.isCorrect ? "animate-pingOnce" : "cellIncorrect"}
             content={cell.content}
             isCorrect={cell.isCorrect}
           />
