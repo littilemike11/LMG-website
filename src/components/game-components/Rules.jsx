@@ -10,9 +10,15 @@ function Rules({ content }) {
   return (
     <>
       {/* open on default as people dont read tutorials */}
-      <div onClick={() => setToggleOpen(!toggleOpen)} className={`collapse bg-base-200 collapse-plus border-base-300 hover:cursor-pointer border ${toggleOpen ? "collapse-open" : "collapse-close"}`}>
-        <div className="collapse-title text-xl font-medium">How to Play</div>
-        <div className="collapse-content">
+      <div
+        onClick={() => setToggleOpen(!toggleOpen)}
+        className={`collapse collapse-plus border border-base-300 bg-base-200 transition-all duration-300 ease-in-out hover:shadow-md ${toggleOpen ? "collapse-open" : "collapse-close"
+          }`}
+      >
+        <div className="collapse-title text-lg sm:text-xl font-semibold text-primary-content">
+          🎮 How to Play
+        </div>
+        <div className="collapse-content text-base-content">
           {content}
         </div>
       </div>
