@@ -1,8 +1,11 @@
-# React + Vite
+# [LMG Games](https://lmggames.com/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[LMGGames.com](https://lmggames.com/) is a personal gaming portfolio showcasing the full catalog of games I've created. Over time, it’s grown into more than just a gallery—it now explores the creative process behind each game through the lenses of a designer, developer, and learner.
 
-Currently, two official plugins are available:
+You'll find a wide variety of games here — from quizzes to word puzzles, mobile to desktop experiences, and everything from lighthearted ideas to deeper narratives. These games are built using vanilla JavaScript or game engines like Unity, depending on the vision and scope of each project.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In the spirit of play, the site itself functions a bit like a game, offering challenges, achievements, and rewards for you to obtain.
+
+I’m excited to keep building, learning, and sharing more games.
+
+Thanks for playing.
