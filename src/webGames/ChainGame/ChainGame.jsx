@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import LMG from "../../components/game-components/LMG"
 import Rules from "../../components/game-components/Rules"
 import "../../game.css"
@@ -14,9 +14,6 @@ export default function ChainGame() {
     const [wordChain, setWordChain] = useState([])
     const [activeRow, setActiveRow] = useState(1)
     const [solvedRows, setSolvedRows] = useState([0, 7])
-    const [solveTop, setSolveTop] = useState(true)
-    const [topRow, setTopRow] = useState(1)
-    const [botRow, setBotRow] = useState(6)
     const [input, setInput] = useState("")
     const [isEndgame, setIsEndgame] = useState(false)
     const [revealedLetters, setRevealedLetters] = useState({});
@@ -24,6 +21,7 @@ export default function ChainGame() {
     const [hintCount, setHintCount] = useState(0)
     const [incorrectCount, setIncorrectCount] = useState(0)
     const [achievements, setAchievements] = useState([])
+    const inputRef = useRef(null)
 
     const chains = [
         "Fire, Alarm, Clock, Tower, Bridge, Gap, Year, Book",
@@ -67,8 +65,7 @@ export default function ChainGame() {
         // ### MAY NEED TO FIND ALTERNATE MODES ###
         try {
             let randomIndex = Math.floor(Math.random() * chains.length);
-            console.log(randomIndex)
-            console.log(chains[randomIndex])
+            // console.log(chains[randomIndex])
             setWordChain(
                 chains[randomIndex]
                     .split(',', 8)
@@ -123,12 +120,6 @@ export default function ChainGame() {
         fetchWordChain()
     }, [])
 
-    const handleToggle = () => {
-        //if solving top, switch to bottom, and vice versa
-        setIsWrong(false)
-        solveTop ? setActiveRow(botRow) : setActiveRow(topRow)
-        setSolveTop(!solveTop)
-    }
     const giveHint = () => {
         setHintCount(hintCount + 1)
         // reveal letter based on active row
@@ -161,6 +152,7 @@ export default function ChainGame() {
     }
     const submitAnswer = () => {
         //if player right
+        if (!input) return
         if (input.toUpperCase() == wordChain[activeRow]) {
             setSolvedRows([...solvedRows, activeRow])
             //if player won
@@ -169,18 +161,21 @@ export default function ChainGame() {
                 setInput("")
                 return;
             }
-            if (solveTop) {
-                setActiveRow(topRow + 1)
-                setTopRow(topRow + 1)
+            let nextUnsolved = (activeRow + 1) % wordChain.length;
+            let attempts = 0;
+
+            while (solvedRows.includes(nextUnsolved) && attempts < wordChain.length) {
+                nextUnsolved = (nextUnsolved + 1) % wordChain.length;
+                attempts++;
             }
-            else {
-                setActiveRow(botRow - 1)
-                setBotRow(botRow - 1)
+
+            if (attempts < wordChain.length) {
+                setActiveRow(nextUnsolved);
             }
             //if player wrong
         } else {
             setIsWrong(true)
-            setIncorrectCount(incorrectCount + 1)
+            setIncorrectCount(prev => prev + 1)
         }
         setInput("")
     }
@@ -192,13 +187,12 @@ export default function ChainGame() {
                 <Rules
                     content={
                         <ol>
-                            <li></li>
-                            <li>Goal: Guess a chain of words based on commonly said word pairs</li>
-                            <li>Example: Door ={">"} H _ _ _ _ _ ={">"} B _ _ ={">"} S _ _ _ _ ={">"} Chair</li>
-                            <li>Solution: Door ={">"} Handle ={">"} Bar ={">"} Stool ={">"} Chair</li>
-                            <li>Pairs : "Door Handle" ={">"} "Handle bar" ={">"} "Bar Stool" ={">"} "Stool Chair" </li>
-                            <li>Use the <span className="italic">Hint</span> Button to reveal the next letter in the word</li>
-                            <li>Press the <span className="italic">Solve Bottom</span> button to solve from the end first</li>
+                            <li><strong>Goal:</strong> Complete a chain where each word pair forms a common phrase.</li>
+                            <li><strong>Example:</strong> Door → H _ _ _ _ _ → B _ _ → S _ _ _ _ → Chair</li>
+                            <li><strong>Solution:</strong> Door → Handle → Bar → Stool → Chair</li>
+                            <li><em>Phrases:</em> "Door Handle", "Handle Bar", "Bar Stool", "Stool Chair"</li>
+                            <li>Click on the row to solve for it</li>
+                            <li>Use <span className="italic">Hint</span> to reveal a letter</li>
                         </ol>
                     }
                 />
@@ -215,6 +209,8 @@ export default function ChainGame() {
                                     isWrong={isWrong}
                                     isRevealed={index == 0 || index == wordChain.length - 1 || solvedRows.includes(index)}
                                     word={word.trim().padEnd(12, ' ')}
+                                    setActiveRow={setActiveRow}
+                                    inputRef={inputRef}
                                 />
                             ))}
 
@@ -228,19 +224,31 @@ export default function ChainGame() {
                     </div>
 
                 }
-
-                <div>
-                    <label className="swap">
-                        <input type="checkbox" />
-                        <div onClick={handleToggle} className="swap-on btn">Solve Top</div>
-                        <div onClick={handleToggle} className="swap-off btn">Solve Bottom</div>
-                    </label>
-                </div>
                 <div>
                     <div className="join">
-                        <button onClick={giveHint} data-tip="Reveal a Letter on active row" className="btn join-item rounded-l-full tooltip tooltip-bottom " > Hint?</button>
-                        <input onChange={(e) => { setIsWrong(false), setInput(e.target.value) }} className="input input-bordered join-item" value={input} placeholder="Enter Guess Here" />
-                        <button onClick={submitAnswer} className="btn join-item rounded-r-full">Submit</button>
+                        <button onClick={giveHint} data-tip="Reveal a Letter on active row" className="btn btn-info text-info-content join-item rounded-l-full tooltip tooltip-bottom " >🔍Hint?</button>
+                        <input
+                            autoFocus
+                            ref={inputRef}
+                            value={input}
+                            onChange={(e) => {
+                                const value = e.target.value.toUpperCase();
+                                if (/^[A-Z]*$/.test(value)) {
+                                    setIsWrong(false);
+                                    setInput(value);
+                                }
+                            }}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    submitAnswer();
+                                }
+                            }}
+                            className="input input-bordered join-item"
+                            placeholder="Enter Guess Here"
+                        />
+
+                        <button onClick={submitAnswer} className="btn btn-primary join-item rounded-r-full">Submit</button>
                     </div>
                 </div>
                 {
@@ -252,16 +260,17 @@ export default function ChainGame() {
 
                 {isEndgame && (
                     <div className="flex justify-center items-center">
-                        <div className="flex w-96 flex-col gap-2 items-center border p-4 bg-base-200 shadow-lg rounded-lg">
-                            <p className="text-xl font-bold">End Game Summary</p>
-                            {hintCount === 0 && incorrectCount === 0 && <p className="text-success">Perfect</p>}
-                            <p>Congratulations! You Won!</p>
-                            <p>You used {hintCount} hints</p>
-                            <p>You were wrong {incorrectCount} times</p>
-                            <button onClick={playAgain} className="btn btn-primary">Play Again?</button>
+                        <div className="w-full max-w-md p-6 bg-base-200 border rounded-xl shadow-lg text-center space-y-3">
+                            <h2 className="text-2xl font-bold">🎉 Game Over</h2>
+                            {hintCount === 0 && incorrectCount === 0 && <p className="text-success font-semibold">Perfect Score! 🏆</p>}
+                            <p>Congratulations! You completed the chain!</p>
+                            <p>🔍 Hints used: {hintCount}</p>
+                            <p>❌ Incorrect guesses: {incorrectCount}</p>
+                            <button onClick={playAgain} className="btn btn-primary mt-2">Play Again</button>
                         </div>
                     </div>
                 )}
+
                 {/* show achievements */}
                 <div className="toast z-50 flex flex-col gap-2">
                     {achievements.map((achievement, index) => (
