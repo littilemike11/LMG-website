@@ -22,7 +22,7 @@ export default function AboutPage() {
               Understand how this website came to be.
             </h2>
 
-            <section className="bg-base-100 rounded-lg shadow-md p-8 sm:p-12 space-y-6 leading-relaxed text-gray-700">
+            <section className="bg-base-100 rounded-lg shadow-md p-8 sm:p-12 space-y-6 leading-relaxed">
               <p>
                 <span className="text-primary font-extrabold">LMGGames.com</span> is a
                 personal gaming portfolio showcasing the full catalog of games I've
