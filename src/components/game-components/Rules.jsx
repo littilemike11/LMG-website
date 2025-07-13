@@ -15,7 +15,7 @@ function Rules({ content }) {
         className={`collapse collapse-plus border border-base-300 bg-base-200 transition-all duration-300 ease-in-out hover:shadow-md ${toggleOpen ? "collapse-open" : "collapse-close"
           }`}
       >
-        <div className="collapse-title text-lg sm:text-xl font-semibold text-primary-content">
+        <div className="collapse-title text-lg sm:text-xl font-semibold text-accent">
           🎮 How to Play
         </div>
         <div className="collapse-content text-base-content">

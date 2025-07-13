@@ -1,12 +1,9 @@
-import { motion } from "framer-motion";
+
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import TimelineItem from "./TimelineItem";
-import timeline from "../data/Timeline";
+
 import PageTitle from "./PageTitle";
-import Portfolio from "./Portfolio";
-import GameInfo from "./GameInfo";
-import catalogue from "../data/games.jsx";
+
 export default function AboutPage() {
   // **************** ALTERNATIVE IDEAS***********
   // 1. an info/learn more button on homepage for each game card. info button opens up a modal with sumary
@@ -21,7 +18,7 @@ export default function AboutPage() {
           <PageTitle title="About LMG" />
 
           <div className="max-w-4xl mx-auto px-6 sm:px-10 mt-10 space-y-6">
-            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4">
               Understand how this website came to be.
             </h2>
 

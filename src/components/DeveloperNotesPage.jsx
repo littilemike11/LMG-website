@@ -51,7 +51,7 @@ export default function DeveloperNotesPage() {
             <div className="px-[2rem]">
 
                 <PageTitle title={"Developer Notes"} />
-                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Explore the process of how games are made, from concept to launch</h2>
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4">Explore the process of how games are made, from concept to launch</h2>
 
                 <h2 id="section-Cuber"></h2>
                 <main>

@@ -17,7 +17,7 @@ export default function VideoHalf({ videos, isRight, submitted, round, submitAns
                 backgroundSize: "cover",
             }}
             className={`cursor-pointer transition-transform duration-200 hover:scale-105 
-  bg-blend-darken bg-base-300 w-full rounded-box flex flex-col justify-between 
+  bg-blend-darken  w-full rounded-box flex flex-col justify-between 
   items-center text-slate-50 text-center p-6 h-full lg:w-1/2 md:text-xl lg:text-3xl border-8
   ${!submitted
                     ? "border"

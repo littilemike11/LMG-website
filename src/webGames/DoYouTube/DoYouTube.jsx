@@ -163,7 +163,7 @@ export default function DoYouTube() {
                                 tip={"Determine if the youtube video on the Right(PC)/Bottom(Mobile) has more views than the video on the Left(PC)/Top(Mobile)"}
                                 direction={"tooltip-bottom"}
                             /> */}
-                            <p className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Click on the video with more views</p>
+                            <p className="text-xl sm:text-2xl font-semibold mb-4">Click on the video with more views</p>
                             <div >
                                 <p>Score:  {score}</p>
                                 <p>Round Number: {round + 1}</p>
