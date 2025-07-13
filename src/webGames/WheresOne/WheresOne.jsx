@@ -92,32 +92,57 @@ function WheresOne() {
           <div className='flex justify-normal'>
             <Rules
               content={
-                <ol>
-                  <li>Find and Click on the "1" within the time limit to go to the next Round.</li>
-                  <li>Time limit = Round number + 2s (i.e., if Round #10, the timer starts with 12s).</li>
-                  <li>You get <span className="heart">3 &hearts; &hearts; &hearts;</span> lives.</li>
-                  <li>Click on an incorrect box, you lose a <span className="heart">&hearts;</span>.</li>
-                  <li>Fail to find the "1" within the time limit, you lose a <span className="heart">&hearts;</span> and the grid reshuffles.</li>
-                  <li>Lose all <span className="heart">&hearts; &hearts; &hearts;</span> and you lose the Game.</li>
-                  <li>Try and get to a High Round.</li>
-                  <li>Brag to your friends/family that you have Amazing "1" acquisition!</li>
+                <ol className=" space-y-2">
+                  <li>
+                    Find and click the <strong>"1"</strong> before time runs out to advance to the next round.
+                  </li>
+                  <li>
+                    Time limit = <strong>Round number + 2 seconds</strong> (e.g., Round 10 = 12 seconds).
+                  </li>
+                  <li>
+                    You get <strong>3 lives</strong> ❤️❤️❤️.
+                  </li>
+                  <li>
+                    Wrong click or timeout = lose 1 ❤️, grid reshuffles, and timer resets.
+                  </li>
+                  <li>
+                    Lose all 3 lives = <strong>Game Over</strong>.
+                  </li>
+                  <li>
+                    <strong>Goal:</strong> Reach the highest round possible.
+                  </li>
+                  <li>
+                    <strong>Bonus:</strong> Brag about your elite "1" spotting skills!
+                  </li>
                 </ol>
               }
+
             />
           </div>
 
-          <div className='flex flex-col items-start'>
-            <div className="">
-              <button className='btn' onClick={startGame}>Start</button>
+          <div className="space-y-6">
+            {/* Buttons Group */}
+            <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
+              <button className="btn btn-primary" onClick={startGame}>
+                Start
+              </button>
+              <button className="btn btn-secondary" onClick={endGame}>
+                Restart Game
+              </button>
             </div>
-            <div>
-              <button className='btn' onClick={endGame}>Restart Game</button>
+
+            {/* Game Info */}
+            <div className="text-sm sm:text-base space-y-1">
+              <p>
+                <span className="font-medium text-base-content/80">Previous Round:</span> {prevRound}
+              </p>
+              <p>
+                <span className="font-medium text-base-content/80">Current Round:</span> {round}
+              </p>
+              <Lives lives={lives} />
             </div>
           </div>
 
-          <p>Previous Round: {prevRound}</p>
-          <p>Round: {round}</p>
-          <Lives lives={lives} />
 
           <Timer
             onTimerEnd={() => { lostRound(); }}

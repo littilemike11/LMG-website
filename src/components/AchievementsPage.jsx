@@ -21,7 +21,7 @@ export default function AchievementsPage() {
         <>
             <NavBar />
             <PageTitle title="Achievements" />
-            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Complete challenges, earn achievements and unlock unique rewards</h2   >
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4">Complete challenges, earn achievements and unlock unique rewards</h2   >
 
             {/* game choices */}
             <ul>

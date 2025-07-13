@@ -50,7 +50,7 @@ export default function SettingsPage() {
             <main className="flex-grow">
 
                 <PageTitle title={"Themes"} />
-                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Try on different unlocked themes</h2>
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4">Try on different unlocked themes</h2>
 
                 <div className="flex flex-col md:flex-row place-items-center justify-around md:items-baseline flex-grow pb-20">
                     <div className="join join-vertical shadow-2xl">

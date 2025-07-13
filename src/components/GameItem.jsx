@@ -23,7 +23,7 @@ export default function GameItem({ game, onInfoClick }) {
                 </button>
 
                 {game.isPCOnly && (
-                    <div className="absolute top-0 right-0 text-3xl text-black z-10 p-2">
+                    <div className="absolute top-0 right-0 text-3xl text-black z-10 ">
                         📵
                     </div>
                 )}
@@ -39,7 +39,7 @@ export default function GameItem({ game, onInfoClick }) {
                         {game.link ? (
                             <button className="btn btn-primary btn-lg">Play ▶</button>
                         ) : (
-                            <button className="btn btn-disabled">Under Development</button>
+                            <button disabled className="btn">Coming Soon!</button>
                         )}
                     </Link>
                 </div>

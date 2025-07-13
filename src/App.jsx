@@ -30,7 +30,7 @@ function App() {
       {/* <Hero /> */}
 
       <PageTitle title="Web Game Hub" />
-      <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Browse and play mobile or pc games</h2>
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4">Browse and play mobile or pc games</h2>
 
       <ul className="bg-base-100 mb-10 grid grid-cols-1 justify-items-center items-center gap-x-10 gap-y-14 sm:gap-y-5 m-auto sm:p-10 sm:place-items-center md:grid-cols-2 lg:grid-cols-3 ">
         {catalogue.map((game) => (

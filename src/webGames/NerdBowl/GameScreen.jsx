@@ -1,10 +1,9 @@
 import AnswerChoice from "./AnswerChoice";
 import { useEffect } from "react";
 
-export default function GameScreen({ score, questionCount, questions, submitAnswer, nextQuestion, answerChoices, setAnswerChoices, selectedAnswer,quit }) {
+export default function GameScreen({ score, questionCount, questions, submitAnswer, nextQuestion, answerChoices, setAnswerChoices, selectedAnswer, quit }) {
     // get current question
     let question = questions[questionCount]
-    console.log(question)
     // the questions or answer may contain some html elements
     //remove them for easier readability
     function decodeHTMLEntities(encodedString) {
@@ -14,7 +13,7 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
     }
     //shuffle multiple choice answer choices for new questions
     useEffect(() => {
-         
+
         // for each old incorrect answer, make a label for it being wrong
         let answers = [
             ...question.incorrect_answers.map((answer) => ({
@@ -23,22 +22,18 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
             })), // add a label to correct answer being true
             { text: question.correct_answer, isCorrect: true },
         ];// shuffle answers
-        if (question.type === "multiple"){
+        if (question.type === "multiple") {
             setAnswerChoices(shuffleAnswers(answers));
         }
-        else{// question is true or false
-            if (answers[0].text=="False") {
-                //swap to keep true as first response
-                let temp = answers[0];
-                answers[0]=answers[1];
-                answers[1]= temp;
-            }   
-            setAnswerChoices(answers)
+        if (question.type !== "multiple") {
+            const sortedAnswers = answers.sort((a, b) => (a.text === "True" ? -1 : 1));
+            setAnswerChoices(sortedAnswers);
         }
-        
-        
-    }, [questionCount]);
-    
+
+
+
+    }, [questionCount, question]);
+
     function shuffleAnswers(array) {
         let currentIndex = array.length;
 
@@ -59,32 +54,35 @@ export default function GameScreen({ score, questionCount, questions, submitAnsw
 
     return (
         <>
+
             <div className=" flex flex-col m-auto gap-2 md:w-1/2 ">
-                <p>Catgegory: {decodeHTMLEntities(question.category)}</p>
-                <p>Difficulty: {question.difficulty.toUpperCase()}</p>
-                <p>Score: {score}</p>
-                <p className="mt-4 text-xl">{questionCount + 1}.{decodeHTMLEntities(question.question)} </p>
+                <p className="text-lg font-medium text-gray-600">Category: {decodeHTMLEntities(question.category)}</p>
+                <p className="text-lg font-medium text-gray-600">Difficulty: {question.difficulty.toUpperCase()}</p>
+                <p className="text-lg font-medium text-gray-600 mb-2">Score: {score}</p>
+
+                <p className="text-2xl font-semibold mb-4">{questionCount + 1}. {decodeHTMLEntities(question.question)}</p>
                 <ul >
                     {
-                            //shuffle incorrect and correct answer
+                        //shuffle incorrect and correct answer
                         answerChoices.map((answer, index) => (
-                            <AnswerChoice             
+                            <AnswerChoice
                                 key={index}
                                 answer={answer}
                                 type={question.type}
                                 submitAnswer={submitAnswer}
                                 selectedAnswer={selectedAnswer}
                                 decodeHTMLEntities={decodeHTMLEntities}
-                                
+
                             />
                         ))
                     }
                 </ul>
-                <div className="flex justify-between">
-                    <button onClick={quit} className="btn btn-ghost"> Quit</button>
-                    <button onClick={nextQuestion} className="btn btn-ghost">Next</button> 
+                <div className="flex justify-between mt-6">
+                    <button onClick={quit} className="btn btn-outline btn-error">Quit</button>
+                    <button onClick={nextQuestion} className="btn btn-primary">Next</button>
                 </div>
-                
+
+
             </div>
         </>
     )

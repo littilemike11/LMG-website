@@ -39,14 +39,14 @@ export default function NerdBowl() {
     function createApi() {
         let url =
             "https://opentdb.com/api.php?amount=10&category=" + categoryID;
-        console.log(url);
+
         return url
     }
     async function fetchData(uri) {
         try {
             //const response = await axios.get(uri);
             const response = await axios.get(uri);
-            console.log(response.data)
+
             // Define the order of difficulty
             const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
             // Sort the array based on difficulty

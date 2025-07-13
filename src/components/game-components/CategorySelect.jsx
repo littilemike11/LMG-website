@@ -23,7 +23,7 @@ export default function CategorySelect({ categories, categoryID, setCategoryID, 
                     </select>
 
                 </div>
-                <button onClick={() => playGame()} className="btn">Start</button>
+                <button onClick={() => playGame()} className="btn btn-primary">Start</button>
             </div>
         </>
     )

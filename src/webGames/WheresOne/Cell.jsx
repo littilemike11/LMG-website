@@ -1,11 +1,13 @@
-export default function Cell(props) {
+export default function Cell({ onClick, content }) {
     return (
-        <>
-            <button
-                onClick={props.onClick}
-                className="border aspect-square bg-primary text-primary-content hover:scale-110 min-h-8 h-max">
-                {props.content}
-            </button>
-        </>
-    )
+        <button
+            onClick={onClick}
+            className="border rounded flex items-center justify-center text-xl font-bold 
+                 aspect-square bg-primary text-primary-content 
+                 hover:scale-105 active:scale-95 transition-transform duration-150
+                 select-none shadow-sm"
+        >
+            {content}
+        </button>
+    );
 }

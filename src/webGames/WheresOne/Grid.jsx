@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Cell from "./Cell";
 
-const wrongLetters = ["i", "l", "!", "|"];
+const wrongLetters = ["i", "l", "!", "|", "I", "L", "¦"];
 
 function getRandomLetter() {
   const randomIndex = Math.floor(Math.random() * wrongLetters.length);
@@ -47,13 +47,12 @@ function Grid({ gridSize, onGridClick, resetTrigger }) {
           gridTemplateRows: `repeat(${gridSize}, 1fr)`,
           gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
         }}
-        className={`border aspect-square h-full w-full md:h-1/2 md:w-1/2 overflow-auto grid`}
+        className="grid border aspect-square max-w-screen-md w-full h-full gap-1 bg-base-200"
       >
         {grid.map((cell, index) => (
           <Cell
             key={index}
             onClick={() => handleCellClick(cell.isCorrect)}
-            className={cell.isCorrect ? "cellCorrect" : "cellIncorrect"}
             content={cell.content}
             isCorrect={cell.isCorrect}
           />

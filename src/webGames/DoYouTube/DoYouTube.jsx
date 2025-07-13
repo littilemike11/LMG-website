@@ -17,6 +17,9 @@ export default function DoYouTube() {
     const [videos, setVideos] = useState([])
     const [submitted, setSubmitted] = useState(false)
     const [achievements, setAchievements] = useState([])
+    const [isCorrect, setIsCorrect] = useState(null)
+    const [userChoice, setUserChoice] = useState(null);
+
 
     const apiKey = import.meta.env.VITE_API_KEY
 
@@ -28,27 +31,31 @@ export default function DoYouTube() {
     const wait = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
 
     const revealAnswer = async () => {
-        console.log("Waiting...");
+
         setSubmitted(true)
-        await wait(1000); // Waits 1 second
-        console.log("Done waiting!");
+        await wait(1500); // Waits 1 second
+
         setSubmitted(false)
     }
     const submitAnswer = async (answer) => {
-        console.log(answer ? "i think its higher" : "i think its lower")
+        setUserChoice(answer); // store the user's selected side
+
         let isHigher = Number(videos[round + 1].statistics.viewCount) >= Number(videos[round].statistics.viewCount)
         //if answer correct
-        console.log("right video views: " + videos[round + 1].statistics.viewCount + " left video views: " + videos[round].statistics.viewCount)
-        console.log(isHigher ? " right was higher" : "right was lower")
         if (isHigher == answer) {
             setScore(prev => prev + 1)
+            setIsCorrect(true)
         }
         else {
+            setIsCorrect(false)
             await revealAnswer();
             endGame();
             return;
         }
         await revealAnswer();
+        setIsCorrect(null)
+        setUserChoice(null); // reset for next round
+
         if (round >= videos.length - 2) {
             endGame();
         } else {
@@ -87,9 +94,8 @@ export default function DoYouTube() {
                 "&key=" +
                 apiKey;
             let response = await axios.get(url);
-            console.log(response.data)
             setVideos(shuffle(response.data.items))
-            console.log(response.data.items)
+
         }
         catch (error) {
             console.log(error)
@@ -153,10 +159,11 @@ export default function DoYouTube() {
                     gameState == "Playing" &&
                     (
                         <div>
-                            <ToolTip
+                            {/* <ToolTip
                                 tip={"Determine if the youtube video on the Right(PC)/Bottom(Mobile) has more views than the video on the Left(PC)/Top(Mobile)"}
                                 direction={"tooltip-bottom"}
-                            />
+                            /> */}
+                            <p className="text-xl sm:text-2xl font-semibold mb-4">Click on the video with more views</p>
                             <div >
                                 <p>Score:  {score}</p>
                                 <p>Round Number: {round + 1}</p>
@@ -168,16 +175,21 @@ export default function DoYouTube() {
                                     round={round}
                                     submitted={submitted}
                                     submitAnswer={submitAnswer}
+                                    isCorrect={isCorrect}
+                                    selected={userChoice === false}
 
                                 />
-                                <div className="divider lg:divider-horizontal">vs</div>
+                                <div className="divider lg:divider-horizontal text-2xl font-bold text-center text-base-content">
+                                    {!submitted ? "vs" : isCorrect ? "✔️" : "❌"}
+                                </div>
                                 <VideoHalf
                                     isRight={true}
                                     videos={videos}
                                     round={round}
                                     submitted={submitted}
                                     submitAnswer={submitAnswer}
-
+                                    isCorrect={isCorrect}
+                                    selected={userChoice === true}
                                 />
                             </div>
                         </div>
