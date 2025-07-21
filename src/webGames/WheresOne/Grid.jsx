@@ -21,10 +21,12 @@ function Grid({ gridSize, onGridClick, resetTrigger }) {
     const newAnswerIndex = spawnAnswerSpot(gridSize);
     setAnswerIndex(newAnswerIndex);
 
-    const newGrid = Array.from({ length: gridSize * gridSize }).map((_, index) => ({
-      content: index === newAnswerIndex ? 1 : getRandomLetter(),
-      isCorrect: index === newAnswerIndex,
-    }));
+    const newGrid = Array.from({ length: gridSize * gridSize }).map(
+      (_, index) => ({
+        content: index === newAnswerIndex ? 1 : getRandomLetter(),
+        isCorrect: index === newAnswerIndex,
+      })
+    );
     setGrid(newGrid);
   };
 
@@ -47,7 +49,7 @@ function Grid({ gridSize, onGridClick, resetTrigger }) {
           gridTemplateRows: `repeat(${gridSize}, 1fr)`,
           gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
         }}
-        className="grid border aspect-square max-w-screen-md w-full h-full gap-1 bg-base-200"
+        className="grid aspect-square w-full h-full  md:w-auto md:h-[80vh]  gap-1 bg-base-200 border"
       >
         {grid.map((cell, index) => (
           <Cell
